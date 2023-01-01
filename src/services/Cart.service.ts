@@ -1,6 +1,11 @@
 import { CartItem, CartItemPayload, CartPayload } from '../interfaces/cart';
 import { http } from './common/Http.service';
 
+/**
+ * Get Carts API by Cart ID
+ * @param cartId
+ * @returns
+ */
 export const getCart = async (cartId: string) => {
 	try {
 		const response = await http.get<any>(`carts/${cartId}`, {
