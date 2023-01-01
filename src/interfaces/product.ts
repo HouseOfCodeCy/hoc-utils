@@ -1,3 +1,5 @@
+import { CartAction, CartStatus } from "./cart";
+
 // Cart
 export interface ICartResponse {
 	id: number;
@@ -9,20 +11,6 @@ export interface CartResponse {
 	cart_items?: { data: CartItemResponse[] };
 	status?: CartStatus;
 	users_permissions_user: string;
-}
-
-export enum CartAction {
-	ADD = 'ADD',
-	MODIFY = 'MODIFY',
-	DELETE = 'DELETE',
-	CANCEL = 'CANCEL',
-}
-
-export enum CartStatus {
-	INPROGRESS = 'INPROGRESS',
-	PENDING = 'PENDING',
-	COMPLETED = 'COMPLETED',
-	CANCELLED = 'CANCELLED',
 }
 
 export interface IProductCategory {
@@ -150,4 +138,14 @@ export interface IProductInterface {
 			];
 		};
 	};
+}
+
+
+export interface IProductDiscount {
+	name: string;
+	description: string;
+	discountPercentage: number;
+	startDate: Date;
+	endDate: Date;
+	active: boolean;
 }
