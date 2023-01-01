@@ -1,22 +1,26 @@
 {
   "name": "@houseofcodecy/hoc-utils",
-  "version": "1.0.11-4",
-  "description": "A component library consisting of HoC Utility",
+  "version": "1.0.0",
+  "description": "A component library consisting of HoC Utilities",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HouseOfCodeCy/hoc-components-mui.git"
+    "url": "https://github.com/HouseOfCodeCy/hoc-utils.git"
   },
   "scripts": {
     "build": "yarn build:esm && yarn build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
-    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
+    "fix": "yarn fix:eslint && yarn fix:prettier",
+    "fix:eslint": "eslint --fix \"**/*.*\"",
+    "fix:prettier": "prettier --write \"**/*.*\"",
+    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint:eslint": "eslint \"**/*.*\"",
+    "lint:prettier": "prettier --check \"**/*.*\"",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run prettier && npm run lint"
+    "prepublishOnly": "npm run lint"
   },
   "keywords": [],
   "author": "HoC",
@@ -34,8 +38,6 @@
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.11",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.8.1",
     "typescript": "^4.9.4"
   },

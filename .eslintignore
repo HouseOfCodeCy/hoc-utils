@@ -1,2 +1,31 @@
-node_modules
+# Ignore artifacts:
+build
+coverage
 dist
+dist/**
+
+# Ignore folders
+.next
+.vercel
+.node_modules
+.vscode
+.github
+public
+.idea
+.env*
+.gitignore
+yarn.lock
+
+# Ignore all HTML files:
+*.html
+
+## file extensions
+!*.scss
+.prettierignore
+
+# Additional
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**.md

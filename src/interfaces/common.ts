@@ -1,3 +1,1 @@
-export interface common {
-
-}
+export interface common {}
