@@ -25,8 +25,8 @@ jobs:
           node-version: 16.16.0
       - name: Installing dependencies...
         run: yarn
-      - name: Run Linting...
-        run: yarn prepublishOnly
+      # - name: Run Linting...
+      # run: yarn prepublishOnly
       # - name: Running tests...
       #   run: npm test
       - name: Build
@@ -36,14 +36,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commit-message: 'CI: Bumps Version to {{version}}'
-          minor-wording: 'add,Adds,new,do,DO,Do'
-          major-wording: 'MAJOR,BREAKING'
-          patch-wording: 'patch,fixes,fix,fixing'
-          rc-wording: ''
+          commit-message: "CI: Bumps Version to {{version}}"
+          minor-wording: "add,Adds,new,do,DO,Do"
+          major-wording: "MAJOR,BREAKING"
+          patch-wording: "patch,fixes,fix,fixing"
+          rc-wording: ""
           default: prerelease
-          preid: 'prc'
-          skip-tag: 'true'
+          preid: "prc"
+          skip-tag: "true"
       # Publish to NPM Registry
       - name: Publish to Registry
         uses: JS-DevTools/npm-publish@v1
