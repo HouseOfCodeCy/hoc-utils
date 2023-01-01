@@ -7,6 +7,8 @@ import {
 	quantityHandle,
 } from './utils/Product.utils';
 
+import { createCartActionsAndGetCart, updateCartActionAndGetCart } from './utils/Cart.utils';
+
 export {
 	calculateTotalDiscount,
 	calculateTotalPrice,
@@ -14,4 +16,6 @@ export {
 	calculatePriceWithQuantity,
 	calculateProductCategories,
 	quantityHandle,
+	createCartActionsAndGetCart,
+	updateCartActionAndGetCart,
 };
