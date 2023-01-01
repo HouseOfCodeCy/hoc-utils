@@ -18,6 +18,11 @@ export const getCart = async (cartId: string) => {
 	}
 };
 
+/**
+ * POST Carts API
+ * @param {CartPayload} data Cart Data
+ * @returns
+ */
 export const createCart = async (data: CartPayload) => {
 	try {
 		const response = await http.post<any>('carts', {
