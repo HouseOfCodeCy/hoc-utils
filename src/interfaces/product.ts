@@ -106,3 +106,48 @@ export interface CartItemResponse {
 		quantity: number;
 	};
 }
+
+export interface IProductInterface {
+	id: number;
+	attributes: {
+		name: string;
+		description: string;
+		price: number;
+		dateAdded?: string;
+		category?: IProductCategory;
+		brand?: string;
+		stock?: number;
+		sku?: string;
+		extraDescription?: string;
+		productSizes?: string[];
+		mediaUrl: string;
+		product_sizes: {
+			data: [
+				{
+					id: number;
+					attributes: {
+						size: string;
+					};
+				}
+			];
+		};
+		product_brand: {
+			data: {
+				id: number;
+				attributes: {
+					name: string;
+				};
+			};
+		};
+		product_sub_categories: {
+			data: [
+				{
+					id: number;
+					attributes: {
+						name: string;
+					};
+				}
+			];
+		};
+	};
+}
