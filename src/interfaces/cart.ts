@@ -1,6 +1,4 @@
-import { IProductDiscount, IProductDiscountResponse, IProductInterface, IProductInterfaceResponse } from "./product";
-
-
+import { IProductDiscount, IProductDiscountResponse, IProductInterface, IProductInterfaceResponse } from './product';
 
 export enum CartAction {
 	ADD = 'ADD',
@@ -16,7 +14,6 @@ export enum CartStatus {
 	CANCELLED = 'CANCELLED',
 }
 
-
 export interface CartItem {
 	product: IProductInterface;
 	quantity: number;
@@ -25,7 +22,6 @@ export interface CartItem {
 	cart: CartPayload | string;
 }
 
-
 export interface CartItemPayload {
 	product: IProductInterfaceResponse;
 	quantity: number;
@@ -33,7 +29,6 @@ export interface CartItemPayload {
 	product_discount?: { data: IProductDiscountResponse[] };
 	cart: CartPayload | string;
 }
-
 
 export interface CartPayload {
 	users_permissions_user: string;

@@ -1,4 +1,4 @@
-import { CartAction, CartStatus } from "./cart";
+import { CartAction, CartStatus } from './cart';
 
 // Cart
 export interface ICartResponse {
@@ -87,7 +87,7 @@ export interface IProductDiscountResponse {
 export interface CartItemResponse {
 	id: number;
 	attributes: {
-		cart: { data: ICartResponse } | string;
+		cart: { data: ICartResponse };
 		price: number;
 		product: IProductInterfaceResponse;
 		product_discount?: { data: IProductDiscountResponse[] };
@@ -139,7 +139,6 @@ export interface IProductInterface {
 		};
 	};
 }
-
 
 export interface IProductDiscount {
 	name: string;

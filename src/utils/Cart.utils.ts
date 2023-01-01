@@ -37,7 +37,20 @@ export const updateCartActionAndGetCart = async (
 		quantity: tmpQuantity,
 		price: calculatePriceWithQuantity(cartItem.attributes.product.data.attributes.price, tmpQuantity),
 		product: cartItem.attributes.product,
-		cart: cartItem.attributes.cart,
+		cart: {
+			users_permissions_user: cartItem.attributes.cart.data.attributes.users_permissions_user,
+			action: cartItem.attributes.cart.data.attributes.action,
+			status: cartItem.attributes.cart.data.attributes.status,
+			cart_items: cartItem.attributes.cart.data.attributes.cart_items?.data.map((cartItem) => {
+				return {
+					product: cartItem.attributes.product,
+					quantity: cartItem.attributes.quantity,
+					price: cartItem.attributes.price,
+					product_discount: cartItem.attributes.product_discount,
+					cart: cartItem.attributes.cart,
+				};
+			}),
+		},
 		product_discount: cartItem.attributes.product_discount,
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then((res: any) => {
