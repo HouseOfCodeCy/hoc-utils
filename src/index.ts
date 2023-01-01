@@ -1,3 +1,4 @@
-import { calculateTotalDiscount } from './utils/Product.utils';
+import { calculateTotalDiscount, calculateTotalPrice } from './utils/Product.utils';
 
-export { calculateTotalDiscount };
+export { calculateTotalDiscount, calculateTotalPrice };
+

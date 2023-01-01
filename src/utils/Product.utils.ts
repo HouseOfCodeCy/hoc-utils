@@ -22,3 +22,18 @@ export const calculateTotalDiscount = (cartItems: CartItemResponse[]): string =>
 	}
 	return totalDiscount.toFixed(2);
 };
+
+/**
+ * Iterates through the cart actions and calculates the total price of cart
+ * @param cartItems
+ * @returns
+ */
+export const calculateTotalPrice = (cartItems: CartItemResponse[]): string => {
+	let totalPrice = 0;
+	if (cartItems.length > 0) {
+		cartItems.map((cartItem) => {
+			totalPrice += cartItem.attributes.price;
+		});
+	}
+	return totalPrice.toFixed(2);
+};
