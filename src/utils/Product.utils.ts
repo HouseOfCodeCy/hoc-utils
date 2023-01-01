@@ -1,5 +1,10 @@
 import { CartItemResponse } from '../interfaces/product';
 
+/**
+ * Iterates through the cart actions and calculates the total discount of the cart
+ * @param cartItems
+ * @returns
+ */
 export const calculateTotalDiscount = (cartItems: CartItemResponse[]): string => {
 	let totalDiscount = 0;
 	if (cartItems.length > 0) {
