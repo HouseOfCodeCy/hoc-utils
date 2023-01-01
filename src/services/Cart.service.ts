@@ -1,5 +1,5 @@
 import { CartItem, CartItemPayload, CartPayload } from '../interfaces/cart';
-import { http } from './Http.service';
+import { http } from './common/Http.service';
 
 export const getCart = async (cartId: string) => {
 	try {
