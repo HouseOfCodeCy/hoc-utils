@@ -1,6 +1,6 @@
 {
   "name": "@houseofcodecy/hoc-utils",
-  "version": "1.2.2-2",
+  "version": "1.2.2-3",
   "description": "A component library consisting of HoC Utilities",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
