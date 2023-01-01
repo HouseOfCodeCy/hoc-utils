@@ -128,7 +128,7 @@ export interface IProductInterface {
 					attributes: {
 						size: string;
 					};
-				}
+				},
 			];
 		};
 		product_brand: {
@@ -146,7 +146,7 @@ export interface IProductInterface {
 					attributes: {
 						name: string;
 					};
-				}
+				},
 			];
 		};
 	};
