@@ -43,11 +43,11 @@ export const updateCartActionAndGetCart = async (
 			status: cartItem.attributes.cart.data.attributes.status,
 			cart_items: cartItem.attributes.cart.data.attributes.cart_items?.data.map((cartItem) => {
 				return {
-					product: cartItem.attributes.product,
+					product: `${cartItem.attributes.product.data.id}`,
 					quantity: cartItem.attributes.quantity,
 					price: cartItem.attributes.price,
-					product_discount: cartItem.attributes.product_discount,
-					cart: cartItem.attributes.cart,
+					product_discount: cartItem.attributes.product_discount?.data.map((discount) => `${discount.attributes}`),
+					cart: `${cartItem.attributes.cart.data.id}`,
 				};
 			}),
 		},

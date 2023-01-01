@@ -23,10 +23,10 @@ export interface CartItem {
 }
 
 export interface CartItemPayload {
-	product: IProductInterfaceResponse;
+	product: IProductInterfaceResponse | string;
 	quantity: number;
 	price: number;
-	product_discount?: { data: IProductDiscountResponse[] };
+	product_discount?: { data: IProductDiscountResponse[] } | string[];
 	cart: CartPayload | string;
 }
 
@@ -34,5 +34,5 @@ export interface CartPayload {
 	users_permissions_user: string;
 	action: CartAction;
 	status?: CartStatus;
-	cart_items?: CartItem[];
+	cart_items?: CartItemPayload[];
 }
