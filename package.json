@@ -1,6 +1,6 @@
 {
   "name": "@houseofcodecy/hoc-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A component library consisting of HoC Utilities",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -39,6 +39,5 @@
   },
   "peerDependencies": {
     "react": ">=16"
-  },
-  "dependencies": {}
+  }
 }
