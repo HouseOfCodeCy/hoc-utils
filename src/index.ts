@@ -41,5 +41,12 @@ export {
 	getConfiguration,
 	updateConfiguration,
 } from './services/Configuration.service';
+export {
+	getCategoriesByParentCategoryId,
+	getProduct,
+	getProductCategories,
+	getProductParentCategories,
+	getProducts,
+} from './services/Product.service';
 // Utility Functions
 export { CartUtils, ProductUtils } from './utils/index';
