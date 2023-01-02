@@ -29,6 +29,7 @@ export {
 	registerUser,
 } from './services/Account.service';
 export { getAddress } from './services/Address.service';
+export { getBundle } from './services/Bundle.service';
 export {
 	createCart,
 	createCartItem,
@@ -37,6 +38,7 @@ export {
 	updateCart,
 	updateCartItem,
 } from './services/Cart.service';
+export { checkoutCart } from './services/Checkout.service';
 export {
 	getConfiguration,
 	updateConfiguration,
@@ -48,5 +50,6 @@ export {
 	getProductParentCategories,
 	getProducts,
 } from './services/Product.service';
+export { getReviewsByBundleId } from './services/Reviews.service';
 // Utility Functions
 export { CartUtils, ProductUtils } from './utils/index';
