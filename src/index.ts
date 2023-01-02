@@ -52,6 +52,6 @@ export {
 	getProductParentCategories,
 	getProducts,
 } from './services/Product.service';
-export { getReviewsByBundleId } from './services/Reviews.service';
+export { getReviews, getReviewsByUserId } from './services/Reviews.service';
 // Utility Functions
 export { CartUtils, ProductUtils } from './utils/index';

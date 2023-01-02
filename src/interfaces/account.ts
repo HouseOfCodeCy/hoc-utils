@@ -1,13 +1,15 @@
 export interface IUser {
 	id?: string;
-	email: string;
-	username: string;
-	name: string;
-	lastname: string;
-	telephone: string;
-	countryCode: string;
-	password?: string;
-	favorites?: number[];
+	attributes: {
+		email: string;
+		username: string;
+		name: string;
+		lastname: string;
+		telephone: string;
+		countryCode: string;
+		password?: string;
+		favorites?: number[];
+	};
 }
 
 export interface UserPayload {

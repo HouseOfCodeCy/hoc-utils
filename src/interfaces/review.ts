@@ -1,9 +1,11 @@
+import { IUser } from './account';
+
 export interface IReview {
 	id: string;
 	attributes: IReviewBody;
 }
 export interface IReviewBody {
-	userId: string;
+	users_permissions_user: { data: IUser };
 	reviewDescription: string;
 	title: string;
 	rating: number;
