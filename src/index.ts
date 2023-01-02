@@ -2,7 +2,6 @@
 export * as CartInterfaces from './interfaces/cart';
 export * as ProductInterfaces from './interfaces/product';
 // Services
-export * as Services from './services/index';
+export * as services from './services/index';
 // Utility Functions
-export * as cartUtils from './utils/Cart.utils';
-export * as productUtils from './utils/Product.utils';
+export * as utils from './utils/index';
