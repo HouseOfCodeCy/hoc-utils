@@ -5,6 +5,7 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "type": "module",
   "exports": {
     ".": "./dist/esm/index.js",
     "./services": "./dist/esm/services/index.js",
