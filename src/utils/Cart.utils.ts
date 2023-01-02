@@ -59,7 +59,7 @@ export const updateCartActionAndGetCart = async (
 						product: `${cartItem.attributes.product.data.id}`,
 						quantity: cartItem.attributes.quantity,
 						price: cartItem.attributes.price,
-						product_discount: cartItem.attributes.product_discount?.data.map(
+						product_discount: cartItem.attributes.product_discount?.data?.map(
 							(discount) => `${discount.attributes}`,
 						),
 						cart: `${cartItem.attributes.cart.data.id}`,
