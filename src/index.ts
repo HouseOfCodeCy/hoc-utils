@@ -1,4 +1,5 @@
 // Interfaces
+export { IUser, UserPayload } from './interfaces/account';
 export {
 	CartAction,
 	CartItem,
@@ -18,6 +19,14 @@ export {
 	IProductSubCategory,
 } from './interfaces/product';
 // Services
+export {
+	forgotPassword,
+	getLoggedInUser,
+	isUserLoggedIn,
+	login,
+	logoutUser,
+	registerUser,
+} from './services/Account.service';
 export {
 	createCart,
 	createCartItem,
