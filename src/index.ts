@@ -18,6 +18,13 @@ export {
 	IProductSubCategory,
 } from './interfaces/product';
 // Services
-export { CartService } from './services/index';
+export {
+	createCart,
+	createCartItem,
+	deleteCart,
+	getCart,
+	updateCart,
+	updateCartItem,
+} from './services/Cart.service';
 // Utility Functions
 export { CartUtils, ProductUtils } from './utils/index';
