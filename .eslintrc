@@ -16,6 +16,7 @@
 		"**/public/*",
 		"*.lock",
 		"**/dist/*",
+		"**/lib/*",
 		"*.md"
 	],
 	"rules": {
