@@ -1,1 +1,8 @@
-export { createCart } from './Cart.service';
+export {
+	createCart,
+	createCartItem,
+	deleteCart,
+	getCart,
+	updateCart,
+	updateCartItem,
+} from './Cart.service';
