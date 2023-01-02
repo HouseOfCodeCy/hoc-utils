@@ -7,6 +7,7 @@ export {
 	CartPayload,
 	CartStatus,
 } from './interfaces/cart';
+export { ConfigurationInterface } from './interfaces/configuration';
 export {
 	CartItemResponse,
 	CartResponse,
@@ -27,6 +28,7 @@ export {
 	logoutUser,
 	registerUser,
 } from './services/Account.service';
+export { getAddress } from './services/Address.service';
 export {
 	createCart,
 	createCartItem,
@@ -35,5 +37,9 @@ export {
 	updateCart,
 	updateCartItem,
 } from './services/Cart.service';
+export {
+	getConfiguration,
+	updateConfiguration,
+} from './services/Configuration.service';
 // Utility Functions
 export { CartUtils, ProductUtils } from './utils/index';
