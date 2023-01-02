@@ -7,7 +7,7 @@
 		"node_modules"
 	],
 	"compilerOptions": {
-		"module": "esnext",
+		"module": "commonjs",
 		"lib": [
 			"dom",
 			"esnext"
@@ -16,7 +16,7 @@
 		"declaration": true,
 		"sourceMap": true,
 		"rootDir": "./src",
-		"outDir": "./dist/esm",
+		"outDir": "./lib",
 		"strict": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
@@ -26,6 +26,6 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"target": "ES2022"
+		"target": "ES5"
 	}
 }
