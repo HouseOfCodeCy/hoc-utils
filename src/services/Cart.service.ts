@@ -52,7 +52,10 @@ export const createCartItem = async (data: CartItem) => {
 	}
 };
 
-export const updateCartItem = async (cartItemId: string, data: CartItemPayload) => {
+export const updateCartItem = async (
+	cartItemId: string,
+	data: CartItemPayload,
+) => {
 	try {
 		const response = await http.put<any>(`cart-items/${cartItemId}`, {
 			data,

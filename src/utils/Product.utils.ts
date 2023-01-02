@@ -5,7 +5,9 @@ import { CartItemResponse, IProductInterface } from '../interfaces/product';
  * @param cartItems
  * @returns
  */
-export const calculateTotalDiscount = (cartItems: CartItemResponse[]): string => {
+export const calculateTotalDiscount = (
+	cartItems: CartItemResponse[],
+): string => {
 	let totalDiscount = 0;
 	if (cartItems.length > 0) {
 		cartItems.forEach((cartItem) => {
@@ -62,24 +64,32 @@ export const quantityHandle = (quantity: number, increment: boolean) => {
 export const calculateProductCategories = (product: IProductInterface) => {
 	const productCategories: string[] = [];
 	product &&
-		product.attributes?.product_sub_categories?.data?.map((category: any, index: number) => {
-			productCategories.push(
-				index !== product.attributes.product_sub_categories.data.length - 1
-					? `${category.attributes.name}, `
-					: category.attributes.name,
-			);
-		});
+		product.attributes?.product_sub_categories?.data?.map(
+			(category: any, index: number) => {
+				productCategories.push(
+					index !== product.attributes.product_sub_categories.data.length - 1
+						? `${category.attributes.name}, `
+						: category.attributes.name,
+				);
+			},
+		);
 	return productCategories;
 };
 
-export const calculatePrice = (product: IProductInterface, quantity?: number): number => {
+export const calculatePrice = (
+	product: IProductInterface,
+	quantity?: number,
+): number => {
 	if (quantity) {
 		return +(product.attributes.price * quantity).toFixed(2);
 	}
 	return +product.attributes.price.toFixed(2);
 };
 
-export const calculatePriceWithQuantity = (price: number, quantity?: number): number => {
+export const calculatePriceWithQuantity = (
+	price: number,
+	quantity?: number,
+): number => {
 	if (quantity) {
 		return +(price * quantity).toFixed(2);
 	}
