@@ -1,8 +1,8 @@
-export {
+import {
 	createCartActionsAndGetCart,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
-export {
+import {
 	calculatePrice,
 	calculatePriceWithQuantity,
 	calculateProductCategories,
@@ -10,3 +10,16 @@ export {
 	calculateTotalPrice,
 	quantityHandle,
 } from './Product.utils';
+
+export const CartUtils = {
+	createCartActionsAndGetCart,
+	updateCartActionAndGetCart,
+};
+export const ProductUtils = {
+	calculatePrice,
+	calculatePriceWithQuantity,
+	calculateProductCategories,
+	calculateTotalDiscount,
+	calculateTotalPrice,
+	quantityHandle,
+};

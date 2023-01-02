@@ -2,6 +2,7 @@
 // export * from './interfaces/cart';
 // export * from './interfaces/product';
 // Services
-export * from './services/index';
+// export {} from './services'
+
 // Utility Functions
-export * from './utils/index';
+export { CartUtils, ProductUtils } from './utils/index';
