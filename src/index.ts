@@ -1,5 +1,6 @@
 // Interfaces
 export { IUser, UserPayload } from './interfaces/account';
+export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
 export {
 	CartAction,
 	CartItem,

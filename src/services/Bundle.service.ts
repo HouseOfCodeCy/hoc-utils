@@ -3,7 +3,7 @@ import { http } from './common/Http.service';
 export const getBundle = async (bundleId: string) => {
 	try {
 		const response = await http.get<any>(`bundles/${bundleId}`, {
-			// params: { populate: "*" },
+			params: { populate: 'reviews' },
 		});
 		return response;
 	} catch (error) {
