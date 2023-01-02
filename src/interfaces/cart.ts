@@ -1,4 +1,9 @@
-import { IProductDiscount, IProductDiscountResponse, IProductInterface, IProductInterfaceResponse } from './product';
+import {
+	IProductDiscount,
+	IProductDiscountResponse,
+	IProductInterface,
+	IProductInterfaceResponse,
+} from './product';
 
 export enum CartAction {
 	ADD = 'ADD',
