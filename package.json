@@ -6,7 +6,8 @@
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "exports": {
-    "./*": "./dist/esm/*.js"
+    ".": "./dist/esm/index.js",
+    "./services": "./dist/esm/services/index.js"
   },
   "repository": {
     "type": "git",
