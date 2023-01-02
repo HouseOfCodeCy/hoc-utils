@@ -2,14 +2,8 @@
   "name": "@houseofcodecy/hoc-utils",
   "version": "1.4",
   "description": "A component library consisting of HoC Utilities",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
-  "exports": {
-    ".": "./dist/esm/index.js",
-    "./services": "./dist/esm/services/index.js",
-    "./utils": "./dist/esm/utils/index.js"
-  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/HouseOfCodeCy/hoc-utils.git"
