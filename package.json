@@ -6,11 +6,6 @@
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "type": "module",
-  "exports": {
-    ".": "./dist/esm/index.js",
-    "./services": "./dist/esm/services/index.js",
-    "./utils": "./dist/esm/utils/index.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/HouseOfCodeCy/hoc-utils.git"
