@@ -19,6 +19,7 @@ export {
 	IProductInterfaceResponse,
 	IProductSubCategory,
 } from './interfaces/product';
+export { IReview, IReviewBody } from './interfaces/review';
 // Services
 export {
 	forgotPassword,
