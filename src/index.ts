@@ -1,5 +1,5 @@
 // Interfaces
-export { IUser, UserPayload } from './interfaces/account';
+export { IUser, UserBody } from './interfaces/account';
 export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
 export { ICart, ICartBody, ICartItem, ICartItemBody } from './interfaces/cart';
 export {

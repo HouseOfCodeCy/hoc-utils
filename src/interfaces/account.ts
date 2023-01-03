@@ -1,18 +1,9 @@
 export interface IUser {
 	id?: string;
-	attributes: {
-		email: string;
-		username: string;
-		name: string;
-		lastname: string;
-		telephone: string;
-		countryCode: string;
-		password?: string;
-		favorites?: number[];
-	};
+	attributes: UserBody;
 }
 
-export interface UserPayload {
+export interface UserBody {
 	name: string;
 	lastname: string;
 	email: string;
