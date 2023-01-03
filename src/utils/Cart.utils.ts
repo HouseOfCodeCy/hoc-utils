@@ -1,11 +1,15 @@
+import { IUser } from '../interfaces/account';
 import {
 	ICart,
+	ICartBody,
 	ICartItem,
 	ICartItemBody,
 	ICartItemPayload,
 } from '../interfaces/cart';
 import { IProduct } from '../interfaces/product';
+import { CartAction } from '../resources/enums';
 import {
+	createCart,
 	createCartItem,
 	getCart,
 	updateCartItem,
@@ -57,6 +61,39 @@ export const updateCartActionAndGetCart = async (
 			getCart(`${cart?.id}`).then((responseData: any) => {
 				const resData = responseData?.data.data;
 				updateCart(resData);
+			});
+		}
+	});
+};
+
+/**
+ * 1. Create Cart, 2. Create CartAction, 3. GET Card
+ * @param cart
+ * @param product
+ * @param quantity
+ * @param updateCart Update the context with the Card retrieved
+ */
+export const createCartAndCartAction = async (
+	user: IUser,
+	product: IProduct,
+	quantity: number,
+	updateCart: (cart: ICart) => void,
+) => {
+	const data: ICartBody = {
+		action: CartAction.ADD,
+		users_permissions_user: { data: user },
+	};
+	await createCart(data).then((response: any) => {
+		if (response?.statusText === 'OK') {
+			const cartResponse = response?.data.data;
+
+			createCartActionsAndGetCart(
+				cartResponse,
+				product,
+				quantity,
+				updateCart,
+			).then(() => {
+				localStorage.setItem('cartId', `${cartResponse.id}`);
 			});
 		}
 	});

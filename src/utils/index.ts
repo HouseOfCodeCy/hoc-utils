@@ -1,5 +1,6 @@
 import {
 	createCartActionsAndGetCart,
+	createCartAndCartAction,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
 import {
@@ -14,6 +15,7 @@ import {
 export const CartUtils = {
 	createCartActionsAndGetCart,
 	updateCartActionAndGetCart,
+	createCartAndCartAction,
 };
 export const ProductUtils = {
 	calculatePrice,
