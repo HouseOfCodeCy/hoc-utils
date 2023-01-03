@@ -1,4 +1,4 @@
-import { ICartBody, ICartItemBody } from '../interfaces/cart';
+import { ICartBody, ICartItemBody, ICartItemPayload } from '../interfaces/cart';
 import { http } from './common/Http.service';
 
 /**
@@ -40,7 +40,7 @@ export const createCart = async (data: ICartBody) => {
  * @param data
  * @returns
  */
-export const createCartItem = async (data: ICartItemBody) => {
+export const createCartItem = async (data: ICartItemPayload) => {
 	try {
 		const response = await http.post<any>('cart-items', {
 			data,
