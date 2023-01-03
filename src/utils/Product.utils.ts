@@ -10,10 +10,13 @@ export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
 	let totalDiscount = 0;
 	if (cartItems.length > 0) {
 		cartItems.forEach((cartItem) => {
-			if (cartItem.attributes.product_discount) {
+			if (
+				cartItem.attributes.product_discount &&
+				cartItem.attributes.product_discount.data
+			) {
 				totalDiscount +=
 					cartItem.attributes.product_discount.data.attributes
-						.discountPercentage;
+						?.discountPercentage;
 			}
 		});
 	}

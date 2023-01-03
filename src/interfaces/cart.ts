@@ -25,7 +25,7 @@ export interface ICartItemBody {
 	price: number;
 	product: { data: IProduct };
 	cart: { data: ICart };
-	product_discount?: { data: IProductDiscount };
+	product_discount?: { data?: IProductDiscount };
 }
 
 export interface ICartItemPayload {
