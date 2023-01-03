@@ -21,7 +21,7 @@ export interface IProductBody {
 	product_sub_categories: { data: IProductSubCategory[] };
 	reviews?: { data: IReview[] };
 	product_sizes?: { data: IProductSize[] };
-	product_brand?: { data: IProductBrand[] };
+	product_brand?: { data: IProductBrand };
 	product_discount?: { data: IProductDiscount };
 	product_compatibilities?: { data: IProductCompatibility[] };
 }
