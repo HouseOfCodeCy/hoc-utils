@@ -12,7 +12,7 @@ export interface ICartBody {
 	action: CartAction;
 	status?: CartStatus;
 	users_permissions_user?: { data: IUser };
-	cart_items?: { data: ICartItemBody[] };
+	cart_items?: { data: ICartItem[] };
 }
 
 export interface ICartItem {
