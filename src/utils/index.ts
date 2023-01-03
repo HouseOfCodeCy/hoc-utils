@@ -8,6 +8,7 @@ import {
 	calculatePrice,
 	calculatePriceWithQuantity,
 	calculateProductCategories,
+	calculateStockAvailability,
 	calculateTotalDiscount,
 	calculateTotalPrice,
 	getBrandAcronym,
@@ -29,6 +30,7 @@ export const ProductUtils = {
 	calculateTotalPrice,
 	quantityHandle,
 	getBrandAcronym,
+	calculateStockAvailability,
 };
 export const ReviewUtils = {
 	calculateTotalReviews,
