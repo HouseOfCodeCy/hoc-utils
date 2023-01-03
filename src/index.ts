@@ -1,13 +1,7 @@
 // Interfaces
 export { IUser, UserPayload } from './interfaces/account';
 export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
-export {
-	CartAction,
-	CartItem,
-	CartItemPayload,
-	CartPayload,
-	CartStatus,
-} from './interfaces/cart';
+export { ICart, ICartBody, ICartItem, ICartItemBody } from './interfaces/cart';
 export {
 	IDataResponse,
 	IMetaResponse,
@@ -17,15 +11,16 @@ export {
 } from './interfaces/common/common';
 export { ConfigurationInterface } from './interfaces/configuration';
 export {
-	CartItemResponse,
-	CartResponse,
-	ICartResponse,
-	IProductCategory,
+	IProduct,
+	IProductBody,
+	IProductBrand,
+	IProductBrandBody,
+	IProductCompatibility,
+	IProductCompatibilityBody,
 	IProductDiscount,
-	IProductDiscountResponse,
-	IProductInterface,
-	IProductInterfaceResponse,
-	IProductSubCategory,
+	IProductDiscountBody,
+	IProductSize,
+	IProductSizeBody,
 } from './interfaces/product';
 export { IReview, IReviewBody } from './interfaces/review';
 // Services

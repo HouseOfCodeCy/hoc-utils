@@ -1,150 +1,70 @@
-import { CartAction, CartStatus } from './cart';
+import { IProductCategory, IProductSubCategory } from './category';
+import { IReview } from './review';
 
-// Cart
-export interface ICartResponse {
-	id: number;
-	attributes: CartResponse;
+/** PRODUCT */
+export interface IProduct {
+	id: string;
+	attributes: IProductBody;
 }
 
-export interface CartResponse {
-	action: CartAction;
-	cart_items?: { data: CartItemResponse[] };
-	status?: CartStatus;
-	users_permissions_user: string;
-}
-
-export interface IProductCategory {
-	id: number;
+export interface IProductBody {
 	name: string;
-	animal: any;
-	subCategories: IProductSubCategory[];
+	description: string;
+	price: number;
+	dateAdded?: string;
+	category?: IProductCategory;
+	brand?: string;
+	stock?: number;
+	sku?: string;
+	extraDescription?: string;
+	mediaUrl: string;
+	product_sub_categories: { data: IProductSubCategory[] };
+	reviews?: { data: IReview[] };
+	product_sizes?: { data: IProductSize[] };
+	product_brand?: { data: IProductBrand[] };
+	product_discount?: { data: IProductDiscount };
+	product_compatibilities?: { data: IProductCompatibility[] };
 }
 
-export interface IProductInterfaceResponse {
-	data: {
-		id: number;
-		attributes: {
-			name: string;
-			description: string;
-			price: number;
-			dateAdded?: string;
-			category?: IProductCategory;
-			brand?: string;
-			stock?: number;
-			sku?: string;
-			extraDescription?: string;
-			productSizes?: string[];
-			mediaUrl: string;
-			product_sizes: {
-				data: [
-					{
-						id: number;
-						attributes: {
-							size: string;
-						};
-					},
-				];
-			};
-			product_brand: {
-				data: {
-					id: number;
-					attributes: {
-						name: string;
-					};
-				};
-			};
-			product_sub_categories: {
-				data: [
-					{
-						id: number;
-						attributes: {
-							name: string;
-						};
-					},
-				];
-			};
-		};
-	};
+/** PRODUCT SIZES */
+export interface IProductSize {
+	id: string;
+	attributes: IProductSizeBody;
+}
+export interface IProductSizeBody {
+	size: string;
 }
 
-export interface IProductSubCategory {
-	id: number;
+/** PRODUCT BRANDS */
+export interface IProductBrand {
+	id: string;
+	attributes: IProductBrandBody;
+}
+export interface IProductBrandBody {
 	name: string;
+	products?: { data: IProduct[] };
 }
 
-export interface IProductDiscountResponse {
-	id: number;
-	attributes: {
-		name: string;
-		description: string;
-		discountPercentage: number;
-		startDate: Date;
-		endDate: Date;
-		active: boolean;
-	};
-}
-
-export interface CartItemResponse {
-	id: number;
-	attributes: {
-		cart: { data: ICartResponse };
-		price: number;
-		product: IProductInterfaceResponse;
-		product_discount?: { data: IProductDiscountResponse[] };
-		quantity: number;
-	};
-}
-
-export interface IProductInterface {
-	id: number;
-	attributes: {
-		name: string;
-		description: string;
-		price: number;
-		dateAdded?: string;
-		category?: IProductCategory;
-		brand?: string;
-		stock?: number;
-		sku?: string;
-		extraDescription?: string;
-		productSizes?: string[];
-		mediaUrl: string;
-		product_sizes: {
-			data: [
-				{
-					id: number;
-					attributes: {
-						size: string;
-					};
-				},
-			];
-		};
-		product_brand: {
-			data: {
-				id: number;
-				attributes: {
-					name: string;
-				};
-			};
-		};
-		product_sub_categories: {
-			data: [
-				{
-					id: number;
-					attributes: {
-						name: string;
-					};
-				},
-			];
-		};
-	};
-}
-
+/** PRODUCT DISCOUNT */
 export interface IProductDiscount {
+	id: number;
+	attributes: IProductDiscountBody;
+}
+
+export interface IProductDiscountBody {
 	name: string;
 	description: string;
 	discountPercentage: number;
 	startDate: Date;
 	endDate: Date;
 	active: boolean;
+}
+
+/** PRODUCT COMPATIBILITY */
+export interface IProductCompatibility {
+	id: string;
+	attributes: IProductCompatibilityBody;
+}
+export interface IProductCompatibilityBody {
+	name: string;
 }

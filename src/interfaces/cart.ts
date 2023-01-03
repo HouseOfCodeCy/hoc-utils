@@ -1,44 +1,29 @@
 // cart interfaces
-import {
-	IProductDiscount,
-	IProductDiscountResponse,
-	IProductInterface,
-	IProductInterfaceResponse,
-} from './product';
+import { CartAction, CartStatus } from '../resources/enums';
+import { IUser } from './account';
+import { IProduct, IProductDiscount } from './product';
 
-export enum CartAction {
-	ADD = 'ADD',
-	MODIFY = 'MODIFY',
-	DELETE = 'DELETE',
-	CANCEL = 'CANCEL',
+export interface ICart {
+	id: number;
+	attributes: ICartBody;
 }
 
-export enum CartStatus {
-	INPROGRESS = 'INPROGRESS',
-	PENDING = 'PENDING',
-	COMPLETED = 'COMPLETED',
-	CANCELLED = 'CANCELLED',
-}
-
-export interface CartItem {
-	product: IProductInterface;
-	quantity: number;
-	price: number;
-	product_discount?: IProductDiscount;
-	cart: CartPayload | string;
-}
-
-export interface CartItemPayload {
-	product: IProductInterfaceResponse | string;
-	quantity: number;
-	price: number;
-	product_discount?: { data: IProductDiscountResponse[] } | string[];
-	cart: CartPayload | string;
-}
-
-export interface CartPayload {
-	users_permissions_user: string;
+export interface ICartBody {
 	action: CartAction;
 	status?: CartStatus;
-	cart_items?: CartItemPayload[];
+	users_permissions_user?: { data: IUser };
+	cart_items?: { data: ICartItemBody[] };
+}
+
+export interface ICartItem {
+	id: string;
+	attributes: ICartItemBody;
+}
+
+export interface ICartItemBody {
+	quantity: number;
+	price: number;
+	product: { data: IProduct };
+	cart: { data: ICart };
+	product_discount?: { data: IProductDiscount };
 }
