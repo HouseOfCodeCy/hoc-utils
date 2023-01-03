@@ -1,4 +1,4 @@
-import { CartItem, CartItemPayload, CartPayload } from '../interfaces/cart';
+import { ICartBody, ICartItemBody } from '../interfaces/cart';
 import { http } from './common/Http.service';
 
 /**
@@ -23,7 +23,7 @@ export const getCart = async (cartId: string) => {
  * @param {CartPayload} data Cart Data
  * @returns
  */
-export const createCart = async (data: CartPayload) => {
+export const createCart = async (data: ICartBody) => {
 	try {
 		const response = await http.post<any>('carts', {
 			data,
@@ -40,7 +40,7 @@ export const createCart = async (data: CartPayload) => {
  * @param data
  * @returns
  */
-export const createCartItem = async (data: CartItem) => {
+export const createCartItem = async (data: ICartItemBody) => {
 	try {
 		const response = await http.post<any>('cart-items', {
 			data,
@@ -54,7 +54,7 @@ export const createCartItem = async (data: CartItem) => {
 
 export const updateCartItem = async (
 	cartItemId: string,
-	data: CartItemPayload,
+	data: ICartItemBody,
 ) => {
 	try {
 		const response = await http.put<any>(`cart-items/${cartItemId}`, {
@@ -67,7 +67,7 @@ export const updateCartItem = async (
 	}
 };
 
-export const updateCart = async (cartId: string, data: CartPayload) => {
+export const updateCart = async (cartId: string, data: ICartBody) => {
 	try {
 		const response = await http.put<any>(`carts/${cartId}`, {
 			data,
