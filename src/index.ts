@@ -72,4 +72,4 @@ export {
 } from './services/Product.service';
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
 // Utility Functions
-export { CartUtils, ProductUtils } from './utils/index';
+export { CartUtils, ProductUtils, ReviewUtils } from './utils/index';
