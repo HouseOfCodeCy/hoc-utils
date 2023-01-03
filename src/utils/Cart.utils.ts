@@ -98,3 +98,24 @@ export const createCartAndCartAction = async (
 		}
 	});
 };
+
+/**
+ * Checks if a product exists in the Cart - CartActions
+ * @param product The product to check in the CartActions
+ * @param cartActions Cart CartActions
+ * @returns
+ */
+export const doesProductExistInCartActions = (
+	product: IProduct,
+	cartActions: ICartItem[],
+) => {
+	if (cartActions && cartActions.length > 0) {
+		const cartActionInCart: ICartItem | undefined = cartActions.find(
+			(action: ICartItem) =>
+				action.attributes.product?.data?.id === product?.id,
+		);
+		return cartActionInCart ? cartActionInCart : undefined;
+	} else {
+		return undefined;
+	}
+};
