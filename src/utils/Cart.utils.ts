@@ -1,4 +1,9 @@
-import { ICart, ICartItem, ICartItemBody } from '../interfaces/cart';
+import {
+	ICart,
+	ICartItem,
+	ICartItemBody,
+	ICartItemPayload,
+} from '../interfaces/cart';
 import { IProduct } from '../interfaces/product';
 import {
 	createCartItem,
@@ -14,11 +19,11 @@ export const createCartActionsAndGetCart = async (
 	updateCart: (cart: ICart) => void,
 ) => {
 	// create a new CartItem
-	const cartItem: ICartItemBody = {
-		cart: { data: cart },
+	const cartItem: ICartItemPayload = {
+		cart: cart,
 		quantity: quantity,
 		price: calculatePrice(product, quantity),
-		product: { data: product },
+		product: product,
 	};
 	// create cart item and refresh GET Cart
 	await createCartItem(cartItem).then((res: any) => {
