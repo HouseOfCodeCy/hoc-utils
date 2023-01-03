@@ -10,8 +10,10 @@ import {
 	calculateProductCategories,
 	calculateTotalDiscount,
 	calculateTotalPrice,
+	getBrandAcronym,
 	quantityHandle,
 } from './Product.utils';
+import { calculateTotalReviews } from './Review.utils';
 
 export const CartUtils = {
 	createCartActionsAndGetCart,
@@ -26,4 +28,8 @@ export const ProductUtils = {
 	calculateTotalDiscount,
 	calculateTotalPrice,
 	quantityHandle,
+	getBrandAcronym,
+};
+export const ReviewUtils = {
+	calculateTotalReviews,
 };

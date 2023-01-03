@@ -93,3 +93,22 @@ export const calculatePriceWithQuantity = (
 	}
 	return +price.toFixed(2);
 };
+
+/**
+ * Return the acronym of the product brand
+ * @param product
+ * @returns
+ */
+export const getBrandAcronym = (product: IProduct) => {
+	let brandAcronym = '';
+	if (
+		product &&
+		product.attributes.product_brand &&
+		product.attributes.product_brand.data
+	) {
+		brandAcronym = product.attributes.product_brand?.data?.attributes.name
+			.split(/\s/)
+			.reduce((response, word) => (response += word.slice(0, 1)), '');
+	}
+	return brandAcronym;
+};
