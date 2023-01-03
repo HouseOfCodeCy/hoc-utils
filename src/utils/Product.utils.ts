@@ -10,9 +10,9 @@ export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
 	let totalDiscount = 0;
 	if (cartItems.length > 0) {
 		cartItems.forEach((cartItem) => {
-			if (cartItem.attributes.data.product_discount) {
+			if (cartItem.attributes.product_discount) {
 				totalDiscount +=
-					cartItem.attributes.data.product_discount.data.attributes
+					cartItem.attributes.product_discount.data.attributes
 						.discountPercentage;
 			}
 		});
@@ -29,7 +29,7 @@ export const calculateTotalPrice = (cartItems: ICartItem[]): string => {
 	let totalPrice = 0;
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
-			totalPrice += cartItem.attributes.data.price;
+			totalPrice += cartItem.attributes.price;
 		});
 	}
 	return totalPrice.toFixed(2);
