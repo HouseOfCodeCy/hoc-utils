@@ -3,6 +3,14 @@ export { IUser, UserPayload } from './interfaces/account';
 export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
 export { ICart, ICartBody, ICartItem, ICartItemBody } from './interfaces/cart';
 export {
+	IProductCategory,
+	IProductCategoryBody,
+	IProductCategoryParent,
+	IProductCategoryParentBody,
+	IProductSubCategory,
+	IProductSubCategoryBody,
+} from './interfaces/category';
+export {
 	IDataResponse,
 	IMetaResponse,
 	IResponse,
