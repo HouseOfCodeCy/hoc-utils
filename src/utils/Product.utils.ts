@@ -122,8 +122,8 @@ export const getBrandAcronym = (product: IProduct) => {
  */
 export const calculateStockAvailability = (
 	product: IProduct,
-	lowAvailabilityThreshold: number,
-	highAvailabilityThreshold: number,
+	lowAvailabilityThreshold = 3,
+	highAvailabilityThreshold = 5,
 ) => {
 	let availability = '';
 	if (product) {

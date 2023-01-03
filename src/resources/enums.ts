@@ -11,3 +11,8 @@ export enum CartStatus {
 	COMPLETED = 'COMPLETED',
 	CANCELLED = 'CANCELLED',
 }
+
+export enum PopulateType {
+	DEEP = 'deep',
+	STAR = '*',
+}

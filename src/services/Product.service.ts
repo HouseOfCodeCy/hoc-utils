@@ -1,3 +1,4 @@
+import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
 export const getProductParentCategories = async () => {
@@ -51,10 +52,13 @@ export const getProducts = async () => {
 	}
 };
 
-export const getProduct = async (productId: string) => {
+export const getProduct = async (
+	productId: string,
+	populateType = PopulateType.DEEP,
+) => {
 	try {
 		const response = await http.get<any>(`products/${productId}`, {
-			params: { populate: '*' },
+			params: { populate: populateType },
 		});
 		return response;
 	} catch (error) {
