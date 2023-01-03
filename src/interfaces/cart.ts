@@ -27,3 +27,11 @@ export interface ICartItemBody {
 	cart: { data: ICart };
 	product_discount?: { data: IProductDiscount };
 }
+
+export interface ICartItemPayload {
+	quantity: number;
+	price: number;
+	product: IProduct;
+	cart: ICart;
+	product_discount?: IProductDiscount;
+}

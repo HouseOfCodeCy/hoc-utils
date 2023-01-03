@@ -1,7 +1,13 @@
 // Interfaces
 export { IUser, UserBody } from './interfaces/account';
 export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
-export { ICart, ICartBody, ICartItem, ICartItemBody } from './interfaces/cart';
+export {
+	ICart,
+	ICartBody,
+	ICartItem,
+	ICartItemBody,
+	ICartItemPayload,
+} from './interfaces/cart';
 export {
 	IProductCategory,
 	IProductCategoryBody,
