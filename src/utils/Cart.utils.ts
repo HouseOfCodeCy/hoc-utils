@@ -1,9 +1,5 @@
-import { CartItem, CartItemPayload } from '../interfaces/cart';
-import {
-	CartItemResponse,
-	ICartResponse,
-	IProductInterface,
-} from '../interfaces/product';
+import { ICart, ICartItem, ICartItemBody } from '../interfaces/cart';
+import { IProduct } from '../interfaces/product';
 import {
 	createCartItem,
 	getCart,
@@ -12,17 +8,17 @@ import {
 import { calculatePrice, calculatePriceWithQuantity } from './Product.utils';
 
 export const createCartActionsAndGetCart = async (
-	cart: ICartResponse,
-	product: IProductInterface,
+	cart: ICart,
+	product: IProduct,
 	quantity: number,
-	updateCart: (cart: ICartResponse) => void,
+	updateCart: (cart: ICart) => void,
 ) => {
 	// create a new CartItem
-	const cartItem: CartItem = {
-		cart: `${cart.id}`,
+	const cartItem: ICartItemBody = {
+		cart: { data: cart },
 		quantity: quantity,
 		price: calculatePrice(product, quantity),
-		product: product,
+		product: { data: product },
 	};
 	// create cart item and refresh GET Cart
 	await createCartItem(cartItem).then((res: any) => {
@@ -37,36 +33,18 @@ export const createCartActionsAndGetCart = async (
 
 export const updateCartActionAndGetCart = async (
 	tmpQuantity: number,
-	cartItem: CartItemResponse,
-	cart: ICartResponse,
-	updateCart: (cart: ICartResponse) => void,
+	cartItem: ICartItem,
+	cart: ICart,
+	updateCart: (cart: ICartItem) => void,
 ) => {
-	const tmpCartItem: CartItemPayload = {
+	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
 		price: calculatePriceWithQuantity(
 			cartItem.attributes.product.data.attributes.price,
 			tmpQuantity,
 		),
 		product: cartItem.attributes.product,
-		cart: {
-			users_permissions_user:
-				cartItem.attributes.cart.data.attributes.users_permissions_user,
-			action: cartItem.attributes.cart.data.attributes.action,
-			status: cartItem.attributes.cart.data.attributes.status,
-			cart_items: cartItem.attributes.cart.data.attributes.cart_items?.data.map(
-				(cartItem) => {
-					return {
-						product: `${cartItem.attributes.product.data.id}`,
-						quantity: cartItem.attributes.quantity,
-						price: cartItem.attributes.price,
-						product_discount: cartItem.attributes.product_discount?.data?.map(
-							(discount) => `${discount.attributes}`,
-						),
-						cart: `${cartItem.attributes.cart.data.id}`,
-					};
-				},
-			),
-		},
+		cart: { data: cart },
 		product_discount: cartItem.attributes.product_discount,
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then((res: any) => {

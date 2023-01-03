@@ -1,24 +1,19 @@
-import { CartItemResponse, IProductInterface } from '../interfaces/product';
+import { ICartItem } from '../interfaces/cart';
+import { IProduct } from '../interfaces/product';
 
 /**
  * Iterates through the cart actions and calculates the total discount of the cart
  * @param cartItems
  * @returns
  */
-export const calculateTotalDiscount = (
-	cartItems: CartItemResponse[],
-): string => {
+export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
 	let totalDiscount = 0;
 	if (cartItems.length > 0) {
 		cartItems.forEach((cartItem) => {
-			if (
-				cartItem.attributes.product_discount &&
-				cartItem.attributes.product_discount?.data &&
-				cartItem.attributes.product_discount?.data.length > 0
-			) {
-				cartItem.attributes.product_discount?.data.forEach((discount) => {
-					totalDiscount += discount.attributes.discountPercentage;
-				});
+			if (cartItem.attributes.product_discount) {
+				totalDiscount +=
+					cartItem.attributes.product_discount.data.attributes
+						.discountPercentage;
 			}
 		});
 	}
@@ -30,7 +25,7 @@ export const calculateTotalDiscount = (
  * @param cartItems
  * @returns
  */
-export const calculateTotalPrice = (cartItems: CartItemResponse[]): string => {
+export const calculateTotalPrice = (cartItems: ICartItem[]): string => {
 	let totalPrice = 0;
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
@@ -61,7 +56,7 @@ export const quantityHandle = (quantity: number, increment: boolean) => {
  * @param product
  * @returns
  */
-export const calculateProductCategories = (product: IProductInterface) => {
+export const calculateProductCategories = (product: IProduct) => {
 	const productCategories: string[] = [];
 	product &&
 		product.attributes?.product_sub_categories?.data?.map(
@@ -77,7 +72,7 @@ export const calculateProductCategories = (product: IProductInterface) => {
 };
 
 export const calculatePrice = (
-	product: IProductInterface,
+	product: IProduct,
 	quantity?: number,
 ): number => {
 	if (quantity) {
