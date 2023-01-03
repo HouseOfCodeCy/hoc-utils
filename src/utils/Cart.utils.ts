@@ -40,12 +40,12 @@ export const updateCartActionAndGetCart = async (
 	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
 		price: calculatePriceWithQuantity(
-			cartItem.attributes.product.data.attributes.price,
+			cartItem.attributes.data.product.data.attributes.price,
 			tmpQuantity,
 		),
-		product: cartItem.attributes.product,
+		product: cartItem.attributes.data.product,
 		cart: { data: cart },
-		product_discount: cartItem.attributes.product_discount,
+		product_discount: cartItem.attributes.data.product_discount,
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then((res: any) => {
 		if (res?.statusText === 'OK') {
