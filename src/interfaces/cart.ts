@@ -17,7 +17,7 @@ export interface ICartBody {
 
 export interface ICartItem {
 	id: string;
-	attributes: { data: ICartItemBody };
+	attributes: ICartItemBody;
 }
 
 export interface ICartItemBody {
