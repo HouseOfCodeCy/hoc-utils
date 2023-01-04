@@ -80,7 +80,7 @@ export const createCartAndCartAction = async (
 	product: IProduct,
 	quantity: number,
 	updateCart: (cart: ICart) => void,
-	localStorage: any,
+	localStorage: Storage,
 ) => {
 	const data: ICartBody = {
 		action: CartAction.ADD,
