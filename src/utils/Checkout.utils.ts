@@ -3,9 +3,11 @@
  * @param {string} totalCartAmount The Cart Total Amount
  * @returns Returns 0 if param is empty
  */
-export const tranformPriceToStripeAmount = (totalCartAmount: string) => {
+export const transformPriceToStripeAmount = (
+	totalCartAmount: string,
+): number => {
 	if (totalCartAmount !== '') {
-		return totalCartAmount.replace('.', '');
+		return +totalCartAmount.replace('.', '');
 	}
 	return 0;
 };

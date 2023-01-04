@@ -7,7 +7,7 @@ import {
 	doesProductExistInCartActions,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
-import { tranformPriceToStripeAmount } from './Checkout.utils';
+import { transformPriceToStripeAmount } from './Checkout.utils';
 import {
 	calculatePriceWithQuantity,
 	calculateProductCategories,
@@ -37,5 +37,5 @@ export const ReviewUtils = {
 	calculateTotalReviews,
 };
 export const CheckoutUtils = {
-	tranformPriceToStripeAmount,
+	transformPriceToStripeAmount,
 };
