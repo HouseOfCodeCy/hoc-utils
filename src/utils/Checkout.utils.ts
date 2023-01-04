@@ -1,7 +1,7 @@
 /**
  * Receives a string for Cart Total and Trasform to number without the dot.
  * @param {string} totalCartAmount The Cart Total Amount
- * @returns Returns 0 if param is empty
+ * @returns {number} Returns 0 if param is empty
  */
 export const transformPriceToStripeAmount = (
 	totalCartAmount: string,
