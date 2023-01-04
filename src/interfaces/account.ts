@@ -10,4 +10,20 @@ export interface UserBody {
 	password: string;
 	telephone: string;
 	countryCode?: string;
+	addresses?: IAddress[];
+}
+
+export interface IAddress {
+	id: number;
+	attributes: IAddressBody;
+}
+
+export interface IAddressBody {
+	name: string;
+	address1: string;
+	address2: string;
+	postCode: string;
+	city: string;
+	telephone: string;
+	isDefault: boolean;
 }

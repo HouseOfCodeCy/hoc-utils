@@ -1,4 +1,5 @@
-import { IUser } from './account';
+import { IAddress, IUser } from './account';
+import { ICart } from './cart';
 
 export interface IOrder {
 	id: number;
@@ -6,5 +7,7 @@ export interface IOrder {
 }
 
 export interface IOrderBody {
-	users_permissions_user: IUser;
+	users_permissions_user: { data: IUser };
+	cart: { data: ICart };
+	address: { data: IAddress };
 }
