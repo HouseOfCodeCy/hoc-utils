@@ -22,13 +22,13 @@ export const CartUtils = {
 	updateCartActionAndGetCart,
 	createCartAndCartAction,
 	doesProductExistInCartActions,
-};
-export const ProductUtils = {
 	calculatePrice,
-	calculatePriceWithQuantity,
-	calculateProductCategories,
 	calculateTotalDiscount,
 	calculateTotalPrice,
+};
+export const ProductUtils = {
+	calculatePriceWithQuantity,
+	calculateProductCategories,
 	quantityHandle,
 	getBrandAcronym,
 	calculateStockAvailability,
