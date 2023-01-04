@@ -44,7 +44,7 @@ export const updateCartActionAndGetCart = async (
 	tmpQuantity: number,
 	cartItem: ICartItem,
 	cart: ICart,
-	updateCart: (cart: ICartItem) => void,
+	updateCart: (cart: ICart) => void,
 ) => {
 	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
