@@ -24,6 +24,7 @@ export interface IProductBody {
 	product_brand?: { data: IProductBrand };
 	product_discount?: { data: IProductDiscount };
 	product_compatibilities?: { data: IProductCompatibility[] };
+	product_colors?: { data: IProductColor[] };
 }
 
 /** PRODUCT SIZES */
@@ -66,5 +67,14 @@ export interface IProductCompatibility {
 	attributes: IProductCompatibilityBody;
 }
 export interface IProductCompatibilityBody {
+	name: string;
+}
+
+/** PRODUCT COLOR */
+export interface IProductColor {
+	id: string;
+	attributes: IProductColorBody;
+}
+export interface IProductColorBody {
 	name: string;
 }

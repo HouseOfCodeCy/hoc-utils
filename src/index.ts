@@ -31,6 +31,8 @@ export {
 	IProductBody,
 	IProductBrand,
 	IProductBrandBody,
+	IProductColor,
+	IProductColorBody,
 	IProductCompatibility,
 	IProductCompatibilityBody,
 	IProductDiscount,
