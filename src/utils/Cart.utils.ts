@@ -85,11 +85,11 @@ export const createCartAndCartAction = async (
 		action: CartAction.ADD,
 		users_permissions_user: { data: user },
 	};
-	await createCart(data).then((response: any) => {
+	await createCart(data).then(async (response: any) => {
 		if (response?.statusText === 'OK') {
 			const cartResponse = response?.data.data;
 
-			createCartActionsAndGetCart(
+			await createCartActionsAndGetCart(
 				cartResponse,
 				product,
 				quantity,
