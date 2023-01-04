@@ -30,10 +30,10 @@ export const createCartActionsAndGetCart = async (
 		product: product,
 	};
 	// create cart item and refresh GET Cart
-	await createCartItem(cartItem).then((res: any) => {
+	await createCartItem(cartItem).then(async (res: any) => {
 		if (res['statusText'] === 'OK') {
 			// call the PUT to update the card with the new CartItem
-			getCart(`${cart?.id}`).then((responseData: any) => {
+			await getCart(`${cart?.id}`).then((responseData: any) => {
 				updateCart(responseData?.data.data);
 				return responseData;
 			});
@@ -80,6 +80,7 @@ export const createCartAndCartAction = async (
 	product: IProduct,
 	quantity: number,
 	updateCart: (cart: ICart) => void,
+	localStorage: any,
 ) => {
 	const data: ICartBody = {
 		action: CartAction.ADD,
