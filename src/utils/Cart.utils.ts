@@ -94,9 +94,9 @@ export const createCartAndCartAction = async (
 				product,
 				quantity,
 				updateCart,
-			).then((response) => {
+			).then(() => {
 				localStorage.setItem('cartId', `${cartResponse.id}`);
-				return response;
+				return cartResponse;
 			});
 		}
 	});
