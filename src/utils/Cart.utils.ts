@@ -14,7 +14,7 @@ import {
 	getCart,
 	updateCartItem,
 } from '../services/Cart.service';
-import { calculatePrice, calculatePriceWithQuantity } from './Product.utils';
+import { calculatePriceWithQuantity } from './Product.utils';
 
 export const createCartActionsAndGetCart = async (
 	cart: ICart,
@@ -118,4 +118,51 @@ export const doesProductExistInCartActions = (
 	} else {
 		return undefined;
 	}
+};
+
+/**
+ * Iterates through the cart actions and calculates the total discount of the cart
+ * @param cartItems
+ * @returns
+ */
+export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
+	let totalDiscount = 0;
+	if (cartItems.length > 0) {
+		cartItems.forEach((cartItem) => {
+			if (
+				cartItem.attributes.product_discount &&
+				cartItem.attributes.product_discount.data
+			) {
+				totalDiscount +=
+					cartItem.attributes.product_discount.data.attributes
+						?.discountPercentage;
+			}
+		});
+	}
+	return totalDiscount.toFixed(2);
+};
+
+/**
+ * Iterates through the cart actions and calculates the total price of cart
+ * @param cartItems
+ * @returns
+ */
+export const calculateTotalPrice = (cartItems: ICartItem[]): string => {
+	let totalPrice = 0;
+	if (cartItems.length > 0) {
+		cartItems.map((cartItem) => {
+			totalPrice += cartItem.attributes.price;
+		});
+	}
+	return totalPrice.toFixed(2);
+};
+
+export const calculatePrice = (
+	product: IProduct,
+	quantity?: number,
+): number => {
+	if (quantity) {
+		return +(product.attributes.price * quantity).toFixed(2);
+	}
+	return +product.attributes.price.toFixed(2);
 };

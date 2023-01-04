@@ -1,16 +1,17 @@
 import {
+	calculatePrice,
+	calculateTotalDiscount,
+	calculateTotalPrice,
 	createCartActionsAndGetCart,
 	createCartAndCartAction,
 	doesProductExistInCartActions,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
+import { tranformPriceToStripeAmount } from './Checkout.utils';
 import {
-	calculatePrice,
 	calculatePriceWithQuantity,
 	calculateProductCategories,
 	calculateStockAvailability,
-	calculateTotalDiscount,
-	calculateTotalPrice,
 	getBrandAcronym,
 	quantityHandle,
 } from './Product.utils';
@@ -34,4 +35,7 @@ export const ProductUtils = {
 };
 export const ReviewUtils = {
 	calculateTotalReviews,
+};
+export const CheckoutUtils = {
+	tranformPriceToStripeAmount,
 };

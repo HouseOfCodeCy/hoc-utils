@@ -1,42 +1,4 @@
-import { ICartItem } from '../interfaces/cart';
 import { IProduct } from '../interfaces/product';
-
-/**
- * Iterates through the cart actions and calculates the total discount of the cart
- * @param cartItems
- * @returns
- */
-export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
-	let totalDiscount = 0;
-	if (cartItems.length > 0) {
-		cartItems.forEach((cartItem) => {
-			if (
-				cartItem.attributes.product_discount &&
-				cartItem.attributes.product_discount.data
-			) {
-				totalDiscount +=
-					cartItem.attributes.product_discount.data.attributes
-						?.discountPercentage;
-			}
-		});
-	}
-	return totalDiscount.toFixed(2);
-};
-
-/**
- * Iterates through the cart actions and calculates the total price of cart
- * @param cartItems
- * @returns
- */
-export const calculateTotalPrice = (cartItems: ICartItem[]): string => {
-	let totalPrice = 0;
-	if (cartItems.length > 0) {
-		cartItems.map((cartItem) => {
-			totalPrice += cartItem.attributes.price;
-		});
-	}
-	return totalPrice.toFixed(2);
-};
 
 /**
  * Handler for quantity event handler
@@ -72,16 +34,6 @@ export const calculateProductCategories = (product: IProduct) => {
 			},
 		);
 	return productCategories;
-};
-
-export const calculatePrice = (
-	product: IProduct,
-	quantity?: number,
-): number => {
-	if (quantity) {
-		return +(product.attributes.price * quantity).toFixed(2);
-	}
-	return +product.attributes.price.toFixed(2);
 };
 
 export const calculatePriceWithQuantity = (
