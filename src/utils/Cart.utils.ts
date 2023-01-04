@@ -35,6 +35,7 @@ export const createCartActionsAndGetCart = async (
 			// call the PUT to update the card with the new CartItem
 			getCart(`${cart?.id}`).then((responseData: any) => {
 				updateCart(responseData?.data.data);
+				return responseData;
 			});
 		}
 	});
@@ -61,6 +62,7 @@ export const updateCartActionAndGetCart = async (
 			getCart(`${cart?.id}`).then((responseData: any) => {
 				const resData = responseData?.data.data;
 				updateCart(resData);
+				return responseData;
 			});
 		}
 	});
@@ -92,8 +94,9 @@ export const createCartAndCartAction = async (
 				product,
 				quantity,
 				updateCart,
-			).then(() => {
+			).then((response) => {
 				localStorage.setItem('cartId', `${cartResponse.id}`);
+				return response;
 			});
 		}
 	});
