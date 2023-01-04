@@ -1,4 +1,4 @@
-// Interfaces
+/********************** INTERFACES *********************************/
 export { IUser, UserBody } from './interfaces/account';
 export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
 export {
@@ -16,6 +16,7 @@ export {
 	IProductSubCategory,
 	IProductSubCategoryBody,
 } from './interfaces/category';
+export { ICheckoutBody } from './interfaces/checkout';
 export {
 	IDataResponse,
 	IMetaResponse,
@@ -24,6 +25,7 @@ export {
 	IResponseSchema,
 } from './interfaces/common/common';
 export { ConfigurationInterface } from './interfaces/configuration';
+export { IOrder, IOrderBody } from './interfaces/order';
 export {
 	IProduct,
 	IProductBody,
@@ -37,9 +39,9 @@ export {
 	IProductSizeBody,
 } from './interfaces/product';
 export { IReview, IReviewBody } from './interfaces/review';
-// ENUMS & CONSTANSTS
+/********************** ENUMS & CONSTANSTS *************************/
 export { CartAction, CartStatus } from './resources/enums';
-// Services
+/********************** Services ***********************************/
 export {
 	forgotPassword,
 	getLoggedInUser,
@@ -63,6 +65,7 @@ export {
 	getConfiguration,
 	updateConfiguration,
 } from './services/Configuration.service';
+export { createOrder, getOrder } from './services/Order.service';
 export {
 	getCategoriesByParentCategoryId,
 	getProduct,
@@ -71,7 +74,7 @@ export {
 	getProducts,
 } from './services/Product.service';
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
-// Utility Functions
+/********************** Utility ***********************************/
 export {
 	CartUtils,
 	CheckoutUtils,
