@@ -77,5 +77,8 @@ export const logoutUser = (): void => {
 	if (typeof window !== 'undefined') {
 		localStorage.removeItem('user');
 		localStorage.removeItem('accessToken');
+
+		const storage = globalThis?.sessionStorage;
+		storage.removeItem('cartId');
 	}
 };
