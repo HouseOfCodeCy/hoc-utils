@@ -35,6 +35,7 @@ export const createCartActionsAndGetCart = async (
 			// call the PUT to update the card with the new CartItem
 			await getCart(`${cart?.id}`).then((responseData: any) => {
 				updateCart(responseData?.data.data);
+				setCartIdToLocalStorage(responseData?.data.data.id);
 				return responseData;
 			});
 		}
@@ -57,10 +58,11 @@ export const updateCartActionAndGetCart = async (
 		cart: { data: cart },
 		product_discount: cartItem.attributes.product_discount,
 	};
-	await updateCartItem(`${cartItem.id}`, tmpCartItem).then((res: any) => {
+	await updateCartItem(`${cartItem.id}`, tmpCartItem).then(async (res: any) => {
 		if (res?.statusText === 'OK') {
-			getCart(`${cart?.id}`).then((responseData: any) => {
+			await getCart(`${cart?.id}`).then((responseData: any) => {
 				const resData = responseData?.data.data;
+				setCartIdToLocalStorage(resData.id);
 				updateCart(resData);
 				return responseData;
 			});
@@ -80,7 +82,6 @@ export const createCartAndCartAction = async (
 	product: IProduct,
 	quantity: number,
 	updateCart: (cart: ICart) => void,
-	localStorage: Storage,
 ) => {
 	const data: ICartBody = {
 		action: CartAction.ADD,
@@ -96,7 +97,7 @@ export const createCartAndCartAction = async (
 				quantity,
 				updateCart,
 			).then(() => {
-				localStorage.setItem('cartId', `${cartResponse.id}`);
+				setCartIdToLocalStorage(cartResponse.id);
 				return cartResponse;
 			});
 		}
@@ -169,4 +170,15 @@ export const calculatePrice = (
 		return +(product.attributes.price * quantity).toFixed(2);
 	}
 	return +product.attributes.price.toFixed(2);
+};
+
+/**
+ * Updates LocalStorage with CardId
+ * @param cartId
+ * @returns
+ */
+export const setCartIdToLocalStorage = (cartId: number | string) => {
+	const storage = globalThis?.sessionStorage;
+	if (!storage) return;
+	storage.setItem('cartId', `${cartId}`);
 };
