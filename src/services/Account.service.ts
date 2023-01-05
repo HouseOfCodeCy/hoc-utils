@@ -1,4 +1,4 @@
-import { IUser, UserBody } from '../interfaces/account';
+import { IUser, IUserBody } from '../interfaces/account';
 import { http } from './common/Http.service';
 
 export const login = async (data: any) => {
@@ -21,10 +21,10 @@ export const login = async (data: any) => {
 
 /**
  * Creates a new user to the system
- * @param {UserBody} payload UserBody payload
+ * @param {IUserBody} payload IUserBody payload
  * @returns
  */
-export const registerUser = async (payload: UserBody) => {
+export const registerUser = async (payload: IUserBody) => {
 	try {
 		const response = await http.post<any>('auth/local/register', {
 			...payload,
