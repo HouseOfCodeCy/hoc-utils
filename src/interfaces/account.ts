@@ -1,9 +1,8 @@
-export interface IUser {
+export interface IUser extends IUserBody {
 	id?: string;
-	attributes: UserBody;
 }
 
-export interface UserBody {
+export interface IUserBody {
 	name: string;
 	lastname: string;
 	email: string;

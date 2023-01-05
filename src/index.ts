@@ -1,5 +1,5 @@
 /********************** INTERFACES *********************************/
-export { IAddress, IAddressBody, IUser, UserBody } from './interfaces/account';
+export { IAddress, IAddressBody, IUser, IUserBody } from './interfaces/account';
 export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
 export {
 	ICart,
