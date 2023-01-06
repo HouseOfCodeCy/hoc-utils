@@ -12,9 +12,8 @@ export interface IUserBody {
 	addresses?: IAddress[];
 }
 
-export interface IAddress {
+export interface IAddress extends IAddressBody {
 	id: number;
-	attributes: IAddressBody;
 }
 
 export interface IAddressBody {
