@@ -1,5 +1,10 @@
+export interface IUserFlat extends IUserBody {
+	id?: string;
+}
+
 export interface IUser extends IUserBody {
 	id?: string;
+	attributes: IUserBody;
 }
 
 export interface IUserBody {
