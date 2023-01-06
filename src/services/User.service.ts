@@ -15,7 +15,9 @@ export const getUser = async (
 		const response = await http.get<any>(`users/${userId}`, {
 			params: { populate: populateType },
 		});
-		localStorage.setItem('user', JSON.stringify(response.data.user));
+		if (response.status === 200) {
+			localStorage.setItem('user', JSON.stringify(response.data));
+		}
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
