@@ -1,7 +1,6 @@
 import { IUser } from '../interfaces/account';
 import {
 	ICartBody,
-	ICartItem,
 	ICartItemBody,
 	ICartItemResponse,
 	ICartResponse,
@@ -44,19 +43,19 @@ export const createCartActionsAndGetCart = async (
 
 export const updateCartActionAndGetCart = async (
 	tmpQuantity: number,
-	cartItem: ICartItem,
+	cartItem: ICartItemResponse,
 	cart: ICartResponse,
 	updateCart: (cart: ICartResponse) => void,
 ) => {
 	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
 		price: calculatePriceWithQuantity(
-			cartItem.attributes.product.attributes.price,
+			cartItem.attributes.product.data.attributes.price,
 			tmpQuantity,
 		),
-		product: cartItem.attributes.product,
+		product: cartItem.attributes.product.data,
 		cart: cart,
-		product_discount: cartItem.attributes.product_discount,
+		product_discount: cartItem.attributes.product_discount?.data,
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then(async (res: any) => {
 		if (res?.statusText === 'OK') {
