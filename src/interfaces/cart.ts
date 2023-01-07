@@ -36,7 +36,7 @@ export interface ICartItemBody {
 	quantity: number;
 	price: number;
 	product: IProduct;
-	cart: ICart;
+	cart: ICartResponse;
 	product_discount?: IProductDiscount;
 }
 
@@ -49,6 +49,6 @@ export interface ICartItemResponse {
 	quantity: number;
 	price: number;
 	product: { data: IProduct };
-	cart: { data: ICart };
+	cart: { data: ICartResponse };
 	product_discount?: { data?: IProductDiscount };
 }

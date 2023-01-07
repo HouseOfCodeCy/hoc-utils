@@ -1,5 +1,10 @@
 import { IUser } from '../interfaces/account';
-import { ICart, ICartBody, ICartItem, ICartItemBody } from '../interfaces/cart';
+import {
+	ICartBody,
+	ICartItem,
+	ICartItemBody,
+	ICartResponse,
+} from '../interfaces/cart';
 import { IProduct } from '../interfaces/product';
 import { CartAction } from '../resources/enums';
 import {
@@ -11,10 +16,10 @@ import {
 import { calculatePriceWithQuantity } from './Product.utils';
 
 export const createCartActionsAndGetCart = async (
-	cart: ICart,
+	cart: ICartResponse,
 	product: IProduct,
 	quantity: number,
-	updateCart: (cart: ICart) => void,
+	updateCart: (cart: ICartResponse) => void,
 ) => {
 	// create a new CartItem
 	const cartItem: ICartItemBody = {
@@ -39,8 +44,8 @@ export const createCartActionsAndGetCart = async (
 export const updateCartActionAndGetCart = async (
 	tmpQuantity: number,
 	cartItem: ICartItem,
-	cart: ICart,
-	updateCart: (cart: ICart) => void,
+	cart: ICartResponse,
+	updateCart: (cart: ICartResponse) => void,
 ) => {
 	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
@@ -75,7 +80,7 @@ export const createCartAndCartAction = async (
 	user: IUser,
 	product: IProduct,
 	quantity: number,
-	updateCart: (cart: ICart) => void,
+	updateCart: (cart: ICartResponse) => void,
 ) => {
 	const data: ICartBody = {
 		action: CartAction.ADD,
