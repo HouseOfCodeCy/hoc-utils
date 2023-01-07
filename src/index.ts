@@ -85,6 +85,7 @@ export { getReviews, getReviewsByUserId } from './services/Reviews.service';
 export { getUser } from './services/User.service';
 /********************** Utility ***********************************/
 export {
+	AccountUtils,
 	CartUtils,
 	CheckoutUtils,
 	ProductUtils,

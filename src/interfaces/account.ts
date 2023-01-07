@@ -1,8 +1,10 @@
+import { IProduct } from './product';
+
 export interface IUserFlat extends IUserBody {
 	id?: string;
 }
 
-export interface IUser extends IUserBody {
+export interface IUser {
 	id?: string;
 	attributes: IUserBody;
 }
@@ -15,6 +17,7 @@ export interface IUserBody {
 	telephone: string;
 	countryCode?: string;
 	addresses?: IAddress[];
+	favorite_products?: IProduct[];
 }
 
 export interface IAddress extends IAddressBody {

@@ -1,3 +1,4 @@
+import { tranformUserFlatToUser } from './Account.utils';
 import {
 	calculatePrice,
 	calculateTotalDiscount,
@@ -25,6 +26,9 @@ export const CartUtils = {
 	calculatePrice,
 	calculateTotalDiscount,
 	calculateTotalPrice,
+};
+export const AccountUtils = {
+	tranformUserFlatToUser,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,
