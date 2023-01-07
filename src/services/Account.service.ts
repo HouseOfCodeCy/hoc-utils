@@ -1,4 +1,4 @@
-import { IUser, IUserBody } from '../interfaces/account';
+import { IUserBody, IUserFlat } from '../interfaces/account';
 import { http } from './common/Http.service';
 
 export const login = async (data: any) => {
@@ -60,7 +60,7 @@ export const isUserLoggedIn = (): boolean => {
 	return false;
 };
 
-export const getLoggedInUser = (): IUser | null => {
+export const getLoggedInUser = (): IUserFlat | null => {
 	if (typeof window !== 'undefined') {
 		const user = localStorage.getItem('user');
 		if (user) {
