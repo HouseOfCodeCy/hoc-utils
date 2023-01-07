@@ -10,9 +10,11 @@ export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
 export {
 	ICart,
 	ICartBody,
+	ICartBodyResponse,
 	ICartItem,
 	ICartItemBody,
-	ICartItemPayload,
+	ICartItemResponse,
+	ICartResponse,
 } from './interfaces/cart';
 export {
 	IProductCategory,

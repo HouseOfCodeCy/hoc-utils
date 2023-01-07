@@ -1,11 +1,5 @@
 import { IUser } from '../interfaces/account';
-import {
-	ICart,
-	ICartBody,
-	ICartItem,
-	ICartItemBody,
-	ICartItemPayload,
-} from '../interfaces/cart';
+import { ICart, ICartBody, ICartItem, ICartItemBody } from '../interfaces/cart';
 import { IProduct } from '../interfaces/product';
 import { CartAction } from '../resources/enums';
 import {
@@ -23,7 +17,7 @@ export const createCartActionsAndGetCart = async (
 	updateCart: (cart: ICart) => void,
 ) => {
 	// create a new CartItem
-	const cartItem: ICartItemPayload = {
+	const cartItem: ICartItemBody = {
 		cart: cart,
 		quantity: quantity,
 		price: calculatePrice(product, quantity),
@@ -51,11 +45,11 @@ export const updateCartActionAndGetCart = async (
 	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
 		price: calculatePriceWithQuantity(
-			cartItem.attributes.product.data.attributes.price,
+			cartItem.attributes.product.attributes.price,
 			tmpQuantity,
 		),
 		product: cartItem.attributes.product,
-		cart: { data: cart },
+		cart: cart,
 		product_discount: cartItem.attributes.product_discount,
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then(async (res: any) => {
@@ -116,8 +110,7 @@ export const doesProductExistInCartActions = (
 ) => {
 	if (cartActions && cartActions.length > 0) {
 		const cartActionInCart: ICartItem | undefined = cartActions.find(
-			(action: ICartItem) =>
-				action.attributes.product?.data?.id === product?.id,
+			(action: ICartItem) => action.attributes.product?.id === product?.id,
 		);
 		return cartActionInCart ? cartActionInCart : undefined;
 	} else {
@@ -134,13 +127,9 @@ export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
 	let totalDiscount = 0;
 	if (cartItems.length > 0) {
 		cartItems.forEach((cartItem) => {
-			if (
-				cartItem.attributes.product_discount &&
-				cartItem.attributes.product_discount.data
-			) {
+			if (cartItem.attributes.product_discount) {
 				totalDiscount +=
-					cartItem.attributes.product_discount.data.attributes
-						?.discountPercentage;
+					cartItem.attributes.product_discount.attributes?.discountPercentage;
 			}
 		});
 	}
