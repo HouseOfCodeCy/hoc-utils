@@ -1,13 +1,11 @@
 import { IUser, IUserFlat } from '../interfaces/account';
 
-export const tranformUserFlatToUser = (userFlat: IUserFlat) => {
+export const tranformUserFlatToUser = (userFlat: IUserFlat): IUser | null => {
 	if (userFlat) {
-		const { id, addresses, favorite_products, ...userRest } = userFlat;
+		const { id, ...userRest } = userFlat;
 		const newIUser: IUser = {
 			id: id,
 			attributes: {
-				addresses: addresses,
-				favorite_products: favorite_products,
 				...userRest,
 			},
 		};

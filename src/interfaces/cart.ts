@@ -11,8 +11,8 @@ export interface ICart {
 export interface ICartBody {
 	action: CartAction;
 	status?: CartStatus;
-	users_permissions_user?: { data: IUser };
-	cart_items?: { data: ICartItem[] };
+	users_permissions_user?: IUser;
+	cart_items?: ICartItem[];
 }
 
 export interface ICartItem {
