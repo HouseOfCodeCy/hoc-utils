@@ -24,7 +24,7 @@ export interface ICartBodyResponse {
 	action: CartAction;
 	status?: CartStatus;
 	users_permissions_user?: { data: IUser };
-	cart_items?: { data: ICartItem[] };
+	cart_items?: { data: ICartItemResponse[] };
 }
 
 export interface ICartItem {
