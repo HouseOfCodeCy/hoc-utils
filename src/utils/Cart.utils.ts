@@ -3,6 +3,7 @@ import {
 	ICartBody,
 	ICartItem,
 	ICartItemBody,
+	ICartItemResponse,
 	ICartResponse,
 } from '../interfaces/cart';
 import { IProduct } from '../interfaces/product';
@@ -111,11 +112,12 @@ export const createCartAndCartAction = async (
  */
 export const doesProductExistInCartActions = (
 	product: IProduct,
-	cartActions: ICartItem[],
+	cartActions: ICartItemResponse[],
 ) => {
 	if (cartActions && cartActions.length > 0) {
-		const cartActionInCart: ICartItem | undefined = cartActions.find(
-			(action: ICartItem) => action.attributes.product?.id === product?.id,
+		const cartActionInCart: ICartItemResponse | undefined = cartActions.find(
+			(action: ICartItemResponse) =>
+				action.attributes.product?.data.id === product?.id,
 		);
 		return cartActionInCart ? cartActionInCart : undefined;
 	} else {
@@ -128,13 +130,19 @@ export const doesProductExistInCartActions = (
  * @param cartItems
  * @returns
  */
-export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
+export const calculateTotalDiscount = (
+	cartItems: ICartItemResponse[],
+): string => {
 	let totalDiscount = 0;
 	if (cartItems.length > 0) {
 		cartItems.forEach((cartItem) => {
-			if (cartItem.attributes.product_discount) {
+			if (
+				cartItem.attributes.product_discount &&
+				cartItem.attributes.product_discount.data
+			) {
 				totalDiscount +=
-					cartItem.attributes.product_discount.attributes?.discountPercentage;
+					cartItem.attributes.product_discount.data.attributes
+						?.discountPercentage;
 			}
 		});
 	}
@@ -146,7 +154,7 @@ export const calculateTotalDiscount = (cartItems: ICartItem[]): string => {
  * @param cartItems
  * @returns
  */
-export const calculateTotalPrice = (cartItems: ICartItem[]): string => {
+export const calculateTotalPrice = (cartItems: ICartItemResponse[]): string => {
 	let totalPrice = 0;
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
