@@ -17,7 +17,7 @@ export interface IUserBody {
 	telephone: string;
 	addresses?: IAddress[];
 	favorite_products?: IProduct[];
-	country: ICountry;
+	country: ICountryFlat;
 }
 
 export interface IAddress extends IAddressBody {
