@@ -2,6 +2,9 @@
 export {
 	IAddress,
 	IAddressBody,
+	ICountry,
+	ICountryBody,
+	ICountryFlat,
 	IUser,
 	IUserBody,
 	IUserFlat,

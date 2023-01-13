@@ -15,9 +15,9 @@ export interface IUserBody {
 	email: string;
 	password: string;
 	telephone: string;
-	countryCode?: string;
 	addresses?: IAddress[];
 	favorite_products?: IProduct[];
+	country: ICountry;
 }
 
 export interface IAddress extends IAddressBody {
@@ -32,4 +32,19 @@ export interface IAddressBody {
 	city: string;
 	telephone: string;
 	isDefault: boolean;
+}
+
+export interface ICountry {
+	id: number;
+	attributes: ICountryBody;
+}
+
+export interface ICountryFlat extends ICountryBody {
+	id: number;
+}
+
+export interface ICountryBody {
+	name: string;
+	code: string;
+	dialCode: string;
 }
