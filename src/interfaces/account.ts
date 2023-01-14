@@ -1,4 +1,4 @@
-import { IProduct } from './product';
+import { IProductBody } from './product';
 
 export interface IUserFlat extends IUserBody {
 	id?: string;
@@ -16,7 +16,7 @@ export interface IUserBody {
 	password: string;
 	telephone: string;
 	addresses?: IAddress[];
-	favorite_products?: IProduct[];
+	favorite_products?: IProductBody[];
 	country: ICountryFlat;
 }
 
