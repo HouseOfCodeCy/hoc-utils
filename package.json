@@ -1,6 +1,6 @@
 {
   "name": "@houseofcodecy/hoc-utils",
-  "version": "2.6.0",
+  "version": "2.6.1-0",
   "description": "A component library consisting of HoC Utilities",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
