@@ -2,6 +2,9 @@ import { IProductCategory, IProductSubCategory } from './category';
 import { IReview } from './review';
 
 /** PRODUCT */
+export interface IProductFlat extends IProductBody {
+	id: string;
+}
 export interface IProduct {
 	id: string;
 	attributes: IProductBody;

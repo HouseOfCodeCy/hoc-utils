@@ -48,6 +48,7 @@ export {
 	IProductCompatibilityBody,
 	IProductDiscount,
 	IProductDiscountBody,
+	IProductFlat,
 	IProductSize,
 	IProductSizeBody,
 } from './interfaces/product';
