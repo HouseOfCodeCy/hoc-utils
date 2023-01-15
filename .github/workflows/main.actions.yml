@@ -55,5 +55,5 @@ jobs:
         with:
           token: ${{ secrets.UPSTREAM_ACTION }}
           repository: houseofcodecy/hoc-components-mui
-          event-type: my-event
+          event-type: trigger-from-utils
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
