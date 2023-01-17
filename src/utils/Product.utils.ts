@@ -23,16 +23,22 @@ export const quantityHandle = (quantity: number, increment: boolean) => {
  */
 export const calculateProductCategories = (product: IProduct) => {
 	const productCategories: string[] = [];
-	product &&
-		product.attributes?.product_sub_categories?.data?.map(
+	if (
+		product &&
+		product.attributes.product_sub_categories &&
+		product.attributes.product_sub_categories.data.length >= 0
+	) {
+		product.attributes.product_sub_categories.data.map(
 			(category: any, index: number) => {
-				productCategories.push(
-					index !== product.attributes.product_sub_categories.data.length - 1
-						? `${category.attributes.name}, `
-						: category.attributes.name,
-				);
+				product.attributes.product_sub_categories &&
+					productCategories.push(
+						index !== product.attributes.product_sub_categories.data.length - 1
+							? `${category.attributes.name}, `
+							: category.attributes.name,
+					);
 			},
 		);
+	}
 	return productCategories;
 };
 
