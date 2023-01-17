@@ -14,14 +14,14 @@ export interface IProductBody {
 	name: string;
 	description: string;
 	price: number;
+	mediaUrl: string;
 	dateAdded?: string;
 	category?: IProductCategory;
 	brand?: string;
 	stock?: number;
 	sku?: string;
 	extraDescription?: string;
-	mediaUrl: string;
-	product_sub_categories: { data: IProductSubCategory[] };
+	product_sub_categories?: { data: IProductSubCategory[] };
 	reviews?: { data: IReview[] };
 	product_sizes?: { data: IProductSize[] };
 	product_brand?: { data: IProductBrand };

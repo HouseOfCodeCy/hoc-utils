@@ -52,7 +52,7 @@ export {
 	IProductSize,
 	IProductSizeBody,
 } from './interfaces/product';
-export { IReview, IReviewBody } from './interfaces/review';
+export { IReview, IReviewBody, IReviewFlat } from './interfaces/review';
 /********************** ENUMS & CONSTANSTS *************************/
 export { CartAction, CartStatus } from './resources/enums';
 /********************** Services ***********************************/
