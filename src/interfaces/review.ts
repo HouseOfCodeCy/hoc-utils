@@ -1,5 +1,5 @@
 import { IUser } from './account';
-import { IProduct, IProductFlat } from './product';
+import { IProductFlat } from './product';
 
 export interface IReviewFlat extends IReviewBody {
 	id: string;
@@ -14,5 +14,5 @@ export interface IReviewBody {
 	reviewDescription: string;
 	title: string;
 	rating: number;
-	product: IProduct | IProductFlat;
+	product: IProductFlat;
 }
