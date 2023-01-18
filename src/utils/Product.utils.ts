@@ -1,4 +1,6 @@
+import { IUserFlat } from '../interfaces/account';
 import { IProduct, IProductFlat } from '../interfaces/product';
+import { updateUser } from '../services/User.service';
 
 /**
  * Handler for quantity event handler
@@ -120,7 +122,42 @@ export const isProductFavorite = (
 	return false;
 };
 
-export const addProductToFavorites = (product: IProduct, userId: string) => {
-	if (product && product.id && userId) {
+/**
+ * Adds a product to the favorites
+ * @param product Product to be added in Favorites
+ * @param updatedUser The user
+ */
+export const addProductToFavorites = async (
+	product: IProduct,
+	updatedUser: IUserFlat,
+) => {
+	if (product && product.id && updatedUser) {
+		let newFavoriteProducts;
+		if (updatedUser.favorite_products) {
+			newFavoriteProducts = [
+				...updatedUser.favorite_products,
+				transformProductToProductFlat(product),
+			];
+		} else {
+			newFavoriteProducts = [transformProductToProductFlat(product)];
+		}
+		const newUser: IUserFlat = {
+			...updatedUser,
+			favorite_products: newFavoriteProducts,
+		};
+		await updateUser(newUser).then((response: any) => {
+			return response;
+		});
 	}
+};
+
+/**
+ * Transforms
+ * @param {IProduct} product Product to transform
+ * @returns {IProductFlat} Product in IProductFlat interface
+ */
+export const transformProductToProductFlat = (
+	product: IProduct,
+): IProductFlat => {
+	return { ...product.attributes, id: product.id };
 };

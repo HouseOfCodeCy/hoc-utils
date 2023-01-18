@@ -10,12 +10,14 @@ import {
 } from './Cart.utils';
 import { transformPriceToStripeAmount } from './Checkout.utils';
 import {
+	addProductToFavorites,
 	calculatePriceWithQuantity,
 	calculateProductCategories,
 	calculateStockAvailability,
 	getBrandAcronym,
 	isProductFavorite,
 	quantityHandle,
+	transformProductToProductFlat,
 } from './Product.utils';
 import { calculateTotalReviews } from './Review.utils';
 
@@ -38,6 +40,8 @@ export const ProductUtils = {
 	getBrandAcronym,
 	calculateStockAvailability,
 	isProductFavorite,
+	addProductToFavorites,
+	transformProductToProductFlat,
 };
 export const ReviewUtils = {
 	calculateTotalReviews,
