@@ -1,4 +1,4 @@
-import { IProduct } from '../interfaces/product';
+import { IProduct, IProductFlat } from '../interfaces/product';
 
 /**
  * Handler for quantity event handler
@@ -99,4 +99,23 @@ export const calculateStockAvailability = (
 	} else {
 		return 'In Stock';
 	}
+};
+
+/**
+ * Check if given product is marked as favorite by the user
+ * @param favoriteProducts All user favorite products
+ * @param product The given product
+ * @returns {boolean} True/False if it marked as favorite
+ */
+export const isProductFavorite = (
+	favoriteProducts: IProductFlat[],
+	product: IProduct,
+): boolean => {
+	if (favoriteProducts && favoriteProducts?.length > 0) {
+		const productExistsInFavorites = favoriteProducts.find(
+			(favoriteProduct) => favoriteProduct.id === product.id,
+		);
+		return productExistsInFavorites ? true : false;
+	}
+	return false;
 };

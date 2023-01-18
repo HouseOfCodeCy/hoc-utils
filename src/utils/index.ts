@@ -14,6 +14,7 @@ import {
 	calculateProductCategories,
 	calculateStockAvailability,
 	getBrandAcronym,
+	isProductFavorite,
 	quantityHandle,
 } from './Product.utils';
 import { calculateTotalReviews } from './Review.utils';
@@ -36,6 +37,7 @@ export const ProductUtils = {
 	quantityHandle,
 	getBrandAcronym,
 	calculateStockAvailability,
+	isProductFavorite,
 };
 export const ReviewUtils = {
 	calculateTotalReviews,
