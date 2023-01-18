@@ -1,6 +1,6 @@
 import { IUserFlat } from '../interfaces/account';
 import { IProduct, IProductFlat } from '../interfaces/product';
-import { updateUser } from '../services/User.service';
+import { getUser, updateUser } from '../services/User.service';
 
 /**
  * Handler for quantity event handler
@@ -145,8 +145,10 @@ export const addProductToFavorites = async (
 			...updatedUser,
 			favorite_products: newFavoriteProducts,
 		};
-		await updateUser(newUser).then((response: any) => {
-			return response;
+		await updateUser(newUser).then(async () => {
+			await getUser(`${newUser.id}`).then((userResponse: any) => {
+				return userResponse.data;
+			});
 		});
 	}
 };
