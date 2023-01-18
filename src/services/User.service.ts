@@ -29,7 +29,7 @@ export const getUser = async (
 export const updateUser = async (updatedUser: IUserFlat) => {
 	try {
 		const response = await http.put<any>(`users/${updatedUser.id}`, {
-			updatedUser,
+			...updatedUser,
 		});
 		return response;
 	} catch (error) {
