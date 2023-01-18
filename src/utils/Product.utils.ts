@@ -130,6 +130,7 @@ export const isProductFavorite = (
 export const addProductToFavorites = async (
 	product: IProduct,
 	updatedUser: IUserFlat,
+	addUser: (user: IUserFlat) => void,
 ) => {
 	if (product && product.id && updatedUser) {
 		let newFavoriteProducts;
@@ -147,6 +148,7 @@ export const addProductToFavorites = async (
 		};
 		await updateUser(newUser).then(async () => {
 			await getUser(`${newUser.id}`).then((userResponse: any) => {
+				addUser(userResponse.data);
 				return userResponse.data;
 			});
 		});
