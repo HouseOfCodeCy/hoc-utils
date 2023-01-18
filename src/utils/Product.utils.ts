@@ -119,3 +119,8 @@ export const isProductFavorite = (
 	}
 	return false;
 };
+
+export const addProductToFavorites = (product: IProduct, userId: string) => {
+	if (product && product.id && userId) {
+	}
+};

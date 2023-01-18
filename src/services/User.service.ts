@@ -1,3 +1,4 @@
+import { IUserFlat } from '../interfaces/account';
 import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
@@ -18,6 +19,18 @@ export const getUser = async (
 		if (response.status === 200) {
 			localStorage.setItem('user', JSON.stringify(response.data));
 		}
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const updateUser = async (updatedUser: IUserFlat) => {
+	try {
+		const response = await http.put<any>(`users/${updatedUser.id}`, {
+			updatedUser,
+		});
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
