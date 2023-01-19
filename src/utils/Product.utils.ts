@@ -126,21 +126,40 @@ export const isProductFavorite = (
  * Adds a product to the favorites
  * @param product Product to be added in Favorites
  * @param updatedUser The user
+ * @param addUser User function to update React Context
+ * @param makeFavorite If this is ADDING a favorite or REMOVING a favorite from user
  */
 export const addProductToFavorites = async (
 	product: IProduct,
 	updatedUser: IUserFlat,
 	addUser: (user: IUserFlat) => void,
+	makeFavorite = true,
 ) => {
 	if (product && product.id && updatedUser) {
 		let newFavoriteProducts;
-		if (updatedUser.favorite_products) {
-			newFavoriteProducts = [
-				...updatedUser.favorite_products,
-				transformProductToProductFlat(product),
-			];
-		} else {
-			newFavoriteProducts = [transformProductToProductFlat(product)];
+		// if this is ADDING a favorite
+		if (makeFavorite) {
+			if (updatedUser.favorite_products) {
+				newFavoriteProducts = [
+					...updatedUser.favorite_products,
+					transformProductToProductFlat(product),
+				];
+			} else {
+				newFavoriteProducts = [transformProductToProductFlat(product)];
+			}
+		}
+		// if this is REMOVING a favorite
+		else {
+			if (updatedUser.favorite_products) {
+				const findFavoriteProductIndex =
+					updatedUser.favorite_products.findIndex(
+						(favoriteProduct) => favoriteProduct.id === product.id,
+					);
+				newFavoriteProducts = [...updatedUser.favorite_products].splice(
+					findFavoriteProductIndex,
+					1,
+				);
+			}
 		}
 		const newUser: IUserFlat = {
 			...updatedUser,

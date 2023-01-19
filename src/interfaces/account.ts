@@ -19,7 +19,6 @@ export interface IUserBody {
 	addresses?: IAddress[];
 	favorite_products?: IProductFlat[];
 	reviews?: IReviewFlat[];
-	country: ICountryFlat;
 }
 
 export interface IAddress extends IAddressBody {
@@ -31,9 +30,22 @@ export interface IAddressBody {
 	address1: string;
 	address2: string;
 	postCode: string;
-	city: string;
 	telephone: string;
+	city: ICityFlat;
 	isDefault: boolean;
+}
+
+export interface ICity {
+	id: number;
+	attributes: ICityBody;
+}
+export interface ICityFlat extends ICityBody {
+	id: number;
+}
+export interface ICityBody {
+	name: string;
+	country: ICountryFlat;
+	enabled: boolean;
 }
 
 export interface ICountry {
