@@ -151,11 +151,14 @@ export const addProductToFavorites = async (
 		// if this is REMOVING a favorite
 		else {
 			if (updatedUser.favorite_products) {
+				// find the product in favorites
 				const findFavoriteProductIndex =
 					updatedUser.favorite_products.findIndex(
 						(favoriteProduct) => favoriteProduct.id === product.id,
 					);
-				newFavoriteProducts = [...updatedUser.favorite_products].splice(
+				newFavoriteProducts = [...updatedUser.favorite_products];
+				// and remove it
+				newFavoriteProducts = newFavoriteProducts.slice(
 					findFavoriteProductIndex,
 					1,
 				);
