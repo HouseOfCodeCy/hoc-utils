@@ -158,7 +158,7 @@ export const addProductToFavorites = async (
 					);
 				newFavoriteProducts = [...updatedUser.favorite_products];
 				// and remove it
-				newFavoriteProducts = newFavoriteProducts.slice(
+				newFavoriteProducts.splice(
 					findFavoriteProductIndex,
 					findFavoriteProductIndex + 1,
 				);
@@ -168,6 +168,7 @@ export const addProductToFavorites = async (
 			...updatedUser,
 			favorite_products: newFavoriteProducts,
 		};
+		// update user and refresh user object with relations
 		await updateUser(newUser).then(async () => {
 			await getUser(`${newUser.id}`).then((userResponse: any) => {
 				addUser(userResponse.data);
