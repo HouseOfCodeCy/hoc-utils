@@ -160,7 +160,7 @@ export const addProductToFavorites = async (
 				// and remove it
 				newFavoriteProducts = newFavoriteProducts.slice(
 					findFavoriteProductIndex,
-					1,
+					findFavoriteProductIndex + 1,
 				);
 			}
 		}
