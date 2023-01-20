@@ -1,4 +1,8 @@
-import { getDefaultAddress, tranformUserFlatToUser } from './Account.utils';
+import {
+	getDefaultAddress,
+	printAddressAsString,
+	tranformUserFlatToUser,
+} from './Account.utils';
 import {
 	calculatePrice,
 	calculateTotalDiscount,
@@ -33,6 +37,7 @@ export const CartUtils = {
 export const AccountUtils = {
 	tranformUserFlatToUser,
 	getDefaultAddress,
+	printAddressAsString,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,

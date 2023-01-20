@@ -23,3 +23,19 @@ export const getDefaultAddress = (addresses: IAddress[]): IAddress => {
 	});
 	return defaultAddress ? defaultAddress : addresses[0];
 };
+
+/**
+ * Returns a string of full address
+ * @param address User Address
+ * @returns
+ */
+export const printAddressAsString = (address: IAddress) => {
+	let addressString = '';
+	if (address.address1) addressString += `${address.address1}, `;
+	if (address.address2) addressString += `${address.address1}, `;
+	if (address.postCode) addressString += `${address.postCode}, `;
+	if (address.city.name) addressString += `${address.city.name}, `;
+	if (address.city.country) addressString += `${address.city.country}`;
+
+	return addressString;
+};
