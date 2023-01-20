@@ -45,7 +45,7 @@ export interface ICityFlat extends ICityBody {
 export interface ICityBody {
 	name: string;
 	country: ICountryFlat;
-	enabled: boolean;
+	order: number;
 }
 
 export interface ICountry {
