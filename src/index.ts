@@ -17,9 +17,13 @@ export { IBundle, IImage, ISubscriptionModel } from './interfaces/bundle';
 export {
 	ICart,
 	ICartBody,
+	ICartBodyFlat,
 	ICartBodyResponse,
+	ICartFlat,
 	ICartItem,
 	ICartItemBody,
+	ICartItemBodyFlat,
+	ICartItemFlat,
 	ICartItemResponse,
 	ICartResponse,
 } from './interfaces/cart';
@@ -43,6 +47,7 @@ export { ConfigurationInterface } from './interfaces/configuration';
 export {
 	IOrder,
 	IOrderBody,
+	IOrderBodyFlat,
 	IOrderFlat,
 	IOrderPaymentMethod,
 	IOrderPaymentMethodBody,
@@ -50,6 +55,9 @@ export {
 	IOrderStatus,
 	IOrderStatusBody,
 	IOrderStatusFlat,
+	IShippingMethod,
+	IShippingMethodBody,
+	IShippingMethodFlat,
 } from './interfaces/order';
 export {
 	IProduct,
@@ -62,13 +70,14 @@ export {
 	IProductCompatibilityBody,
 	IProductDiscount,
 	IProductDiscountBody,
+	IProductDiscountFlat,
 	IProductFlat,
 	IProductSize,
 	IProductSizeBody,
 } from './interfaces/product';
 export { IReview, IReviewBody, IReviewFlat } from './interfaces/review';
 /********************** ENUMS & CONSTANSTS *************************/
-export { CartAction, CartStatus } from './resources/enums';
+export { CartAction, CartStatus, PopulateType } from './resources/enums';
 /********************** Services ***********************************/
 export {
 	forgotPassword,
@@ -101,6 +110,7 @@ export {
 } from './services/Order.service';
 export {
 	getCategoriesByParentCategoryId,
+	getFeaturedProducts,
 	getProduct,
 	getProductCategories,
 	getProductParentCategories,
