@@ -18,8 +18,8 @@ export enum PopulateType {
 }
 
 export enum DateTypes {
-	DATE = 'dd/MM/YYYY',
-	DATE1 = 'dd.MM.YYYY',
-	DATETIME = 'dd/MM/YYYY HH:mm',
-	DATETIME1 = 'd.MM.YYYY HH:mm',
+	DATE = 'dd/MM/yyyy',
+	DATE1 = 'dd.MM.yyyy',
+	DATETIME = 'dd/MM/yyyy HH:mm',
+	DATETIME1 = 'd.MM.yyyy HH:mm',
 }
