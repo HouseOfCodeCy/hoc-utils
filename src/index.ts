@@ -93,7 +93,12 @@ export {
 	getConfiguration,
 	updateConfiguration,
 } from './services/Configuration.service';
-export { createOrder, getOrder } from './services/Order.service';
+export {
+	createOrder,
+	getOrder,
+	getOrderPaymentMethods,
+	getShippingMethods,
+} from './services/Order.service';
 export {
 	getCategoriesByParentCategoryId,
 	getProduct,

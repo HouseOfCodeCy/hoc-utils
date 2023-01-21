@@ -41,3 +41,15 @@ export const getOrderPaymentMethods = async (
 		return error;
 	}
 };
+
+export const getShippingMethods = async (populateType = PopulateType.STAR) => {
+	try {
+		const response = await http.get<any>(`shipping-methods`, {
+			params: { populate: populateType },
+		});
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};

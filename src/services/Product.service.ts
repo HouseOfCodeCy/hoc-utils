@@ -66,3 +66,16 @@ export const getProduct = async (
 		return error;
 	}
 };
+
+export const getFeaturedProducts = async (populateType = PopulateType.DEEP) => {
+	try {
+		const response = await http.get<any>(`featured-products`, {
+			params: { populate: populateType },
+		});
+
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
