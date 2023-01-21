@@ -119,11 +119,11 @@ export {
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
 export { getUser, updateUser } from './services/User.service';
 /********************** Utility ***********************************/
-export { formatDate } from './utils/Common.utils';
 export {
 	AccountUtils,
 	CartUtils,
 	CheckoutUtils,
+	CommonUtils,
 	ProductUtils,
 	ReviewUtils,
 } from './utils/index';

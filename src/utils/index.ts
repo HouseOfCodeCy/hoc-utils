@@ -1,3 +1,5 @@
+import { formatDate } from './Common.utils';
+
 import {
 	getDefaultAddress,
 	printAddressAsString,
@@ -58,4 +60,7 @@ export const ReviewUtils = {
 };
 export const CheckoutUtils = {
 	transformPriceToStripeAmount,
+};
+export const CommonUtils = {
+	formatDate,
 };
