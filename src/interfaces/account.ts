@@ -16,12 +16,17 @@ export interface IUserBody {
 	email: string;
 	password: string;
 	telephone: string;
-	addresses?: IAddress[];
+	addresses?: IAddressFlat[];
 	favorite_products?: IProductFlat[];
 	reviews?: IReviewFlat[];
 }
 
-export interface IAddress extends IAddressBody {
+export interface IAddress {
+	id: number;
+	attributes: IAddressBody;
+}
+
+export interface IAddressFlat extends IAddressBody {
 	id: number;
 }
 

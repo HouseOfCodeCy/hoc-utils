@@ -1,4 +1,4 @@
-import { IAddress, IUser, IUserFlat } from '../interfaces/account';
+import { IAddressFlat, IUser, IUserFlat } from '../interfaces/account';
 
 export const tranformUserFlatToUser = (userFlat: IUserFlat): IUser => {
 	const { id, ...userRest } = userFlat;
@@ -17,7 +17,7 @@ export const tranformUserFlatToUser = (userFlat: IUserFlat): IUser => {
  * @param addresses User address
  * @returns Returns default address, or the first one if not marked as default
  */
-export const getDefaultAddress = (addresses: IAddress[]): IAddress => {
+export const getDefaultAddress = (addresses: IAddressFlat[]): IAddressFlat => {
 	const defaultAddress = addresses.find((address) => {
 		return address.isDefault;
 	});
@@ -29,7 +29,7 @@ export const getDefaultAddress = (addresses: IAddress[]): IAddress => {
  * @param address User Address
  * @returns
  */
-export const printAddressAsString = (address: IAddress) => {
+export const printAddressAsString = (address: IAddressFlat) => {
 	let addressString = '';
 	if (address.address1) addressString += `${address.address1}, `;
 	if (address.address2) addressString += `${address.address1}, `;

@@ -2,6 +2,10 @@
 export {
 	IAddress,
 	IAddressBody,
+	IAddressFlat,
+	ICity,
+	ICityBody,
+	ICityFlat,
 	ICountry,
 	ICountryBody,
 	ICountryFlat,
@@ -36,7 +40,17 @@ export {
 	IResponseSchema,
 } from './interfaces/common/common';
 export { ConfigurationInterface } from './interfaces/configuration';
-export { IOrder, IOrderBody } from './interfaces/order';
+export {
+	IOrder,
+	IOrderBody,
+	IOrderFlat,
+	IOrderPaymentMethod,
+	IOrderPaymentMethodBody,
+	IOrderPaymentMethodFlat,
+	IOrderStatus,
+	IOrderStatusBody,
+	IOrderStatusFlat,
+} from './interfaces/order';
 export {
 	IProduct,
 	IProductBody,
