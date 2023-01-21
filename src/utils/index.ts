@@ -7,9 +7,11 @@ import {
 	calculatePrice,
 	calculateTotalDiscount,
 	calculateTotalPrice,
+	calculateTotalPriceFlat,
 	createCartActionsAndGetCart,
 	createCartAndCartAction,
 	doesProductExistInCartActions,
+	setCartIdToLocalStorage,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
 import { transformPriceToStripeAmount } from './Checkout.utils';
@@ -33,6 +35,8 @@ export const CartUtils = {
 	calculatePrice,
 	calculateTotalDiscount,
 	calculateTotalPrice,
+	calculateTotalPriceFlat,
+	setCartIdToLocalStorage,
 };
 export const AccountUtils = {
 	tranformUserFlatToUser,

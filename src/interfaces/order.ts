@@ -1,8 +1,18 @@
-import { IAddress } from './account';
-import { ICartResponse } from './cart';
+import { IAddress, IAddressFlat, IUser, IUserFlat } from './account';
+import { ICartFlat, ICartResponse } from './cart';
 
-export interface IOrderFlat extends IOrderBody {
+export interface IOrderFlat extends IOrderBodyFlat {
 	id: number;
+}
+
+export interface IOrderBodyFlat {
+	cart: ICartFlat;
+	address: IAddressFlat;
+	order_payment_method: IOrderPaymentMethodFlat;
+	order_status: IOrderStatusFlat;
+	user: IUserFlat;
+	createdAt: string;
+	updatedAt: string;
 }
 
 export interface IOrder {
@@ -15,6 +25,9 @@ export interface IOrderBody {
 	address: { data: IAddress };
 	order_payment_method: { data: IOrderPaymentMethod };
 	order_status: { data: IOrderStatus };
+	user: { data: IUser };
+	createdAt: string;
+	updatedAt: string;
 }
 
 export interface IOrderPaymentMethodFlat extends IOrderPaymentMethodBody {

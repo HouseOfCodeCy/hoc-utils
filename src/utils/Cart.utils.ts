@@ -2,6 +2,7 @@ import { IUser } from '../interfaces/account';
 import {
 	ICartBody,
 	ICartItemBody,
+	ICartItemFlat,
 	ICartItemResponse,
 	ICartResponse,
 } from '../interfaces/cart';
@@ -158,6 +159,20 @@ export const calculateTotalPrice = (cartItems: ICartItemResponse[]): string => {
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
 			totalPrice += cartItem.attributes.price;
+		});
+	}
+	return totalPrice.toFixed(2);
+};
+/**
+ * Iterates through the cart actions and calculates the total price of cart
+ * @param {ICartItemFlat[]} cartItems
+ * @returns
+ */
+export const calculateTotalPriceFlat = (cartItems: ICartItemFlat[]): string => {
+	let totalPrice = 0;
+	if (cartItems.length > 0) {
+		cartItems.map((cartItem) => {
+			totalPrice += cartItem.price;
 		});
 	}
 	return totalPrice.toFixed(2);

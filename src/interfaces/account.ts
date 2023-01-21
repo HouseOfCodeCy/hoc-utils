@@ -1,3 +1,4 @@
+import { IOrderFlat } from './order';
 import { IProductFlat } from './product';
 import { IReviewFlat } from './review';
 
@@ -19,6 +20,7 @@ export interface IUserBody {
 	addresses?: IAddressFlat[];
 	favorite_products?: IProductFlat[];
 	reviews?: IReviewFlat[];
+	orders?: IOrderFlat[];
 }
 
 export interface IAddress {

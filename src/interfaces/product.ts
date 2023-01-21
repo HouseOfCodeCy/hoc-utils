@@ -54,6 +54,9 @@ export interface IProductDiscount {
 	id: number;
 	attributes: IProductDiscountBody;
 }
+export interface IProductDiscountFlat extends IProductDiscountBody {
+	id: number;
+}
 
 export interface IProductDiscountBody {
 	name: string;

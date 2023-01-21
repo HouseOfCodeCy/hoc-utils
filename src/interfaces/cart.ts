@@ -1,7 +1,12 @@
 // cart interfaces
 import { CartAction, CartStatus } from '../resources/enums';
-import { IUser } from './account';
-import { IProduct, IProductDiscount } from './product';
+import { IUser, IUserFlat } from './account';
+import {
+	IProduct,
+	IProductDiscount,
+	IProductDiscountFlat,
+	IProductFlat,
+} from './product';
 
 export interface ICart {
 	id: number;
@@ -15,6 +20,17 @@ export interface ICartBody {
 	cart_items?: ICartItem[];
 }
 
+export interface ICartFlat extends ICartBodyFlat {
+	id: number;
+}
+
+export interface ICartBodyFlat {
+	action: CartAction;
+	status?: CartStatus;
+	users_permissions_user?: IUserFlat;
+	cart_items?: ICartItemFlat[];
+}
+
 export interface ICartResponse {
 	id: number;
 	attributes: ICartBodyResponse;
@@ -25,6 +41,18 @@ export interface ICartBodyResponse {
 	status?: CartStatus;
 	users_permissions_user?: { data: IUser };
 	cart_items?: { data: ICartItemResponse[] };
+}
+
+export interface ICartItemFlat extends ICartItemBodyFlat {
+	id: string;
+}
+
+export interface ICartItemBodyFlat {
+	quantity: number;
+	price: number;
+	product: IProductFlat;
+	cart: ICartFlat;
+	product_discount?: IProductDiscountFlat;
 }
 
 export interface ICartItem {
