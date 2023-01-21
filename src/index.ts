@@ -77,7 +77,12 @@ export {
 } from './interfaces/product';
 export { IReview, IReviewBody, IReviewFlat } from './interfaces/review';
 /********************** ENUMS & CONSTANSTS *************************/
-export { CartAction, CartStatus, PopulateType } from './resources/enums';
+export {
+	CartAction,
+	CartStatus,
+	DateTypes,
+	PopulateType,
+} from './resources/enums';
 /********************** Services ***********************************/
 export {
 	forgotPassword,
