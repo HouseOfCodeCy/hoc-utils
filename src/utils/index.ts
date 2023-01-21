@@ -1,5 +1,3 @@
-import { formatDate } from './Common.utils';
-
 import {
 	getDefaultAddress,
 	printAddressAsString,
@@ -17,6 +15,7 @@ import {
 	updateCartActionAndGetCart,
 } from './Cart.utils';
 import { transformPriceToStripeAmount } from './Checkout.utils';
+import { formatDate } from './Common.utils';
 import {
 	addProductToFavorites,
 	calculatePriceWithQuantity,
