@@ -6,6 +6,7 @@ export const getBundles = async () => {
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
+		return error;
 	}
 };
 
