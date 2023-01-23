@@ -76,6 +76,13 @@ export {
 	IProductSizeBody,
 } from './interfaces/product';
 export { IReview, IReviewBody, IReviewFlat } from './interfaces/review';
+export {
+	IHowItWorks,
+	ISection,
+	ISectionBody,
+	IStep,
+	IWelcome,
+} from './interfaces/section';
 /********************** ENUMS & CONSTANSTS *************************/
 export {
 	CartAction,
@@ -83,7 +90,6 @@ export {
 	DateTypes,
 	PopulateType,
 } from './resources/enums';
-/********************** Services ***********************************/
 export {
 	forgotPassword,
 	getLoggedInUser,
@@ -93,7 +99,7 @@ export {
 	registerUser,
 } from './services/Account.service';
 export { getAddress } from './services/Address.service';
-export { getBundle } from './services/Bundle.service';
+export { getBundle, getBundles } from './services/Bundle.service';
 export {
 	createCart,
 	createCartItem,
@@ -122,6 +128,8 @@ export {
 	getProducts,
 } from './services/Product.service';
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
+/********************** Services ***********************************/
+export { getSections } from './services/Sections.service';
 export { getUser, updateUser } from './services/User.service';
 /********************** Utility ***********************************/
 export {
