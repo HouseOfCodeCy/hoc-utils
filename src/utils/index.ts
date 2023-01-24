@@ -29,6 +29,7 @@ import {
 import {
 	calculateProductInventory,
 	calculateProductInventoryAvailability,
+	calculateProductInventoryLabel,
 	calculateProductInventoryTotalNumber,
 } from './ProductInventory.utils';
 import { calculateTotalReviews } from './Review.utils';
@@ -53,6 +54,7 @@ export const ProductInventoryUtils = {
 	calculateProductInventory,
 	calculateProductInventoryAvailability,
 	calculateProductInventoryTotalNumber,
+	calculateProductInventoryLabel,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,

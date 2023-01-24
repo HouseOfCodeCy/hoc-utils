@@ -44,6 +44,30 @@ export const calculateProductInventoryAvailability = (
 };
 
 /**
+ * Receives number and display appropriate label based on the number of stock count
+ * @param stock
+ * @param lowAvailabilityThreshold A threshold for emphasizing low in stock
+ * @param highAvailabilityThreshold A threshold for emphasizing high in stock
+ * @returns
+ */
+export const calculateProductInventoryLabel = (
+	stock: number,
+	lowAvailabilityThreshold = 3,
+	highAvailabilityThreshold = 5,
+) => {
+	let availability = '';
+
+	if (stock === 0) {
+		availability = 'Out of Stock';
+	} else if (stock >= highAvailabilityThreshold) {
+		availability = 'In Stock';
+	} else if (stock >= lowAvailabilityThreshold) {
+		availability = 'Low in Stock';
+	}
+	return availability;
+};
+
+/**
  * Receives fetched product inventories and returns a number for total stock
  * @param productInventories The Product Inventories
  * @returns
