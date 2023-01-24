@@ -1,3 +1,4 @@
+import { differenceInMinutes } from 'date-fns';
 import { IProductInventory } from '../interfaces/product';
 import { ProductInventoryActions } from '../resources/enums';
 import { getProductInventoryByProduct } from '../services/ProductInventory.service';
@@ -74,6 +75,7 @@ export const calculateProductInventoryLabel = (
  */
 export const calculateProductInventoryTotalNumber = (
 	productInventories: IProductInventory[],
+	inventoryReservationDuration = 60,
 ) => {
 	let totalStock = 0;
 	if (productInventories.length > 0) {
@@ -83,7 +85,13 @@ export const calculateProductInventoryTotalNumber = (
 					totalStock += inventory.attributes.quantity;
 					break;
 				case ProductInventoryActions.ONHOLD:
-					totalStock -= inventory.attributes.quantity;
+					if (
+						differenceInMinutes(
+							new Date(inventory.attributes.updatedAt),
+							Date.now(),
+						) <= inventoryReservationDuration
+					)
+						totalStock -= inventory.attributes.quantity;
 					break;
 				case ProductInventoryActions.DECREASE:
 					totalStock -= inventory.attributes.quantity;
