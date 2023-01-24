@@ -94,6 +94,7 @@ export {
 	PopulateType,
 	ProductInventoryActions,
 } from './resources/enums';
+/********************** Services ***********************************/
 export {
 	forgotPassword,
 	getLoggedInUser,
@@ -124,18 +125,20 @@ export {
 	getShippingMethods,
 } from './services/Order.service';
 export {
+	createProductInventory,
 	getCategoriesByParentCategoryId,
 	getFeaturedProducts,
 	getProduct,
 	getProductCategories,
+	getProductInventories,
+	getProductInventory,
 	getProductParentCategories,
 	getProducts,
 } from './services/Product.service';
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
-/********************** Services ***********************************/
 export { getSections } from './services/Sections.service';
 export { getUser, updateUser } from './services/User.service';
-/********************** Utility ***********************************/
+/********************** Utilities ***********************************/
 export {
 	AccountUtils,
 	CartUtils,

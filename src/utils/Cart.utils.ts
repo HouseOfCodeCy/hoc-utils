@@ -6,14 +6,15 @@ import {
 	ICartItemResponse,
 	ICartResponse,
 } from '../interfaces/cart';
-import { IProduct } from '../interfaces/product';
-import { CartAction } from '../resources/enums';
+import { IProduct, IProductInventoryBody } from '../interfaces/product';
+import { CartAction, ProductInventoryActions } from '../resources/enums';
 import {
 	createCart,
 	createCartItem,
 	getCart,
 	updateCartItem,
 } from '../services/Cart.service';
+import { createProductInventory } from '../services/Product.service';
 import { calculatePriceWithQuantity } from './Product.utils';
 
 export const createCartActionsAndGetCart = async (
@@ -31,13 +32,25 @@ export const createCartActionsAndGetCart = async (
 	};
 	// create cart item and refresh GET Cart
 	await createCartItem(cartItem).then(async (res: any) => {
-		if (res['statusText'] === 'OK') {
-			// call the PUT to update the card with the new CartItem
-			await getCart(`${cart?.id}`).then((responseData: any) => {
-				updateCart(responseData?.data.data);
-				setCartIdToLocalStorage(responseData?.data.data.id);
-				return responseData;
-			});
+		if (res?.statusText === 'OK') {
+			// create a product inventory to manage stock
+			const productInventory: IProductInventoryBody = {
+				action: ProductInventoryActions.ONHOLD,
+				quantity: quantity,
+				cart_item: res.data.data,
+			};
+			await createProductInventory(productInventory).then(
+				async (productInventoryResponse: any) => {
+					if (productInventoryResponse.statusText === 'OK') {
+						// call the PUT to update the CART with the new CartItem
+						await getCart(`${cart?.id}`).then((responseData: any) => {
+							updateCart(responseData?.data.data);
+							setCartIdToLocalStorage(responseData?.data.data.id);
+							return responseData;
+						});
+					}
+				},
+			);
 		}
 	});
 };
