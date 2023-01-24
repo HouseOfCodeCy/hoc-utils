@@ -189,8 +189,7 @@ export const calculateTotalPrice = (cartItems: ICartItemResponse[]): string => {
 		cartItems.map((cartItem) => {
 			// if cart item has inventory
 			if (cartItem.attributes.product_inventory) {
-				totalPrice +=
-					cartItem.attributes.product_inventory?.data.attributes.quantity;
+				totalPrice += cartItem.attributes.price;
 			}
 		});
 	}
@@ -206,7 +205,7 @@ export const calculateTotalPriceFlat = (cartItems: ICartItemFlat[]): string => {
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
 			if (cartItem.product_inventory) {
-				totalPrice += cartItem.product_inventory?.quantity;
+				totalPrice += cartItem.price;
 			}
 		});
 	}
