@@ -134,6 +134,7 @@ export {
 	getProductInventory,
 	getProductParentCategories,
 	getProducts,
+	updateProductInventory,
 } from './services/Product.service';
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
 export { getSections } from './services/Sections.service';

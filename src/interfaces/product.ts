@@ -50,9 +50,9 @@ export interface IProductInventory {
 	attributes: IProductInventoryBody;
 }
 export interface IProductInventoryBody {
-	action: ProductInventoryActions;
 	cart_item: ICartItem;
 	quantity: number;
+	action?: ProductInventoryActions;
 	comment?: string;
 	vendor?: string;
 }

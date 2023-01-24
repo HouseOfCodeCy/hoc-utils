@@ -84,7 +84,7 @@ export const getFeaturedProducts = async (populateType = PopulateType.DEEP) => {
 };
 
 export const getProductInventories = async (
-	populateType = PopulateType.DEEP,
+	populateType = PopulateType.STAR,
 ) => {
 	try {
 		const response = await http.get<any>(`product-inventories`, {
@@ -100,7 +100,7 @@ export const getProductInventories = async (
 
 export const getProductInventory = async (
 	productInventoryId: string,
-	populateType = PopulateType.DEEP,
+	populateType = PopulateType.STAR,
 ) => {
 	try {
 		const response = await http.get<any>(
@@ -122,6 +122,24 @@ export const createProductInventory = async (data: IProductInventoryBody) => {
 		const response = await http.post<any>('product-inventories', {
 			data,
 		});
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const updateProductInventory = async (
+	productInventoryId: string,
+	data: IProductInventoryBody,
+) => {
+	try {
+		const response = await http.put<any>(
+			`product-inventories/${productInventoryId}`,
+			{
+				data,
+			},
+		);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);

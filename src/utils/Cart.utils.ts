@@ -35,9 +35,9 @@ export const createCartActionsAndGetCart = async (
 		if (res?.statusText === 'OK') {
 			// create a product inventory to manage stock
 			const productInventory: IProductInventoryBody = {
-				action: ProductInventoryActions.ONHOLD,
 				quantity: quantity,
 				cart_item: res.data.data,
+				action: ProductInventoryActions.ONHOLD,
 			};
 			await createProductInventory(productInventory).then(
 				async (productInventoryResponse: any) => {
@@ -73,6 +73,12 @@ export const updateCartActionAndGetCart = async (
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then(async (res: any) => {
 		if (res?.statusText === 'OK') {
+			// create a product inventory to manage stock
+			const productInventory: IProductInventoryBody = {
+				quantity: tmpQuantity,
+				cart_item: res.data.data,
+				action: ProductInventoryActions.ONHOLD,
+			};
 			await getCart(`${cart?.id}`).then((responseData: any) => {
 				const resData = responseData?.data.data;
 				setCartIdToLocalStorage(resData.id);
