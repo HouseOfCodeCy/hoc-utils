@@ -55,7 +55,7 @@ export interface ICartItemBodyFlat {
 	product: IProductFlat;
 	cart: ICartFlat;
 	product_discount?: IProductDiscountFlat;
-	product_intentory?: IProductInventoryFlat;
+	product_inventory?: IProductInventoryFlat;
 }
 
 export interface ICartItem {
@@ -68,7 +68,7 @@ export interface ICartItemBody {
 	price: number;
 	product: IProduct;
 	cart: ICartResponse;
-	product_intentory?: IProductInventory;
+	product_inventory?: IProductInventory;
 	product_discount?: IProductDiscount;
 }
 
@@ -83,5 +83,5 @@ export interface ICartItemResponse {
 	product: { data: IProduct };
 	cart: { data: ICartResponse };
 	product_discount?: { data?: IProductDiscount };
-	product_intentory?: { data: IProductInventory };
+	product_inventory?: { data: IProductInventory };
 }

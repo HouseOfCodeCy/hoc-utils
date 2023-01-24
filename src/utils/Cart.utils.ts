@@ -83,7 +83,7 @@ export const updateCartActionAndGetCart = async (
 				action: ProductInventoryActions.ONHOLD,
 			};
 			await updateProductInventory(
-				`${cartItem.attributes.product_intentory?.data.id}`,
+				`${cartItem.attributes.product_inventory?.data.id}`,
 				productInventory,
 			).then(async (productInventoryResponse: any) => {
 				if (productInventoryResponse.statusText === 'OK') {
@@ -188,9 +188,9 @@ export const calculateTotalPrice = (cartItems: ICartItemResponse[]): string => {
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
 			// if cart item has inventory
-			if (cartItem.attributes.product_intentory) {
+			if (cartItem.attributes.product_inventory) {
 				totalPrice +=
-					cartItem.attributes.product_intentory?.data.attributes.quantity;
+					cartItem.attributes.product_inventory?.data.attributes.quantity;
 			}
 		});
 	}
@@ -205,8 +205,8 @@ export const calculateTotalPriceFlat = (cartItems: ICartItemFlat[]): string => {
 	let totalPrice = 0;
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
-			if (cartItem.product_intentory) {
-				totalPrice += cartItem.product_intentory?.quantity;
+			if (cartItem.product_inventory) {
+				totalPrice += cartItem.product_inventory?.quantity;
 			}
 		});
 	}
