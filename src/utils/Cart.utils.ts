@@ -14,7 +14,10 @@ import {
 	getCart,
 	updateCartItem,
 } from '../services/Cart.service';
-import { createProductInventory } from '../services/Product.service';
+import {
+	createProductInventory,
+	updateProductInventory,
+} from '../services/Product.service';
 import { calculatePriceWithQuantity } from './Product.utils';
 
 export const createCartActionsAndGetCart = async (
@@ -79,11 +82,18 @@ export const updateCartActionAndGetCart = async (
 				cart_item: res.data.data,
 				action: ProductInventoryActions.ONHOLD,
 			};
-			await getCart(`${cart?.id}`).then((responseData: any) => {
-				const resData = responseData?.data.data;
-				setCartIdToLocalStorage(resData.id);
-				updateCart(resData);
-				return responseData;
+			await updateProductInventory(
+				`${cartItem.attributes.product_intentory?.data.id}`,
+				productInventory,
+			).then(async (productInventoryResponse: any) => {
+				if (productInventoryResponse.statusText === 'OK') {
+					await getCart(`${cart?.id}`).then((responseData: any) => {
+						const resData = responseData?.data.data;
+						setCartIdToLocalStorage(resData.id);
+						updateCart(resData);
+						return responseData;
+					});
+				}
 			});
 		}
 	});
@@ -177,7 +187,11 @@ export const calculateTotalPrice = (cartItems: ICartItemResponse[]): string => {
 	let totalPrice = 0;
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
-			totalPrice += cartItem.attributes.price;
+			// if cart item has inventory
+			if (cartItem.attributes.product_intentory) {
+				totalPrice +=
+					cartItem.attributes.product_intentory?.data.attributes.quantity;
+			}
 		});
 	}
 	return totalPrice.toFixed(2);
@@ -191,7 +205,9 @@ export const calculateTotalPriceFlat = (cartItems: ICartItemFlat[]): string => {
 	let totalPrice = 0;
 	if (cartItems.length > 0) {
 		cartItems.map((cartItem) => {
-			totalPrice += cartItem.price;
+			if (cartItem.product_intentory) {
+				totalPrice += cartItem.product_intentory?.quantity;
+			}
 		});
 	}
 	return totalPrice.toFixed(2);

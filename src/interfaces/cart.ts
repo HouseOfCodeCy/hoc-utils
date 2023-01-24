@@ -7,6 +7,7 @@ import {
 	IProductDiscountFlat,
 	IProductFlat,
 	IProductInventory,
+	IProductInventoryFlat,
 } from './product';
 
 export interface ICart {
@@ -54,6 +55,7 @@ export interface ICartItemBodyFlat {
 	product: IProductFlat;
 	cart: ICartFlat;
 	product_discount?: IProductDiscountFlat;
+	product_intentory?: IProductInventoryFlat;
 }
 
 export interface ICartItem {
@@ -66,7 +68,7 @@ export interface ICartItemBody {
 	price: number;
 	product: IProduct;
 	cart: ICartResponse;
-	product_intentory?: { data: IProductInventory[] };
+	product_intentory?: IProductInventory;
 	product_discount?: IProductDiscount;
 }
 
@@ -81,4 +83,5 @@ export interface ICartItemResponse {
 	product: { data: IProduct };
 	cart: { data: ICartResponse };
 	product_discount?: { data?: IProductDiscount };
+	product_intentory?: { data: IProductInventory };
 }
