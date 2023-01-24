@@ -3,33 +3,75 @@ import { ProductInventoryActions } from '../resources/enums';
 import { getProductInventoryByProduct } from '../services/ProductInventory.service';
 
 export const calculateProductInventory = async (productId: string) => {
-	let totalStock = 0;
 	// retrieve the ProductInventory for the given product
 	const productInventoryResponse: any = await getProductInventoryByProduct(
 		productId,
 	);
 	if (productInventoryResponse.statusText === 'OK') {
 		const productInventories = productInventoryResponse.data?.data;
-		productInventories.length > 0 &&
-			productInventories.map((inventory: IProductInventory) => {
-				switch (inventory.attributes.action) {
-					case ProductInventoryActions.INCREASE:
-						totalStock += inventory.attributes.quantity;
-						break;
-					case ProductInventoryActions.ONHOLD:
-						totalStock -= inventory.attributes.quantity;
-						break;
-					case ProductInventoryActions.DECREASE:
-						totalStock -= inventory.attributes.quantity;
-						break;
-					case ProductInventoryActions.PURCHASED:
-						totalStock += inventory.attributes.quantity;
-						break;
+		return calculateProductInventoryTotalNumber(productInventories);
+	}
+	return 0;
+};
 
-					default:
-						break;
-				}
-			});
+/**
+ * Receives product inventory and display appropriate label based on the number of stock count
+ * @param productInventories
+ * @param lowAvailabilityThreshold A threshold for emphasizing low in stock
+ * @param highAvailabilityThreshold A threshold for emphasizing high in stock
+ * @returns
+ */
+export const calculateProductInventoryAvailability = (
+	productInventories: IProductInventory[],
+	lowAvailabilityThreshold = 3,
+	highAvailabilityThreshold = 5,
+) => {
+	let availability = '';
+	if (productInventories.length > 0) {
+		const stockAvailability =
+			calculateProductInventoryTotalNumber(productInventories);
+		if (stockAvailability === 0) {
+			availability = 'Out of Stock';
+		} else if (stockAvailability >= highAvailabilityThreshold) {
+			availability = 'In Stock';
+		} else if (stockAvailability >= lowAvailabilityThreshold) {
+			availability = 'Low in Stock';
+		}
+		return availability;
+	} else {
+		return 'In Stock';
+	}
+};
+
+/**
+ * Receives fetched product inventories and returns a number for total stock
+ * @param productInventories The Product Inventories
+ * @returns
+ */
+export const calculateProductInventoryTotalNumber = (
+	productInventories: IProductInventory[],
+) => {
+	let totalStock = 0;
+	if (productInventories.length > 0) {
+		productInventories.map((inventory: IProductInventory) => {
+			switch (inventory.attributes.action) {
+				case ProductInventoryActions.INCREASE:
+					totalStock += inventory.attributes.quantity;
+					break;
+				case ProductInventoryActions.ONHOLD:
+					totalStock -= inventory.attributes.quantity;
+					break;
+				case ProductInventoryActions.DECREASE:
+					totalStock -= inventory.attributes.quantity;
+					break;
+				case ProductInventoryActions.PURCHASED:
+					totalStock += inventory.attributes.quantity;
+					break;
+
+				default:
+					break;
+			}
+		});
 	}
 	return totalStock;
 };

@@ -74,36 +74,6 @@ export const getBrandAcronym = (product: IProduct) => {
 };
 
 /**
- * Receives product and display appropriate label based on the number of stock count
- * @param product The product to check stock
- * @param lowAvailabilityThreshold A threshold for emphasizing low in stock
- * @param highAvailabilityThreshold A threshold for emphasizing high in stock
- * @returns
- */
-export const calculateStockAvailability = (
-	product: IProduct,
-	lowAvailabilityThreshold = 3,
-	highAvailabilityThreshold = 5,
-) => {
-	let availability = '';
-	if (product) {
-		const stockAvailability = product.attributes.stock
-			? product.attributes.stock
-			: 99;
-		if (stockAvailability === 0) {
-			availability = 'Out of Stock';
-		} else if (stockAvailability >= highAvailabilityThreshold) {
-			availability = 'In Stock';
-		} else if (stockAvailability >= lowAvailabilityThreshold) {
-			availability = 'Low in Stock';
-		}
-		return availability;
-	} else {
-		return 'In Stock';
-	}
-};
-
-/**
  * Check if given product is marked as favorite by the user
  * @param favoriteProducts All user favorite products
  * @param product The given product

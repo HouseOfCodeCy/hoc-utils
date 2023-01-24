@@ -21,13 +21,16 @@ import {
 	addProductToFavorites,
 	calculatePriceWithQuantity,
 	calculateProductCategories,
-	calculateStockAvailability,
 	getBrandAcronym,
 	isProductFavorite,
 	quantityHandle,
 	transformProductToProductFlat,
 } from './Product.utils';
-import { calculateProductInventory } from './ProductInventory.utils';
+import {
+	calculateProductInventory,
+	calculateProductInventoryAvailability,
+	calculateProductInventoryTotalNumber,
+} from './ProductInventory.utils';
 import { calculateTotalReviews } from './Review.utils';
 
 export const CartUtils = {
@@ -48,13 +51,14 @@ export const AccountUtils = {
 };
 export const ProductInventoryUtils = {
 	calculateProductInventory,
+	calculateProductInventoryAvailability,
+	calculateProductInventoryTotalNumber,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,
 	calculateProductCategories,
 	quantityHandle,
 	getBrandAcronym,
-	calculateStockAvailability,
 	isProductFavorite,
 	addProductToFavorites,
 	transformProductToProductFlat,
