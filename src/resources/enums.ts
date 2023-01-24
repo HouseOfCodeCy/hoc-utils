@@ -23,3 +23,10 @@ export enum DateTypes {
 	DATETIME = 'dd/MM/yyyy HH:mm',
 	DATETIME1 = 'd.MM.yyyy HH:mm',
 }
+
+export enum ProductInventoryActions {
+	ONHOLD = 'ONHOLD',
+	PURCHASED = 'PURCHASED',
+	INCREASE = 'INCREASE',
+	DECREASE = 'DECREASE',
+}

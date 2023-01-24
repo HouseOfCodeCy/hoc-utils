@@ -72,6 +72,9 @@ export {
 	IProductDiscountBody,
 	IProductDiscountFlat,
 	IProductFlat,
+	IProductInventory,
+	IProductInventoryBody,
+	IProductInventoryFlat,
 	IProductSize,
 	IProductSizeBody,
 } from './interfaces/product';
@@ -89,6 +92,7 @@ export {
 	CartStatus,
 	DateTypes,
 	PopulateType,
+	ProductInventoryActions,
 } from './resources/enums';
 export {
 	forgotPassword,

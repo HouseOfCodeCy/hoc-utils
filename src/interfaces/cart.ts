@@ -6,6 +6,7 @@ import {
 	IProductDiscount,
 	IProductDiscountFlat,
 	IProductFlat,
+	IProductInventory,
 } from './product';
 
 export interface ICart {
@@ -65,6 +66,7 @@ export interface ICartItemBody {
 	price: number;
 	product: IProduct;
 	cart: ICartResponse;
+	product_intentory?: { data: IProductInventory[] };
 	product_discount?: IProductDiscount;
 }
 

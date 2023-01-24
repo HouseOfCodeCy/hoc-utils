@@ -28,10 +28,12 @@ export const getCategoriesByParentCategoryId = async (id: string) => {
 	}
 };
 
-export const getProductCategories = async () => {
+export const getProductCategories = async (
+	populateType = PopulateType.STAR,
+) => {
 	try {
 		const response = await http.get<any>(`product-categories`, {
-			params: { populate: '*' },
+			params: { populate: populateType },
 		});
 
 		return response;
@@ -40,10 +42,10 @@ export const getProductCategories = async () => {
 		return error;
 	}
 };
-export const getProducts = async () => {
+export const getProducts = async (populateType = PopulateType.STAR) => {
 	try {
 		const response = await http.get<any>(`products`, {
-			params: { populate: '*' },
+			params: { populate: populateType },
 		});
 		return response;
 	} catch (error) {

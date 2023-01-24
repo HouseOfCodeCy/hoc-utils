@@ -1,4 +1,5 @@
 import { ICartBody, ICartItemBody } from '../interfaces/cart';
+import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
 /**
@@ -6,10 +7,13 @@ import { http } from './common/Http.service';
  * @param cartId
  * @returns
  */
-export const getCart = async (cartId: string) => {
+export const getCart = async (
+	cartId: string,
+	populateType = PopulateType.DEEP,
+) => {
 	try {
 		const response = await http.get<any>(`carts/${cartId}`, {
-			params: { populate: 'deep' },
+			params: { populate: populateType },
 		});
 		return response;
 	} catch (error) {

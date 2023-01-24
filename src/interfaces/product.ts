@@ -1,3 +1,5 @@
+import { ProductInventoryActions } from '../resources/enums';
+import { ICartItem } from './cart';
 import { IProductCategory, IProductSubCategory } from './category';
 import { IReview } from './review';
 
@@ -15,14 +17,13 @@ export interface IProductBody {
 	description: string;
 	price: number;
 	mediaUrl: string;
-	dateAdded?: string;
+	stock: number;
 	category?: IProductCategory;
 	brand?: string;
-	stock?: number;
 	sku?: string;
 	extraDescription?: string;
-	product_sub_categories?: { data: IProductSubCategory[] };
 	reviews?: { data: IReview[] };
+	product_sub_categories?: { data: IProductSubCategory[] };
 	product_sizes?: { data: IProductSize[] };
 	product_brand?: { data: IProductBrand };
 	product_discount?: { data: IProductDiscount };
@@ -37,6 +38,23 @@ export interface IProductSize {
 }
 export interface IProductSizeBody {
 	size: string;
+}
+
+/** PRODUCT INVENTORY */
+export interface IProductInventoryFlat extends IProductInventoryBody {
+	id: string;
+}
+
+export interface IProductInventory {
+	id: string;
+	attributes: IProductInventoryBody;
+}
+export interface IProductInventoryBody {
+	action: ProductInventoryActions;
+	cart_item: ICartItem;
+	quantity: number;
+	comment?: string;
+	vendor?: string;
 }
 
 /** PRODUCT BRANDS */
