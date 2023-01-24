@@ -1,4 +1,4 @@
-import { IProductInventoryBody } from '../interfaces/product';
+import { IProductInventory } from '../interfaces/product';
 import { ProductInventoryActions } from '../resources/enums';
 import { getProductInventoryByProduct } from '../services/ProductInventory.service';
 
@@ -11,19 +11,19 @@ export const calculateProductInventory = async (productId: string) => {
 	if (productInventoryResponse.statusText === 'OK') {
 		const productInventories = productInventoryResponse.data?.data;
 		productInventories.length > 0 &&
-			productInventories.map((inventory: IProductInventoryBody) => {
-				switch (inventory.action) {
+			productInventories.map((inventory: IProductInventory) => {
+				switch (inventory.attributes.action) {
 					case ProductInventoryActions.INCREASE:
-						totalStock += inventory.quantity;
+						totalStock += inventory.attributes.quantity;
 						break;
 					case ProductInventoryActions.ONHOLD:
-						totalStock -= inventory.quantity;
+						totalStock -= inventory.attributes.quantity;
 						break;
 					case ProductInventoryActions.DECREASE:
-						totalStock -= inventory.quantity;
+						totalStock -= inventory.attributes.quantity;
 						break;
 					case ProductInventoryActions.PURCHASED:
-						totalStock += inventory.quantity;
+						totalStock += inventory.attributes.quantity;
 						break;
 
 					default:
