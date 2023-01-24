@@ -52,8 +52,8 @@ export interface IProductInventory {
 export interface IProductInventoryBody {
 	cart_item: ICartItem;
 	quantity: number;
-	updatedAt: string;
-	createdAt: string;
+	updatedAt?: string;
+	createdAt?: string;
 	action?: ProductInventoryActions;
 	comment?: string;
 	vendor?: string;

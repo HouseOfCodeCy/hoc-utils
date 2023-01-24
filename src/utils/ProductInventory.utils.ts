@@ -86,6 +86,7 @@ export const calculateProductInventoryTotalNumber = (
 					break;
 				case ProductInventoryActions.ONHOLD:
 					if (
+						inventory.attributes.updatedAt &&
 						differenceInMinutes(
 							new Date(inventory.attributes.updatedAt),
 							Date.now(),
