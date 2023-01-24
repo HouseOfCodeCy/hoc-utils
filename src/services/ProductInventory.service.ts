@@ -36,10 +36,7 @@ export const getProductInventory = async (
 	}
 };
 
-export const getProductInventoryByProduct = async (
-	productId: string,
-	populateType = PopulateType.NONE,
-) => {
+export const getProductInventoryByProduct = async (productId: string) => {
 	try {
 		const response = await http.get<any>(
 			`product-inventories?filters[$or][0][cart_item][product][id][$eq]=${productId}&filters[$or][1][product][id][$eq]=${productId}`,
