@@ -25,6 +25,7 @@ export {
 	ICartItemBodyFlat,
 	ICartItemFlat,
 	ICartItemResponse,
+	ICartItemResponseBody,
 	ICartResponse,
 } from './interfaces/cart';
 export {

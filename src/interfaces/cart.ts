@@ -74,10 +74,10 @@ export interface ICartItemBody {
 
 export interface ICartItemResponse {
 	id: string;
-	attributes: ICartItemResponse;
+	attributes: ICartItemResponseBody;
 }
 
-export interface ICartItemResponse {
+export interface ICartItemResponseBody {
 	quantity: number;
 	price: number;
 	product: { data: IProduct };
