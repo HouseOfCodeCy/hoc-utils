@@ -3,6 +3,7 @@ import {
 	printAddressAsString,
 	tranformUserFlatToUser,
 } from './Account.utils';
+
 import {
 	calculatePrice,
 	calculateTotalDiscount,
@@ -26,6 +27,7 @@ import {
 	quantityHandle,
 	transformProductToProductFlat,
 } from './Product.utils';
+import { calculateProductStock } from './ProductInventory.utils';
 import { calculateTotalReviews } from './Review.utils';
 
 export const CartUtils = {
@@ -43,6 +45,9 @@ export const AccountUtils = {
 	tranformUserFlatToUser,
 	getDefaultAddress,
 	printAddressAsString,
+};
+export const ProductInventoryUtils = {
+	calculateProductStock,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,

@@ -17,7 +17,7 @@ import {
 import {
 	createProductInventory,
 	updateProductInventory,
-} from '../services/Product.service';
+} from '../services/ProductInventory.service';
 import { calculatePriceWithQuantity } from './Product.utils';
 
 export const createCartActionsAndGetCart = async (

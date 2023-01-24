@@ -125,17 +125,20 @@ export {
 	getShippingMethods,
 } from './services/Order.service';
 export {
-	createProductInventory,
 	getCategoriesByParentCategoryId,
 	getFeaturedProducts,
 	getProduct,
 	getProductCategories,
-	getProductInventories,
-	getProductInventory,
 	getProductParentCategories,
 	getProducts,
-	updateProductInventory,
 } from './services/Product.service';
+export {
+	createProductInventory,
+	getProductInventories,
+	getProductInventory,
+	getProductInventoryByProduct,
+	updateProductInventory,
+} from './services/ProductInventory.service';
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
 export { getSections } from './services/Sections.service';
 export { getUser, updateUser } from './services/User.service';
@@ -145,6 +148,7 @@ export {
 	CartUtils,
 	CheckoutUtils,
 	CommonUtils,
+	ProductInventoryUtils,
 	ProductUtils,
 	ReviewUtils,
 } from './utils/index';
