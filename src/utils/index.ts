@@ -27,7 +27,7 @@ import {
 	quantityHandle,
 	transformProductToProductFlat,
 } from './Product.utils';
-import { calculateProductStock } from './ProductInventory.utils';
+import { calculateProductInventory } from './ProductInventory.utils';
 import { calculateTotalReviews } from './Review.utils';
 
 export const CartUtils = {
@@ -47,7 +47,7 @@ export const AccountUtils = {
 	printAddressAsString,
 };
 export const ProductInventoryUtils = {
-	calculateProductStock,
+	calculateProductInventory,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,
