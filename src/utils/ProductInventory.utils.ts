@@ -3,10 +3,11 @@ import { ProductInventoryActions } from '../resources/enums';
 import { getProductInventoryByProduct } from '../services/ProductInventory.service';
 
 export const calculateProductStock = async (productId: string) => {
+	let totalStock = 0;
+	// retrieve the ProductInventory for the given product
 	await getProductInventoryByProduct(productId).then(async (res: any) => {
 		if (res?.statusText === 'OK') {
 			const productInventories: IProductInventoryBody[] = res.data.data;
-			let totalStock = 0;
 			productInventories.map((inventory) => {
 				switch (inventory.action) {
 					case ProductInventoryActions.INCREASE:
@@ -26,9 +27,9 @@ export const calculateProductStock = async (productId: string) => {
 						break;
 				}
 			});
-			return totalStock;
 		} else {
-			return res;
+			totalStock = 999;
 		}
 	});
+	return totalStock;
 };
