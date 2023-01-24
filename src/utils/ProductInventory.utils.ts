@@ -9,8 +9,9 @@ export const calculateProductInventory = async (productId: string) => {
 		productId,
 	);
 	if (productInventoryResponse.statusText === 'OK') {
-		productInventoryResponse.data.data.map(
-			(inventory: IProductInventoryBody) => {
+		const productInventories = productInventoryResponse.data?.data;
+		productInventories.length > 0 &&
+			productInventories.map((inventory: IProductInventoryBody) => {
 				switch (inventory.action) {
 					case ProductInventoryActions.INCREASE:
 						totalStock += inventory.quantity;
@@ -28,8 +29,7 @@ export const calculateProductInventory = async (productId: string) => {
 					default:
 						break;
 				}
-			},
-		);
+			});
 	}
 	return totalStock;
 };
