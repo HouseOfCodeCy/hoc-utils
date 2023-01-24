@@ -15,6 +15,7 @@ export enum CartStatus {
 export enum PopulateType {
 	DEEP = 'deep',
 	STAR = '*',
+	NONE = '',
 }
 
 export enum DateTypes {
