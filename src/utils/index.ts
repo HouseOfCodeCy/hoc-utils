@@ -15,7 +15,10 @@ import {
 	setCartIdToLocalStorage,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
-import { transformPriceToStripeAmount } from './Checkout.utils';
+import {
+	checkoutCartAndUpdateProductInventory,
+	transformPriceToStripeAmount,
+} from './Checkout.utils';
 import { formatDate } from './Common.utils';
 import {
 	addProductToFavorites,
@@ -70,6 +73,7 @@ export const ReviewUtils = {
 };
 export const CheckoutUtils = {
 	transformPriceToStripeAmount,
+	checkoutCartAndUpdateProductInventory,
 };
 export const CommonUtils = {
 	formatDate,
