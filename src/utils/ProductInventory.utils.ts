@@ -85,14 +85,15 @@ export const calculateProductInventoryTotalNumber = (
 					totalStock += inventory.attributes.quantity;
 					break;
 				case ProductInventoryActions.ONHOLD:
-					if (
-						inventory.attributes.updatedAt &&
-						differenceInMinutes(
-							new Date(inventory.attributes.updatedAt),
+					if (inventory.attributes.updatedAt) {
+						const differenceInMins = differenceInMinutes(
 							Date.now(),
-						) <= inventoryReservationDuration
-					)
-						totalStock -= inventory.attributes.quantity;
+							new Date(inventory.attributes.updatedAt),
+						);
+						console.log(differenceInMins);
+						console.log(inventoryReservationDuration);
+					}
+					totalStock -= inventory.attributes.quantity;
 					break;
 				case ProductInventoryActions.DECREASE:
 					totalStock -= inventory.attributes.quantity;
