@@ -9,6 +9,7 @@ export interface IProductCategoryParentBody {
 	name: string;
 	description: string;
 	product_categories: { data: IProductCategory[] };
+	icon?: string;
 }
 
 /** CATEGORIES */
