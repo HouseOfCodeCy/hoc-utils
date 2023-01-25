@@ -22,7 +22,7 @@ export enum DateTypes {
 	DATE = 'dd/MM/yyyy',
 	DATE1 = 'dd.MM.yyyy',
 	DATETIME = 'dd/MM/yyyy HH:mm',
-	DATETIME1 = 'd.MM.yyyy HH:mm',
+	DATETIME1 = 'dd.MM.yyyy HH:mm',
 }
 
 export enum ProductInventoryActions {
