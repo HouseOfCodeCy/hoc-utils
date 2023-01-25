@@ -40,7 +40,7 @@ export const createCartActionsAndGetCart = async (
 			const productInventory: IProductInventoryBody = {
 				quantity: quantity,
 				cart_item: res.data.data,
-				action: ProductInventoryActions.ONHOLD,
+				action: ProductInventoryActions.RESERVED_BY_CUSTOMER,
 			};
 			await createProductInventory(productInventory).then(
 				async (productInventoryResponse: any) => {
@@ -80,7 +80,7 @@ export const updateCartActionAndGetCart = async (
 			const productInventory: IProductInventoryBody = {
 				quantity: tmpQuantity,
 				cart_item: res.data.data,
-				action: ProductInventoryActions.ONHOLD,
+				action: ProductInventoryActions.RESERVED_BY_CUSTOMER,
 			};
 			await updateProductInventory(
 				`${cartItem.attributes.product_inventory?.data.id}`,

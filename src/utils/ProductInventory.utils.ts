@@ -81,10 +81,11 @@ export const calculateProductInventoryTotalNumber = (
 	if (productInventories.length > 0) {
 		productInventories.map((inventory: IProductInventory) => {
 			switch (inventory.attributes.action) {
-				case ProductInventoryActions.INCREASE:
+				case ProductInventoryActions.STOCK_REFILL:
+				case ProductInventoryActions.RETURNED_BY_CUSTOMER:
 					totalStock += inventory.attributes.quantity;
 					break;
-				case ProductInventoryActions.ONHOLD:
+				case ProductInventoryActions.RESERVED_BY_CUSTOMER:
 					if (inventory.attributes.updatedAt) {
 						const differenceInMins = differenceInMinutes(
 							Date.now(),
@@ -95,11 +96,9 @@ export const calculateProductInventoryTotalNumber = (
 						}
 					}
 					break;
-				case ProductInventoryActions.DECREASE:
+				case ProductInventoryActions.PURCHASED_BY_CUSTOMER:
+				case ProductInventoryActions.SHIPPED_TO_CUSTOMER:
 					totalStock -= inventory.attributes.quantity;
-					break;
-				case ProductInventoryActions.PURCHASED:
-					totalStock += inventory.attributes.quantity;
 					break;
 
 				default:
