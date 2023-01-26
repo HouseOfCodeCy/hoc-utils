@@ -11,6 +11,8 @@ import { CartAction, ProductInventoryActions } from '../resources/enums';
 import {
 	createCart,
 	createCartItem,
+	deleteCart,
+	deleteCartItem,
 	getCart,
 	updateCartItem,
 } from '../services/Cart.service';
@@ -128,6 +130,52 @@ export const createCartAndCartAction = async (
 			).then(() => {
 				setCartIdToLocalStorage(cartResponse.id);
 				return cartResponse;
+			});
+		}
+	});
+};
+
+/**
+ * Delete CartItem and Get Cart
+ * @param cartItemId
+ * @param cardId
+ * @param updateCart
+ */
+export const deleteCartItemAndGetCart = async (
+	cartItemId: string,
+	cardId: string,
+	updateCart: (cart: ICartResponse) => void,
+) => {
+	await deleteCartItem(cartItemId).then(async (response: any) => {
+		if (response?.statusText === 'OK') {
+			await getCart(cardId).then((responseData: any) => {
+				updateCart(responseData?.data.data);
+				setCartIdToLocalStorage(responseData?.data.data.id);
+				return responseData;
+			});
+		}
+	});
+};
+
+/**
+ * Delete CartItem, Cart and Gets Cart
+ * @param cartItemId
+ * @param cardId
+ * @param updateCart
+ */
+export const deleteCartItemAndCartAndGetCart = async (
+	cartItemId: string,
+	cardId: string,
+	updateCart: (cart: ICartResponse) => void,
+) => {
+	await deleteCartItem(cartItemId).then(async (response: any) => {
+		if (response?.statusText === 'OK') {
+			await deleteCart(cardId).then(async () => {
+				await getCart(cardId).then((responseData: any) => {
+					updateCart(responseData?.data.data);
+					setCartIdToLocalStorage(responseData?.data.data.id);
+					return responseData;
+				});
 			});
 		}
 	});
