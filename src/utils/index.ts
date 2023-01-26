@@ -14,6 +14,7 @@ import {
 	deleteCartItemAndCartAndGetCart,
 	deleteCartItemAndGetCart,
 	doesProductExistInCartActions,
+	removeCartIdToLocalStorage,
 	setCartIdToLocalStorage,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
@@ -49,6 +50,7 @@ export const CartUtils = {
 	calculateTotalPrice,
 	calculateTotalPriceFlat,
 	setCartIdToLocalStorage,
+	removeCartIdToLocalStorage,
 	deleteCartItemAndCartAndGetCart,
 	deleteCartItemAndGetCart,
 };

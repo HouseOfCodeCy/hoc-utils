@@ -172,7 +172,7 @@ export const deleteCartItemAndCartAndGetCart = async (
 		if (response?.statusText === 'OK') {
 			await deleteCart(cardId).then(async (cartResponse) => {
 				updateCart(null);
-				setCartIdToLocalStorage('');
+				removeCartIdToLocalStorage();
 				return cartResponse;
 			});
 		}
@@ -277,4 +277,15 @@ export const setCartIdToLocalStorage = (cartId: number | string) => {
 	const storage = globalThis?.sessionStorage;
 	if (!storage) return;
 	storage.setItem('cartId', `${cartId}`);
+};
+
+/**
+ * Updates LocalStorage with CardId
+ * @param cartId
+ * @returns
+ */
+export const removeCartIdToLocalStorage = () => {
+	const storage = globalThis?.sessionStorage;
+	if (!storage) return;
+	storage.removeItem('cartId');
 };
