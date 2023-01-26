@@ -166,16 +166,14 @@ export const deleteCartItemAndGetCart = async (
 export const deleteCartItemAndCartAndGetCart = async (
 	cartItemId: string,
 	cardId: string,
-	updateCart: (cart: ICartResponse) => void,
+	updateCart: (cart: ICartResponse | null) => void,
 ) => {
 	await deleteCartItem(cartItemId).then(async (response: any) => {
 		if (response?.statusText === 'OK') {
-			await deleteCart(cardId).then(async () => {
-				await getCart(cardId).then((responseData: any) => {
-					updateCart(responseData?.data.data);
-					setCartIdToLocalStorage(responseData?.data.data.id);
-					return responseData;
-				});
+			await deleteCart(cardId).then(async (cartResponse) => {
+				updateCart(null);
+				setCartIdToLocalStorage('');
+				return cartResponse;
 			});
 		}
 	});
