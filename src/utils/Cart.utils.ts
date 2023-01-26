@@ -158,7 +158,7 @@ export const deleteCartItemAndGetCart = async (
 };
 
 /**
- * Delete CartItem, Cart and Gets Cart
+ * Delete CartItem, Cart and set cart in context to null
  * @param cartItemId
  * @param cardId
  * @param updateCart
