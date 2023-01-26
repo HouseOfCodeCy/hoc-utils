@@ -110,6 +110,7 @@ export {
 	createCart,
 	createCartItem,
 	deleteCart,
+	deleteCartItem,
 	getCart,
 	updateCart,
 	updateCartItem,

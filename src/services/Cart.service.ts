@@ -85,7 +85,17 @@ export const updateCart = async (cartId: string, data: ICartBody) => {
 
 export const deleteCart = async (cartId: string) => {
 	try {
-		const response = await http.put<any>(`carts/${cartId}`);
+		const response = await http.delete<any>(`carts/${cartId}`);
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const deleteCartItem = async (cartItemId: string) => {
+	try {
+		const response = await http.delete<any>(`cart-items/${cartItemId}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
