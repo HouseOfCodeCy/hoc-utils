@@ -11,8 +11,8 @@ import {
 	calculateTotalPriceFlat,
 	createCartActionsAndGetCart,
 	createCartAndCartAction,
-	deleteCartItemAndCartAndGetCart,
-	deleteCartItemAndGetCart,
+	deleteCartItemAndProductInventoryAndCartAndGetCart,
+	deleteCartItemAndProductInventoryAndGetCart,
 	doesProductExistInCartActions,
 	removeCartIdToLocalStorage,
 	setCartIdToLocalStorage,
@@ -51,8 +51,8 @@ export const CartUtils = {
 	calculateTotalPriceFlat,
 	setCartIdToLocalStorage,
 	removeCartIdToLocalStorage,
-	deleteCartItemAndCartAndGetCart,
-	deleteCartItemAndGetCart,
+	deleteCartItemAndProductInventoryAndCartAndGetCart,
+	deleteCartItemAndProductInventoryAndGetCart,
 };
 export const AccountUtils = {
 	tranformUserFlatToUser,

@@ -18,6 +18,7 @@ import {
 } from '../services/Cart.service';
 import {
 	createProductInventory,
+	deleteProductInventory,
 	updateProductInventory,
 } from '../services/ProductInventory.service';
 import { calculatePriceWithQuantity } from './Product.utils';
@@ -141,40 +142,54 @@ export const createCartAndCartAction = async (
  * @param cardId
  * @param updateCart
  */
-export const deleteCartItemAndGetCart = async (
+export const deleteCartItemAndProductInventoryAndGetCart = async (
 	cartItemId: string,
+	productInventoryId: string,
 	cardId: string,
 	updateCart: (cart: ICartResponse) => void,
 ) => {
 	await deleteCartItem(cartItemId).then(async (response: any) => {
 		if (response?.statusText === 'OK') {
-			await getCart(cardId).then((responseData: any) => {
-				updateCart(responseData?.data.data);
-				setCartIdToLocalStorage(responseData?.data.data.id);
-				return responseData;
-			});
+			await deleteProductInventory(productInventoryId).then(
+				async (productInventoryResponse: any) => {
+					if (productInventoryResponse?.statusText === 'OK') {
+						await getCart(cardId).then((responseData: any) => {
+							updateCart(responseData?.data.data);
+							setCartIdToLocalStorage(responseData?.data.data.id);
+							return responseData;
+						});
+					}
+				},
+			);
 		}
 	});
 };
 
 /**
- * Delete CartItem, Cart and set cart in context to null
+ * Delete CartItem, ProductInventory Cart and set cart in context to null
  * @param cartItemId
  * @param cardId
  * @param updateCart
  */
-export const deleteCartItemAndCartAndGetCart = async (
+export const deleteCartItemAndProductInventoryAndCartAndGetCart = async (
 	cartItemId: string,
+	productInventoryId: string,
 	cardId: string,
 	updateCart: (cart: ICartResponse | null) => void,
 ) => {
 	await deleteCartItem(cartItemId).then(async (response: any) => {
 		if (response?.statusText === 'OK') {
-			await deleteCart(cardId).then(async (cartResponse) => {
-				updateCart(null);
-				removeCartIdToLocalStorage();
-				return cartResponse;
-			});
+			await deleteProductInventory(productInventoryId).then(
+				async (productInventoryResponse: any) => {
+					if (productInventoryResponse?.statusText === 'OK') {
+						await deleteCart(cardId).then(async (cartResponse) => {
+							updateCart(null);
+							removeCartIdToLocalStorage();
+							return cartResponse;
+						});
+					}
+				},
+			);
 		}
 	});
 };

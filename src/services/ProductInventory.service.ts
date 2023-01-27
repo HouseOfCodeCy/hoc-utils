@@ -77,3 +77,15 @@ export const updateProductInventory = async (
 		return error;
 	}
 };
+
+export const deleteProductInventory = async (productInventoryId: string) => {
+	try {
+		const response = await http.delete<any>(
+			`product-inventories/${productInventoryId}`,
+		);
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
