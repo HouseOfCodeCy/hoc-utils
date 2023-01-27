@@ -17,7 +17,7 @@ export interface IProductBody {
 	description: string;
 	price: number;
 	mediaUrl: string;
-	mediaUrls: string[];
+	mediaUrls?: string[];
 	stock: number;
 	category?: IProductCategory;
 	brand?: string;
