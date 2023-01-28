@@ -16,20 +16,18 @@ export interface IProductBody {
 	name: string;
 	description: string;
 	price: number;
-	mediaUrl: string;
 	mediaUrls?: string[];
 	stock: number;
 	category?: IProductCategory;
-	brand?: string;
 	sku?: string;
 	extraDescription?: string;
+	product_sizes?: { data: IProductSize[] };
+	product_colors?: { data: IProductColor[] };
 	reviews?: { data: IReview[] };
 	product_sub_categories?: { data: IProductSubCategory[] };
-	product_sizes?: { data: IProductSize[] };
 	product_brand?: { data: IProductBrand };
 	product_discount?: { data: IProductDiscount };
 	product_compatibilities?: { data: IProductCompatibility[] };
-	product_colors?: { data: IProductColor[] };
 }
 
 /** PRODUCT SIZES */
@@ -39,6 +37,7 @@ export interface IProductSize {
 }
 export interface IProductSizeBody {
 	size: string;
+	product_inventory?: { data: IProductInventory };
 }
 
 /** PRODUCT INVENTORY */
@@ -59,6 +58,8 @@ export interface IProductInventoryBody {
 	createdAt?: string;
 	comment?: string;
 	vendor?: string;
+	product_color?: IProductColor;
+	product_size?: IProductSize;
 }
 
 /** PRODUCT BRANDS */
@@ -105,4 +106,5 @@ export interface IProductColor {
 }
 export interface IProductColorBody {
 	name: string;
+	product_inventory?: { data: IProductInventory };
 }
