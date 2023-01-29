@@ -1,13 +1,11 @@
 import { differenceInMinutes } from 'date-fns';
-import { IProductInventory } from '../interfaces/product';
+import { IProduct, IProductInventory } from '../interfaces/product';
 import { ProductInventoryActions } from '../resources/enums';
-import { getProductInventoryByProduct } from '../services/ProductInventory.service';
+import { getProductInventoryByAll } from '../services/ProductInventory.service';
 
-export const calculateProductInventory = async (productId: string) => {
+export const calculateProductInventory = async (product: IProduct) => {
 	// retrieve the ProductInventory for the given product
-	const productInventoryResponse: any = await getProductInventoryByProduct(
-		productId,
-	);
+	const productInventoryResponse: any = await getProductInventoryByAll(product);
 	if (productInventoryResponse.statusText === 'OK') {
 		const productInventories = productInventoryResponse.data?.data;
 		return calculateProductInventoryTotalNumber(productInventories);
