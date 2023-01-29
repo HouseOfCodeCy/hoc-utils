@@ -6,7 +6,12 @@ import {
 	ICartItemResponse,
 	ICartResponse,
 } from '../interfaces/cart';
-import { IProduct, IProductInventoryBody } from '../interfaces/product';
+import {
+	IProduct,
+	IProductColor,
+	IProductInventoryBody,
+	IProductSize,
+} from '../interfaces/product';
 import { CartAction, ProductInventoryActions } from '../resources/enums';
 import {
 	createCart,
@@ -25,9 +30,11 @@ import { calculatePriceWithQuantity } from './Product.utils';
 
 export const createCartActionsAndGetCart = async (
 	cart: ICartResponse,
-	product: IProduct,
 	quantity: number,
 	updateCart: (cart: ICartResponse) => void,
+	product: IProduct,
+	product_color?: IProductColor,
+	product_size?: IProductSize,
 ) => {
 	// create a new CartItem
 	const cartItem: ICartItemBody = {
@@ -35,6 +42,8 @@ export const createCartActionsAndGetCart = async (
 		quantity: quantity,
 		price: calculatePrice(product, quantity),
 		product: product,
+		product_color: product_color,
+		product_size: product_size,
 	};
 	// create cart item and refresh GET Cart
 	await createCartItem(cartItem).then(async (res: any) => {
@@ -76,6 +85,8 @@ export const updateCartActionAndGetCart = async (
 		product: cartItem.attributes.product.data,
 		cart: cart,
 		product_discount: cartItem.attributes.product_discount?.data,
+		product_size: cartItem.attributes.product_size?.data,
+		product_color: cartItem.attributes.product_color?.data,
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then(async (res: any) => {
 		if (res?.statusText === 'OK') {
@@ -114,6 +125,8 @@ export const createCartAndCartAction = async (
 	product: IProduct,
 	quantity: number,
 	updateCart: (cart: ICartResponse) => void,
+	product_color?: IProductColor,
+	product_size?: IProductSize,
 ) => {
 	const data: ICartBody = {
 		action: CartAction.ADD,
@@ -125,9 +138,11 @@ export const createCartAndCartAction = async (
 
 			await createCartActionsAndGetCart(
 				cartResponse,
-				product,
 				quantity,
 				updateCart,
+				product,
+				product_color,
+				product_size,
 			).then(() => {
 				setCartIdToLocalStorage(cartResponse.id);
 				return cartResponse;
