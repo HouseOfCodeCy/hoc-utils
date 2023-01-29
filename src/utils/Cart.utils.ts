@@ -32,7 +32,7 @@ export const createCartActionsAndGetCart = async (
 	cart: ICartResponse,
 	quantity: number,
 	updateCart: (cart: ICartResponse) => void,
-	product: IProduct,
+	product?: IProduct,
 	product_color?: IProductColor,
 	product_size?: IProductSize,
 ) => {
@@ -40,7 +40,10 @@ export const createCartActionsAndGetCart = async (
 	const cartItem: ICartItemBody = {
 		cart: cart,
 		quantity: quantity,
-		price: calculatePrice(product, quantity),
+		price: calculatePriceFlat(
+			definePriceOfProduct(product_color, product_size, product),
+			quantity,
+		),
 		product: product,
 		product_color: product_color,
 		product_size: product_size,
@@ -79,10 +82,14 @@ export const updateCartActionAndGetCart = async (
 	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
 		price: calculatePriceWithQuantity(
-			cartItem.attributes.product.data.attributes.price,
+			definePriceOfProduct(
+				cartItem.attributes.product_color?.data,
+				cartItem.attributes.product_size?.data,
+				cartItem.attributes.product?.data,
+			),
 			tmpQuantity,
 		),
-		product: cartItem.attributes.product.data,
+		product: cartItem.attributes.product?.data,
 		cart: cart,
 		product_discount: cartItem.attributes.product_discount?.data,
 		product_size: cartItem.attributes.product_size?.data,
@@ -122,9 +129,9 @@ export const updateCartActionAndGetCart = async (
  */
 export const createCartAndCartAction = async (
 	user: IUser,
-	product: IProduct,
 	quantity: number,
 	updateCart: (cart: ICartResponse) => void,
+	product?: IProduct,
 	product_color?: IProductColor,
 	product_size?: IProductSize,
 ) => {
@@ -216,13 +223,17 @@ export const deleteCartItemAndProductInventoryAndCartAndGetCart = async (
  * @returns
  */
 export const doesProductExistInCartActions = (
-	product: IProduct,
 	cartActions: ICartItemResponse[],
+	product?: IProduct,
+	product_color?: IProductColor,
+	product_size?: IProductSize,
 ) => {
 	if (cartActions && cartActions.length > 0) {
 		const cartActionInCart: ICartItemResponse | undefined = cartActions.find(
 			(action: ICartItemResponse) =>
-				action.attributes.product?.data.id === product?.id,
+				action.attributes.product?.data.id === product?.id ||
+				action.attributes.product_size?.data.id === product_size?.id ||
+				action.attributes.product_color?.data.id === product_color?.id,
 		);
 		return cartActionInCart ? cartActionInCart : undefined;
 	} else {
@@ -296,6 +307,24 @@ export const calculatePrice = (
 		return +(product.attributes.price * quantity).toFixed(2);
 	}
 	return +product.attributes.price.toFixed(2);
+};
+
+export const calculatePriceFlat = (price: number, quantity = 1): number => {
+	return +(price * quantity).toFixed(2);
+};
+
+export const definePriceOfProduct = (
+	product_color: IProductColor | undefined,
+	product_size: IProductSize | undefined,
+	product: IProduct | undefined,
+) => {
+	return product_color?.attributes.price
+		? product_color?.attributes.price
+		: product_size?.attributes.price
+		? product_size?.attributes.price
+		: product?.attributes.price
+		? product?.attributes.price
+		: 0;
 };
 
 /**

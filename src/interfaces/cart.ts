@@ -56,7 +56,7 @@ export interface ICartItemFlat extends ICartItemBodyFlat {
 export interface ICartItemBodyFlat {
 	quantity: number;
 	price: number;
-	product: IProductFlat;
+	product?: IProductFlat;
 	cart: ICartFlat;
 	product_discount?: IProductDiscountFlat;
 	product_inventory?: IProductInventoryFlat;
@@ -72,7 +72,7 @@ export interface ICartItem {
 export interface ICartItemBody {
 	quantity: number;
 	price: number;
-	product: IProduct;
+	product?: IProduct;
 	cart: ICartResponse;
 	product_inventory?: IProductInventory;
 	product_discount?: IProductDiscount;
@@ -88,7 +88,7 @@ export interface ICartItemResponse {
 export interface ICartItemResponseBody {
 	quantity: number;
 	price: number;
-	product: { data: IProduct };
+	product?: { data: IProduct };
 	cart: { data: ICartResponse };
 	product_discount?: { data?: IProductDiscount };
 	product_inventory?: { data: IProductInventory };

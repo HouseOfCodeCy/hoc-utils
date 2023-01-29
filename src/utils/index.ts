@@ -6,6 +6,7 @@ import {
 
 import {
 	calculatePrice,
+	calculatePriceFlat,
 	calculateTotalDiscount,
 	calculateTotalPrice,
 	calculateTotalPriceFlat,
@@ -46,6 +47,7 @@ export const CartUtils = {
 	createCartAndCartAction,
 	doesProductExistInCartActions,
 	calculatePrice,
+	calculatePriceFlat,
 	calculateTotalDiscount,
 	calculateTotalPrice,
 	calculateTotalPriceFlat,
