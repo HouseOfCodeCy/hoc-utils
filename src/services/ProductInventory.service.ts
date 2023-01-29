@@ -1,4 +1,4 @@
-import { IProductInventoryBody } from '../interfaces/product';
+import { IProduct, IProductInventoryBody } from '../interfaces/product';
 import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
@@ -40,6 +40,26 @@ export const getProductInventoryByProduct = async (productId: string) => {
 	try {
 		const response = await http.get<any>(
 			`product-inventories?filters[$or][0][cart_item][product][id][$eq]=${productId}&filters[$or][1][product][id][$eq]=${productId}`,
+		);
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const getProductInventoryByAll = async (product: IProduct) => {
+	try {
+		// get unique colors of given product
+		const productProductColorIds = product.attributes.product_colors?.data.map(
+			(color) => color.id,
+		);
+		// get unique sizes of given product
+		const productProductSizeIds = product.attributes.product_sizes?.data.map(
+			(size) => size.id,
+		);
+		const response = await http.get<any>(
+			`product-inventories?filters[$or][0][cart_item][product][id][$eq]=${product.id}&filters[$or][1][product][id][$eq]=${product.id}&filters[$or][2][product_color][id][$in]=${productProductColorIds}&filters[$or][0][product_size][id][$in]=${productProductSizeIds}`,
 		);
 		return response;
 	} catch (error) {

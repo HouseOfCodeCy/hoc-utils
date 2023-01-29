@@ -136,8 +136,10 @@ export {
 } from './services/Product.service';
 export {
 	createProductInventory,
+	deleteProductInventory,
 	getProductInventories,
 	getProductInventory,
+	getProductInventoryByAll,
 	getProductInventoryByProduct,
 	updateProductInventory,
 } from './services/ProductInventory.service';
