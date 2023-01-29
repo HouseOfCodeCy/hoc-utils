@@ -67,6 +67,7 @@ export {
 	IProductBrandBody,
 	IProductColor,
 	IProductColorBody,
+	IProductColorFlat,
 	IProductCompatibility,
 	IProductCompatibilityBody,
 	IProductDiscount,
@@ -78,6 +79,7 @@ export {
 	IProductInventoryFlat,
 	IProductSize,
 	IProductSizeBody,
+	IProductSizeFlat,
 } from './interfaces/product';
 export { IReview, IReviewBody, IReviewFlat } from './interfaces/review';
 export {

@@ -31,6 +31,9 @@ export interface IProductBody {
 }
 
 /** PRODUCT SIZES */
+export interface IProductSizeFlat extends IProductSizeBody {
+	id: string;
+}
 export interface IProductSize {
 	id: string;
 	attributes: IProductSizeBody;
@@ -100,6 +103,9 @@ export interface IProductCompatibilityBody {
 }
 
 /** PRODUCT COLOR */
+export interface IProductColorFlat extends IProductColorBody {
+	id: string;
+}
 export interface IProductColor {
 	id: string;
 	attributes: IProductColorBody;

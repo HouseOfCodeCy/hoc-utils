@@ -3,11 +3,15 @@ import { CartAction, CartStatus } from '../resources/enums';
 import { IUser, IUserFlat } from './account';
 import {
 	IProduct,
+	IProductColor,
+	IProductColorFlat,
 	IProductDiscount,
 	IProductDiscountFlat,
 	IProductFlat,
 	IProductInventory,
 	IProductInventoryFlat,
+	IProductSize,
+	IProductSizeFlat,
 } from './product';
 
 export interface ICart {
@@ -56,6 +60,8 @@ export interface ICartItemBodyFlat {
 	cart: ICartFlat;
 	product_discount?: IProductDiscountFlat;
 	product_inventory?: IProductInventoryFlat;
+	product_size?: IProductSizeFlat;
+	product_color?: IProductColorFlat;
 }
 
 export interface ICartItem {
@@ -70,6 +76,8 @@ export interface ICartItemBody {
 	cart: ICartResponse;
 	product_inventory?: IProductInventory;
 	product_discount?: IProductDiscount;
+	product_size?: IProductSize;
+	product_color?: IProductColor;
 }
 
 export interface ICartItemResponse {
@@ -84,4 +92,6 @@ export interface ICartItemResponseBody {
 	cart: { data: ICartResponse };
 	product_discount?: { data?: IProductDiscount };
 	product_inventory?: { data: IProductInventory };
+	product_size?: { data: IProductSize };
+	product_color?: { data: IProductColor };
 }
