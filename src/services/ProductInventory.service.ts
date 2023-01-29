@@ -1,3 +1,4 @@
+import qs from 'qs';
 import { IProduct, IProductInventoryBody } from '../interfaces/product';
 import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
@@ -58,9 +59,48 @@ export const getProductInventoryByAll = async (product: IProduct) => {
 		const productProductSizeIds = product.attributes.product_sizes?.data.map(
 			(size) => size.id,
 		);
-		const response = await http.get<any>(
-			`product-inventories?filters[$or][0][cart_item][product][id][$eq]=${product.id}&filters[$or][1][product][id][$eq]=${product.id}&filters[$or][2][product_color][id][$in]=${productProductColorIds}&filters[$or][0][product_size][id][$in]=${productProductSizeIds}`,
+		const query = qs.stringify(
+			{
+				filters: {
+					$or: [
+						{
+							cart_item: {
+								product: {
+									id: {
+										$eq: product.id,
+									},
+								},
+							},
+						},
+						{
+							product: {
+								id: {
+									$eq: product.id,
+								},
+							},
+						},
+						{
+							product_color: {
+								id: {
+									$in: productProductColorIds,
+								},
+							},
+						},
+						{
+							product_size: {
+								id: {
+									$in: productProductSizeIds,
+								},
+							},
+						},
+					],
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
 		);
+		const response = await http.get<any>(`product-inventories?${query}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
