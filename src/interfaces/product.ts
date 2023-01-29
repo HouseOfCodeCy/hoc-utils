@@ -17,7 +17,6 @@ export interface IProductBody {
 	description: string;
 	price: number;
 	mediaUrls?: string[];
-	stock: number;
 	category?: IProductCategory;
 	sku?: string;
 	extraDescription?: string;
@@ -40,6 +39,8 @@ export interface IProductSize {
 }
 export interface IProductSizeBody {
 	size: string;
+	price: number;
+	// product?: IProduct;
 	product_inventory?: { data: IProductInventory };
 }
 
@@ -112,5 +113,7 @@ export interface IProductColor {
 }
 export interface IProductColorBody {
 	name: string;
+	price: number;
+	// product?: IProduct;
 	product_inventory?: { data: IProductInventory };
 }
