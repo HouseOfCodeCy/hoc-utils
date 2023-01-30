@@ -81,6 +81,7 @@ export {
 	IProductSizeBody,
 	IProductSizeFlat,
 } from './interfaces/product';
+export { IProductOptions as ProductOptions } from './interfaces/productInventory';
 export { IReview, IReviewBody, IReviewFlat } from './interfaces/review';
 export {
 	IHowItWorks,

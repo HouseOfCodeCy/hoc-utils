@@ -37,7 +37,9 @@ import {
 	calculateProductInventory,
 	calculateProductInventoryAvailability,
 	calculateProductInventoryLabel,
+	calculateProductInventoryOptions,
 	calculateProductInventoryTotalNumber,
+	constructMappedProductInventory,
 } from './ProductInventory.utils';
 import { calculateTotalReviews } from './Review.utils';
 
@@ -66,6 +68,8 @@ export const ProductInventoryUtils = {
 	calculateProductInventoryAvailability,
 	calculateProductInventoryTotalNumber,
 	calculateProductInventoryLabel,
+	calculateProductInventoryOptions,
+	constructMappedProductInventory,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,

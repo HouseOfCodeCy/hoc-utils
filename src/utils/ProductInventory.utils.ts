@@ -1,5 +1,7 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { differenceInMinutes } from 'date-fns';
 import { IProduct, IProductInventory } from '../interfaces/product';
+import { IProductOptions } from '../interfaces/productInventory';
 import { ProductInventoryActions } from '../resources/enums';
 import { getProductInventoryByAll } from '../services/ProductInventory.service';
 
@@ -116,41 +118,17 @@ export const calculateProductInventoryOptions = (
 	productInventories: IProductInventory[],
 	inventoryReservationDuration = 60,
 ) => {
-	const productOptionsInventories: any = {
-		colorInventory: {},
-		sizeInventory: {},
-		productInventory: 0,
-	};
+	let productOptionsInventories: any = {};
 	if (productInventories.length > 0) {
 		productInventories.map((inventory: IProductInventory) => {
 			switch (inventory.attributes.action) {
 				case ProductInventoryActions.STOCK_REFILL:
 				case ProductInventoryActions.RETURNED_BY_CUSTOMER:
-					// if this is stock related to product colors
-					if (inventory.attributes.product_color?.data) {
-						productOptionsInventories.colorInventory[
-							inventory.attributes.product_color?.data.id
-						] = productOptionsInventories.colorInventory[
-							inventory.attributes.product_color?.data.id
-						]
-							? productOptionsInventories.colorInventory[inventory.attributes.product_color?.data.id] + inventory.attributes.quantity
-							: 0 + inventory.attributes.quantity;
-					}
-					// if this is related to product_size stock inventory
-					else if (inventory.attributes.product_size?.data) {
-						productOptionsInventories.sizeInventory[
-							inventory.attributes.product_size?.data.id
-						] = productOptionsInventories.colorInventory[
-							inventory.attributes.product_size?.data.id
-						]
-							? productOptionsInventories.sizeInventory[inventory.attributes.product_size?.data.id] + inventory.attributes.quantity
-							: 0 + inventory.attributes.quantity;
-					}
-					// if this product has no option inventories assigned, get the stock from the product
-					else {
-						productOptionsInventories.productInventory +=
-							inventory.attributes.quantity;
-					}
+					productOptionsInventories = constructMappedProductInventory(
+						inventory,
+						productOptionsInventories,
+						true,
+					);
 					break;
 				case ProductInventoryActions.RESERVED_BY_CUSTOMER:
 					if (inventory.attributes.updatedAt) {
@@ -159,33 +137,135 @@ export const calculateProductInventoryOptions = (
 							new Date(inventory.attributes.updatedAt),
 						);
 						if (differenceInMins <= inventoryReservationDuration) {
-							if (inventory.attributes.cart_item?.attributes.product_color) {
-								productOptionsInventories.colorInventory -=
-									inventory.attributes.quantity;
-							} else if (
-								inventory.attributes.cart_item?.attributes.product_size
-							) {
-								productOptionsInventories.sizeInventory -=
-									inventory.attributes.quantity;
-							}
+							productOptionsInventories = constructMappedProductInventory(
+								inventory,
+								productOptionsInventories,
+								false,
+							);
 						}
 					}
 					break;
 				case ProductInventoryActions.PURCHASED_BY_CUSTOMER:
 				case ProductInventoryActions.SHIPPED_TO_CUSTOMER:
-					if (inventory.attributes.cart_item?.attributes.product_color) {
-						productOptionsInventories.colorInventory -=
-							inventory.attributes.quantity;
-					} else if (inventory.attributes.cart_item?.attributes.product_size) {
-						productOptionsInventories.sizeInventory -=
-							inventory.attributes.quantity;
-					}
+					productOptionsInventories = constructMappedProductInventory(
+						inventory,
+						productOptionsInventories,
+						false,
+					);
 					break;
 
 				default:
 					break;
 			}
 		});
+	}
+	console.log(productOptionsInventories);
+
+	return productOptionsInventories;
+};
+
+export const constructMappedProductInventory = (
+	inventory: IProductInventory,
+	productOptionsInventories: IProductOptions,
+	shouldAdd = true,
+) => {
+	if (inventory) {
+		// if this is color stock
+		if (
+			inventory.attributes.product_color &&
+			inventory.attributes.product_color.data &&
+			inventory.attributes.product_color.data.id
+		) {
+			// find the ProductOption for the given color
+			const findProductOption = productOptionsInventories.colorInventory?.find(
+				(option) =>
+					`${option.id}` === `${inventory.attributes.product_color?.data.id}`,
+			);
+			// if this color exists in the object
+			if (findProductOption && findProductOption?.sizeInventory) {
+				// add to the found object more size inventory relations
+				findProductOption.sizeInventory.push({
+					id: inventory.attributes.product_size?.data.id
+						? +inventory.attributes.product_size.data.id
+						: NaN,
+					quantity: inventory.attributes.quantity,
+				});
+				shouldAdd
+					? (findProductOption.total += inventory.attributes.quantity)
+					: (findProductOption.total -= inventory.attributes.quantity);
+			} else {
+				const tempProductOption = {
+					id: +inventory.attributes.product_color?.data.id,
+					sizeInventory: [
+						{
+							id: inventory.attributes.product_size?.data.id
+								? +inventory.attributes.product_size.data.id
+								: NaN,
+							quantity: shouldAdd
+								? inventory.attributes.quantity
+								: -inventory.attributes.quantity,
+						},
+					],
+					total: shouldAdd
+						? inventory.attributes.quantity
+						: -inventory.attributes.quantity,
+				};
+				productOptionsInventories.colorInventory
+					? productOptionsInventories.colorInventory.push(tempProductOption)
+					: (productOptionsInventories = {
+							...productOptionsInventories,
+							colorInventory: [tempProductOption],
+					  });
+			}
+		}
+		// if this is size stock
+		if (
+			inventory.attributes.product_size &&
+			inventory.attributes.product_size.data &&
+			inventory.attributes.product_size.data.id
+		) {
+			// find the ProductOption for the given size
+			const findProductOption = productOptionsInventories.sizeInventory?.find(
+				(option) =>
+					`${option.id}` === `${inventory.attributes.product_size?.data.id}`,
+			);
+			// if this product exists in the object
+			if (findProductOption && findProductOption?.colorInventory) {
+				// add to the found object more color inventory relations
+				findProductOption.colorInventory.push({
+					id: inventory.attributes.product_color?.data.id
+						? +inventory.attributes.product_color.data.id
+						: NaN,
+					quantity: shouldAdd
+						? inventory.attributes.quantity
+						: -inventory.attributes.quantity,
+				});
+				shouldAdd
+					? (findProductOption.total += inventory.attributes.quantity)
+					: (findProductOption.total -= inventory.attributes.quantity);
+			} else {
+				const tempProductOption = {
+					id: +inventory.attributes.product_size?.data.id,
+					colorInventory: [
+						{
+							id: inventory.attributes.product_color?.data.id
+								? +inventory.attributes.product_color.data.id
+								: NaN,
+							quantity: shouldAdd
+								? inventory.attributes.quantity
+								: -inventory.attributes.quantity,
+						},
+					],
+					total: inventory.attributes.quantity,
+				};
+				productOptionsInventories.sizeInventory
+					? productOptionsInventories.sizeInventory.push(tempProductOption)
+					: (productOptionsInventories = {
+							...productOptionsInventories,
+							sizeInventory: [tempProductOption],
+					  });
+			}
+		}
 	}
 	return productOptionsInventories;
 };
