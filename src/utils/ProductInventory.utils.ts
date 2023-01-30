@@ -188,7 +188,9 @@ export const constructMappedProductInventory = (
 					id: inventory.attributes.product_size?.data.id
 						? +inventory.attributes.product_size.data.id
 						: NaN,
-					quantity: inventory.attributes.quantity,
+					quantity: shouldAdd
+						? inventory.attributes.quantity
+						: -inventory.attributes.quantity,
 				});
 				shouldAdd
 					? (findProductOption.total += inventory.attributes.quantity)
