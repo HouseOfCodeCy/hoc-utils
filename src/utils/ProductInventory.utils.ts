@@ -8,7 +8,7 @@ export const calculateProductInventory = async (product: IProduct) => {
 	const productInventoryResponse: any = await getProductInventoryByAll(product);
 	if (productInventoryResponse.statusText === 'OK') {
 		const productInventories = productInventoryResponse.data?.data;
-		return calculateProductInventoryTotalNumber(productInventories);
+		return calculateProductInventoryOptions(productInventories);
 	}
 	return 0;
 };
@@ -105,4 +105,87 @@ export const calculateProductInventoryTotalNumber = (
 		});
 	}
 	return totalStock;
+};
+
+/**
+ * Receives fetched product inventories and returns a number for total stock PER OPTION
+ * @param productInventories The Product Inventories
+ * @returns
+ */
+export const calculateProductInventoryOptions = (
+	productInventories: IProductInventory[],
+	inventoryReservationDuration = 60,
+) => {
+	const productOptionsInventories: any = {
+		colorInventory: {},
+		sizeInventory: {},
+		productInventory: 0,
+	};
+	if (productInventories.length > 0) {
+		productInventories.map((inventory: IProductInventory) => {
+			switch (inventory.attributes.action) {
+				case ProductInventoryActions.STOCK_REFILL:
+				case ProductInventoryActions.RETURNED_BY_CUSTOMER:
+					// if this is stock related to product colors
+					if (inventory.attributes.product_color?.data) {
+						productOptionsInventories.colorInventory[
+							inventory.attributes.product_color?.data.id
+						] = productOptionsInventories.colorInventory[
+							inventory.attributes.product_color?.data.id
+						]
+							? productOptionsInventories.colorInventory[inventory.attributes.product_color?.data.id] + inventory.attributes.quantity
+							: 0 + inventory.attributes.quantity;
+					}
+					// if this is related to product_size stock inventory
+					else if (inventory.attributes.product_size?.data) {
+						productOptionsInventories.sizeInventory[
+							inventory.attributes.product_size?.data.id
+						] = productOptionsInventories.colorInventory[
+							inventory.attributes.product_size?.data.id
+						]
+							? productOptionsInventories.sizeInventory[inventory.attributes.product_size?.data.id] + inventory.attributes.quantity
+							: 0 + inventory.attributes.quantity;
+					}
+					// if this product has no option inventories assigned, get the stock from the product
+					else {
+						productOptionsInventories.productInventory +=
+							inventory.attributes.quantity;
+					}
+					break;
+				case ProductInventoryActions.RESERVED_BY_CUSTOMER:
+					if (inventory.attributes.updatedAt) {
+						const differenceInMins = differenceInMinutes(
+							Date.now(),
+							new Date(inventory.attributes.updatedAt),
+						);
+						if (differenceInMins <= inventoryReservationDuration) {
+							if (inventory.attributes.cart_item?.attributes.product_color) {
+								productOptionsInventories.colorInventory -=
+									inventory.attributes.quantity;
+							} else if (
+								inventory.attributes.cart_item?.attributes.product_size
+							) {
+								productOptionsInventories.sizeInventory -=
+									inventory.attributes.quantity;
+							}
+						}
+					}
+					break;
+				case ProductInventoryActions.PURCHASED_BY_CUSTOMER:
+				case ProductInventoryActions.SHIPPED_TO_CUSTOMER:
+					if (inventory.attributes.cart_item?.attributes.product_color) {
+						productOptionsInventories.colorInventory -=
+							inventory.attributes.quantity;
+					} else if (inventory.attributes.cart_item?.attributes.product_size) {
+						productOptionsInventories.sizeInventory -=
+							inventory.attributes.quantity;
+					}
+					break;
+
+				default:
+					break;
+			}
+		});
+	}
+	return productOptionsInventories;
 };

@@ -49,7 +49,10 @@ export const getProductInventoryByProduct = async (productId: string) => {
 	}
 };
 
-export const getProductInventoryByAll = async (product: IProduct) => {
+export const getProductInventoryByAll = async (
+	product: IProduct,
+	populate = PopulateType.STAR,
+) => {
 	try {
 		// get unique colors of given product
 		const productProductColorIds = product.attributes.product_colors?.data.map(
@@ -61,6 +64,7 @@ export const getProductInventoryByAll = async (product: IProduct) => {
 		);
 		const query = qs.stringify(
 			{
+				populate: populate,
 				filters: {
 					$or: [
 						{

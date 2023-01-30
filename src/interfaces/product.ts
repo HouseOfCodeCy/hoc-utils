@@ -62,8 +62,8 @@ export interface IProductInventoryBody {
 	createdAt?: string;
 	comment?: string;
 	vendor?: string;
-	product_color?: IProductColor;
-	product_size?: IProductSize;
+	product_color?: { data: IProductColor };
+	product_size?: { data: IProductSize };
 }
 
 /** PRODUCT BRANDS */
