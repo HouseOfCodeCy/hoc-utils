@@ -133,7 +133,9 @@ export const calculateProductInventoryOptions = (
 						] = productOptionsInventories.colorInventory[
 							inventory.attributes.product_color?.data.id
 						]
-							? productOptionsInventories.colorInventory[inventory.attributes.product_color?.data.id] + inventory.attributes.quantity
+							? productOptionsInventories.colorInventory[
+									inventory.attributes.product_color?.data.id
+							  ] + inventory.attributes.quantity
 							: 0 + inventory.attributes.quantity;
 					}
 					// if this is related to product_size stock inventory
@@ -143,7 +145,9 @@ export const calculateProductInventoryOptions = (
 						] = productOptionsInventories.colorInventory[
 							inventory.attributes.product_size?.data.id
 						]
-							? productOptionsInventories.sizeInventory[inventory.attributes.product_size?.data.id] + inventory.attributes.quantity
+							? productOptionsInventories.sizeInventory[
+									inventory.attributes.product_size?.data.id
+							  ] + inventory.attributes.quantity
 							: 0 + inventory.attributes.quantity;
 					}
 					// if this product has no option inventories assigned, get the stock from the product
