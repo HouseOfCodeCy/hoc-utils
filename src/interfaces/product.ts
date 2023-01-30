@@ -1,5 +1,5 @@
 import { ProductInventoryActions } from '../resources/enums';
-import { ICartItem } from './cart';
+import { ICartItemResponse } from './cart';
 import { IProductCategory, IProductSubCategory } from './category';
 import { IReview } from './review';
 
@@ -57,7 +57,7 @@ export interface IProductInventoryBody {
 	action: ProductInventoryActions;
 	quantity: number;
 	product?: IProduct;
-	cart_item?: ICartItem;
+	cart_item?: { data: ICartItemResponse };
 	updatedAt?: string;
 	createdAt?: string;
 	comment?: string;

@@ -51,7 +51,7 @@ export const getProductInventoryByProduct = async (productId: string) => {
 
 export const getProductInventoryByAll = async (
 	product: IProduct,
-	populate = PopulateType.STAR,
+	populate = PopulateType.DEEP,
 ) => {
 	try {
 		// get unique colors of given product
@@ -64,6 +64,7 @@ export const getProductInventoryByAll = async (
 		);
 		const query = qs.stringify(
 			{
+				sort: ['id:asc'],
 				populate: populate,
 				filters: {
 					$or: [
@@ -72,6 +73,24 @@ export const getProductInventoryByAll = async (
 								product: {
 									id: {
 										$eq: product.id,
+									},
+								},
+							},
+						},
+						{
+							cart_item: {
+								product_color: {
+									id: {
+										$in: productProductColorIds,
+									},
+								},
+							},
+						},
+						{
+							cart_item: {
+								product_size: {
+									id: {
+										$in: productProductSizeIds,
 									},
 								},
 							},

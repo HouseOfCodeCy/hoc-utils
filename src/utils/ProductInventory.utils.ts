@@ -268,6 +268,86 @@ export const constructMappedProductInventory = (
 					  });
 			}
 		}
+		if (
+			!shouldAdd &&
+			inventory.attributes.cart_item &&
+			inventory.attributes.cart_item.data.attributes
+		) {
+			// find the ProductOption for the given size
+			const findProductOption = productOptionsInventories.sizeInventory?.find(
+				(option) =>
+					`${option.id}` ===
+					`${inventory.attributes.cart_item?.data.attributes.product_size?.data.id}`,
+			);
+			if (findProductOption) {
+				// change the total quantity
+				findProductOption.total -= inventory.attributes.quantity;
+				// then decrease the dependency between color
+				const colorDependency = findProductOption.colorInventory?.find(
+					(color) =>
+						`${color.id}` ===
+						`${inventory.attributes.cart_item?.data.attributes.product_color?.data.id}`,
+				);
+				if (colorDependency) {
+					colorDependency.quantity -= inventory.attributes.quantity;
+				}
+			} else {
+				const tempProductOption = {
+					id: +`${inventory.attributes.cart_item?.data.attributes.product_color?.data.id}`,
+					sizeInventory: [
+						{
+							id: +`${inventory.attributes.cart_item?.data.attributes.product_size?.data.id}`,
+							quantity: -inventory.attributes.quantity,
+						},
+					],
+					total: -inventory.attributes.quantity,
+				};
+				productOptionsInventories.colorInventory
+					? productOptionsInventories.colorInventory.push(tempProductOption)
+					: (productOptionsInventories = {
+							...productOptionsInventories,
+							sizeInventory: [tempProductOption],
+					  });
+			}
+
+			// do the same for colors
+			const findProductOptionColor =
+				productOptionsInventories.colorInventory?.find(
+					(option) =>
+						`${option.id}` ===
+						`${inventory.attributes.cart_item?.data.attributes.product_color?.data.id}`,
+				);
+			if (findProductOptionColor) {
+				// change the total quantity
+				findProductOptionColor.total -= inventory.attributes.quantity;
+				// then decrease the dependency between color
+				const colorDependency = findProductOptionColor.sizeInventory?.find(
+					(color) =>
+						`${color.id}` ===
+						`${inventory.attributes.cart_item?.data.attributes.product_size?.data.id}`,
+				);
+				if (colorDependency) {
+					colorDependency.quantity -= inventory.attributes.quantity;
+				}
+			} else {
+				const tempProductOption = {
+					id: +`${inventory.attributes.cart_item?.data.attributes.product_size?.data.id}`,
+					colorInventory: [
+						{
+							id: +`${inventory.attributes.cart_item?.data.attributes.product_color?.data.id}`,
+							quantity: -inventory.attributes.quantity,
+						},
+					],
+					total: -inventory.attributes.quantity,
+				};
+				productOptionsInventories.sizeInventory
+					? productOptionsInventories.sizeInventory.push(tempProductOption)
+					: (productOptionsInventories = {
+							...productOptionsInventories,
+							sizeInventory: [tempProductOption],
+					  });
+			}
+		}
 	}
 	return productOptionsInventories;
 };
