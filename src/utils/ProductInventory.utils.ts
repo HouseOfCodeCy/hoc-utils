@@ -298,12 +298,15 @@ export const constructMappedProductInventory = (
 			} else {
 				const tempProductOption = {
 					id: +`${inventory.attributes.cart_item?.data.attributes.product_color?.data.id}`,
-					sizeInventory: [
-						{
-							id: +`${inventory.attributes.cart_item?.data.attributes.product_size?.data.id}`,
-							quantity: -inventory.attributes.quantity,
-						},
-					],
+					sizeInventory: inventory.attributes.cart_item?.data.attributes
+						.product_size?.data?.id
+						? [
+								{
+									id: +`${inventory.attributes.cart_item?.data.attributes.product_size?.data.id}`,
+									quantity: -inventory.attributes.quantity,
+								},
+						  ]
+						: null,
 					total: -inventory.attributes.quantity,
 				};
 				productOptionsInventories.colorInventory
@@ -336,12 +339,15 @@ export const constructMappedProductInventory = (
 			} else {
 				const tempProductOption = {
 					id: +`${inventory.attributes.cart_item?.data.attributes.product_size?.data.id}`,
-					colorInventory: [
-						{
-							id: +`${inventory.attributes.cart_item?.data.attributes.product_color?.data.id}`,
-							quantity: -inventory.attributes.quantity,
-						},
-					],
+					colorInventory: inventory.attributes.cart_item?.data.attributes
+						.product_color?.data?.id
+						? [
+								{
+									id: +`${inventory.attributes.cart_item?.data.attributes.product_color?.data.id}`,
+									quantity: -inventory.attributes.quantity,
+								},
+						  ]
+						: null,
 					total: -inventory.attributes.quantity,
 				};
 				productOptionsInventories.sizeInventory
