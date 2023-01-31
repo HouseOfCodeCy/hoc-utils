@@ -4,7 +4,7 @@ export interface IProductOptions {
 		// color id
 		id: number;
 		// relation of this color id with sizes
-		sizeInventory?: { id: number; quantity: number }[];
+		sizeInventory?: { id: number; quantity: number }[] | null;
 		total: number;
 	}[];
 	// stock for sizes
@@ -12,7 +12,7 @@ export interface IProductOptions {
 		// color id
 		id: number;
 		// relation of this color id with sizes
-		colorInventory?: { id: number; quantity: number }[];
+		colorInventory?: { id: number; quantity: number }[] | null;
 		total: number;
 	}[];
 }

@@ -198,16 +198,18 @@ export const constructMappedProductInventory = (
 			} else {
 				const tempProductOption = {
 					id: +inventory.attributes.product_color?.data.id,
-					sizeInventory: [
-						{
-							id: inventory.attributes.product_size?.data.id
-								? +inventory.attributes.product_size.data.id
-								: NaN,
-							quantity: shouldAdd
-								? inventory.attributes.quantity
-								: -inventory.attributes.quantity,
-						},
-					],
+					sizeInventory: inventory.attributes.product_size?.data?.id
+						? [
+								{
+									id: inventory.attributes.product_size?.data.id
+										? +inventory.attributes.product_size.data.id
+										: NaN,
+									quantity: shouldAdd
+										? inventory.attributes.quantity
+										: -inventory.attributes.quantity,
+								},
+						  ]
+						: null,
 					total: shouldAdd
 						? inventory.attributes.quantity
 						: -inventory.attributes.quantity,
@@ -248,16 +250,18 @@ export const constructMappedProductInventory = (
 			} else {
 				const tempProductOption = {
 					id: +inventory.attributes.product_size?.data.id,
-					colorInventory: [
-						{
-							id: inventory.attributes.product_color?.data.id
-								? +inventory.attributes.product_color.data.id
-								: NaN,
-							quantity: shouldAdd
-								? inventory.attributes.quantity
-								: -inventory.attributes.quantity,
-						},
-					],
+					colorInventory: inventory.attributes.product_color?.data?.id
+						? [
+								{
+									id: inventory.attributes.product_color?.data.id
+										? +inventory.attributes.product_color.data.id
+										: NaN,
+									quantity: shouldAdd
+										? inventory.attributes.quantity
+										: -inventory.attributes.quantity,
+								},
+						  ]
+						: null,
 					total: inventory.attributes.quantity,
 				};
 				productOptionsInventories.sizeInventory
