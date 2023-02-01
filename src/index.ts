@@ -152,6 +152,7 @@ export { getUser, updateUser } from './services/User.service';
 /********************** Utilities ***********************************/
 export {
 	AccountUtils,
+	CartItemUtils,
 	CartUtils,
 	CheckoutUtils,
 	CommonUtils,
