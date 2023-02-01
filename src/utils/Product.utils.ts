@@ -153,6 +153,27 @@ export const addProductToFavorites = async (
 	}
 };
 
+export const getProductPriceRange = (product?: IProduct) => {
+	const priceArray: number[] = [];
+
+	if (product) {
+		if (product.attributes && product.attributes.price) {
+			priceArray.push(product.attributes.price);
+		}
+		if (product.attributes.product_colors) {
+			product.attributes.product_colors.data.forEach((color) => {
+				if (color.attributes.price) {
+					priceArray.push(color.attributes.price);
+				}
+			});
+		}
+	}
+
+	priceArray.sort(function (a, b) {
+		return a - b;
+	});
+};
+
 /**
  * Calculates what price to show, based on 3 inputs
  * @param selectedProductSize

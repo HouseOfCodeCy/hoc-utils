@@ -70,6 +70,7 @@ export const getCartItemOptions = (cartItem: ICartItemResponse | undefined) => {
 			productOptions += `Color: ${cartItem.attributes.product_color?.data.attributes.name}`;
 		}
 		if (cartItem.attributes.product_size?.data) {
+			productOptions += productOptions !== '' ? '\n' : '';
 			productOptions += `Size: ${cartItem.attributes.product_color?.data.attributes.name}`;
 		}
 	} else {
