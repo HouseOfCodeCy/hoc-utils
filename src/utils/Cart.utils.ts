@@ -338,12 +338,23 @@ export const definePriceOfProduct = (
  */
 export const getCartItemMedia = (cartItem: ICartItemResponse | undefined) => {
 	if (cartItem) {
-		if (cartItem.attributes.product?.data) {
+		if (
+			cartItem.attributes.product?.data &&
+			cartItem.attributes.product?.data.attributes.mediaUrls
+		) {
 			return cartItem.attributes.product?.data.attributes.mediaUrls;
-		} else if (cartItem.attributes.product_color?.data) {
+		} else if (
+			cartItem.attributes.product_color?.data &&
+			cartItem.attributes.product_color?.data.attributes.product?.data
+				.attributes.mediaUrls
+		) {
 			return cartItem.attributes.product_color?.data.attributes.product?.data
 				.attributes.mediaUrls;
-		} else if (cartItem.attributes.product_size?.data) {
+		} else if (
+			cartItem.attributes.product_size?.data &&
+			cartItem.attributes.product_size?.data.attributes.product?.data.attributes
+				.mediaUrls
+		) {
 			return cartItem.attributes.product_size?.data.attributes.product?.data
 				.attributes.mediaUrls;
 		}
