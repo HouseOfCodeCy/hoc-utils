@@ -38,6 +38,7 @@ import {
 	getBrandAcronym,
 	getProductPriceRange,
 	isProductFavorite,
+	printPriceRanges,
 	quantityHandle,
 	transformProductToProductFlat,
 } from './Product.utils';
@@ -91,6 +92,7 @@ export const ProductInventoryUtils = {
 export const ProductUtils = {
 	calculatePriceWithQuantity,
 	calculateProductCategories,
+	printPriceRanges,
 	quantityHandle,
 	calculateProductPrice,
 	getBrandAcronym,

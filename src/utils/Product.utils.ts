@@ -187,6 +187,22 @@ export const getProductPriceRange = (product?: IProduct) => {
 };
 
 /**
+ * Calls getProductPriceRange and returns a formatted string
+ * @param product
+ * @returns
+ */
+export const printPriceRanges = (product: IProduct) => {
+	let priceRangesString = '';
+	if (product) {
+		const priceRanges = getProductPriceRange(product);
+		priceRangesString = `$${priceRanges[0]} - ${
+			priceRanges[priceRanges.length]
+		}`;
+	}
+	return priceRangesString;
+};
+
+/**
  * Calculates what price to show, based on 3 inputs
  * @param selectedProductSize
  * @param selectedProductColor
