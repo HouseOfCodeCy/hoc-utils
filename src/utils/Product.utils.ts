@@ -236,6 +236,44 @@ export const calculateProductPrice = (
 };
 
 /**
+ * Push all media urls(Product/color/size) to a string[]
+ * @param product
+ * @returns {string[]}
+ */
+export const getProductMediaUrls = (product: IProduct) => {
+	const mediaUrls = [];
+	if (product) {
+		if (
+			product.attributes.mediaUrls &&
+			product.attributes.mediaUrls.length > 0
+		) {
+			mediaUrls.push(...product.attributes.mediaUrls);
+		}
+		if (
+			product.attributes.product_colors?.data &&
+			product.attributes.product_colors?.data.length > 0
+		) {
+			product.attributes.product_colors.data.forEach((color) => {
+				if (color.attributes.mediaUrls) {
+					mediaUrls.push(...color.attributes.mediaUrls);
+				}
+			});
+		}
+		if (
+			product.attributes.product_sizes?.data &&
+			product.attributes.product_sizes?.data.length > 0
+		) {
+			product.attributes.product_sizes.data.forEach((size) => {
+				if (size.attributes.mediaUrls) {
+					mediaUrls.push(...size.attributes.mediaUrls);
+				}
+			});
+		}
+	}
+	return mediaUrls;
+};
+
+/**
  * Transforms
  * @param {IProduct} product Product to transform
  * @returns {IProductFlat} Product in IProductFlat interface

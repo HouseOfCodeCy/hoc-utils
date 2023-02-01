@@ -70,8 +70,8 @@ export const getCartItemOptions = (cartItem: ICartItemResponse | undefined) => {
 			productOptions += `Color: ${cartItem.attributes.product_color?.data.attributes.name}`;
 		}
 		if (cartItem.attributes.product_size?.data) {
-			productOptions += productOptions !== '' ? '\n' : '';
-			productOptions += `Size: ${cartItem.attributes.product_color?.data.attributes.name}`;
+			productOptions += productOptions !== '' ? '<br/>' : '';
+			productOptions += `Size: ${cartItem.attributes.product_size?.data.attributes.size}`;
 		}
 	} else {
 		productOptions += '';
