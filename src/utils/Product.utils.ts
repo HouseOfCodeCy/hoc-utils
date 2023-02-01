@@ -167,14 +167,14 @@ export const getProductPriceRange = (product?: IProduct) => {
 		}
 		if (product.attributes.product_colors?.data) {
 			product.attributes.product_colors.data.forEach((color) => {
-				if (color.attributes.price) {
+				if (color.attributes.price && color.attributes.price > 0) {
 					priceArray.push(color.attributes.price);
 				}
 			});
 		}
 		if (product.attributes.product_sizes?.data) {
 			product.attributes.product_sizes.data.forEach((size) => {
-				if (size.attributes.price) {
+				if (size.attributes.price && size.attributes.price > 0) {
 					priceArray.push(size.attributes.price);
 				}
 			});
@@ -195,8 +195,8 @@ export const printPriceRanges = (product: IProduct) => {
 	let priceRangesString = '';
 	if (product) {
 		const priceRanges = getProductPriceRange(product);
-		priceRangesString = `$${priceRanges[0]} - ${
-			priceRanges[priceRanges.length]
+		priceRangesString = `$${priceRanges[0]} - $${
+			priceRanges[priceRanges.length - 1]
 		}`;
 	}
 	return priceRangesString;
