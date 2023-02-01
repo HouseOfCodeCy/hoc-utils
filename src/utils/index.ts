@@ -19,7 +19,11 @@ import {
 	setCartIdToLocalStorage,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
-import { getCartItemMedia, getCartItemProduct } from './CartItem.utils';
+import {
+	getCartItemMedia,
+	getCartItemPrice,
+	getCartItemProduct,
+} from './CartItem.utils';
 import {
 	checkoutCartAndUpdateProductInventory,
 	transformPriceToStripeAmount,
@@ -65,6 +69,7 @@ export const CartUtils = {
 export const CartItemUtils = {
 	getCartItemMedia,
 	getCartItemProduct,
+	getCartItemPrice,
 };
 export const AccountUtils = {
 	tranformUserFlatToUser,

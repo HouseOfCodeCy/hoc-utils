@@ -1,4 +1,5 @@
 import { ICartItemResponse } from '../interfaces/cart';
+import { calculateProductPrice } from './Product.utils';
 
 export const getCartItemProduct = (cartItem: ICartItemResponse | undefined) => {
 	if (cartItem) {
@@ -51,5 +52,23 @@ export const getCartItemMedia = (cartItem: ICartItemResponse | undefined) => {
 		return [''];
 	} else {
 		return [''];
+	}
+};
+
+/**
+ * Iterate through the cartItem and define where to get the product mediaUrls
+ * @param cartItem
+ * @returns
+ */
+export const getCartItemPrice = (cartItem: ICartItemResponse | undefined) => {
+	if (cartItem) {
+		return calculateProductPrice(
+			true,
+			cartItem.attributes.product_size?.data,
+			cartItem.attributes.product_color?.data,
+			cartItem.attributes.product?.data,
+		);
+	} else {
+		return '0';
 	}
 };
