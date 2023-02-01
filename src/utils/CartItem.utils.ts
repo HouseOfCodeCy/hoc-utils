@@ -60,10 +60,13 @@ export const getCartItemMedia = (cartItem: ICartItemResponse | undefined) => {
  * @param cartItem
  * @returns
  */
-export const getCartItemPrice = (cartItem: ICartItemResponse | undefined) => {
+export const getCartItemPrice = (
+	cartItem: ICartItemResponse | undefined,
+	returnString = true,
+) => {
 	if (cartItem) {
 		return calculateProductPrice(
-			true,
+			returnString,
 			cartItem.attributes.product_size?.data,
 			cartItem.attributes.product_color?.data,
 			cartItem.attributes.product?.data,
