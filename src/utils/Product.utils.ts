@@ -153,7 +153,15 @@ export const addProductToFavorites = async (
 	}
 };
 
+/**
+ * Calculates what price to show, based on 3 inputs
+ * @param selectedProductSize
+ * @param selectedProductColor
+ * @param product
+ * @returns
+ */
 export const calculateProductPrice = (
+	returnString = true,
 	selectedProductSize?: IProductSize | undefined,
 	selectedProductColor?: IProductColor | undefined,
 	product?: IProduct | undefined,
@@ -175,7 +183,7 @@ export const calculateProductPrice = (
 	} else if (product) {
 		price = product.attributes.price;
 	}
-	return `€${price.toFixed(2)}`;
+	return returnString ? `€${price.toFixed(2)}` : price;
 };
 
 /**

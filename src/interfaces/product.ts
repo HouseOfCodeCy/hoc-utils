@@ -40,7 +40,7 @@ export interface IProductSize {
 export interface IProductSizeBody {
 	size: string;
 	price: number;
-	// product?: IProduct;
+	product?: { data: IProduct };
 	product_inventory?: { data: IProductInventory };
 }
 
@@ -114,6 +114,6 @@ export interface IProductColor {
 export interface IProductColorBody {
 	name: string;
 	price: number;
-	// product?: IProduct;
+	product?: {data: IProduct};
 	product_inventory?: { data: IProductInventory };
 }

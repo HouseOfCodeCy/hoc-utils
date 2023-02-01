@@ -26,7 +26,10 @@ import {
 	deleteProductInventory,
 	updateProductInventory,
 } from '../services/ProductInventory.service';
-import { calculatePriceWithQuantity } from './Product.utils';
+import {
+	calculatePriceWithQuantity,
+	calculateProductPrice,
+} from './Product.utils';
 
 export const createCartActionsAndGetCart = async (
 	cart: ICartResponse,
@@ -41,7 +44,7 @@ export const createCartActionsAndGetCart = async (
 		cart: cart,
 		quantity: quantity,
 		price: calculatePriceFlat(
-			definePriceOfProduct(product_color, product_size, product),
+			+calculateProductPrice(false, product_size, product_color, product),
 			quantity,
 		),
 		product: product,
@@ -82,9 +85,10 @@ export const updateCartActionAndGetCart = async (
 	const tmpCartItem: ICartItemBody = {
 		quantity: tmpQuantity,
 		price: calculatePriceWithQuantity(
-			definePriceOfProduct(
-				cartItem.attributes.product_color?.data,
+			+calculateProductPrice(
+				false,
 				cartItem.attributes.product_size?.data,
+				cartItem.attributes.product_color?.data,
 				cartItem.attributes.product?.data,
 			),
 			tmpQuantity,
@@ -325,6 +329,28 @@ export const definePriceOfProduct = (
 		: product?.attributes.price
 		? product?.attributes.price
 		: 0;
+};
+
+/**
+ * Iterate through the cartItem and define where to get the product mediaUrls
+ * @param cartItem
+ * @returns
+ */
+export const getCartItemMedia = (cartItem: ICartItemResponse | undefined) => {
+	if (cartItem) {
+		if (cartItem.attributes.product?.data) {
+			return cartItem.attributes.product?.data.attributes.mediaUrls;
+		} else if (cartItem.attributes.product_color?.data) {
+			return cartItem.attributes.product_color?.data.attributes.product?.data
+				.attributes.mediaUrls;
+		} else if (cartItem.attributes.product_size?.data) {
+			return cartItem.attributes.product_size?.data.attributes.product?.data
+				.attributes.mediaUrls;
+		}
+		return [''];
+	} else {
+		return [''];
+	}
 };
 
 /**
