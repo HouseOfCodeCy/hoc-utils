@@ -235,9 +235,9 @@ export const doesProductExistInCartActions = (
 	if (cartActions && cartActions.length > 0) {
 		const cartActionInCart: ICartItemResponse | undefined = cartActions.find(
 			(action: ICartItemResponse) =>
-				action.attributes.product?.data.id === product?.id ||
-				action.attributes.product_size?.data.id === product_size?.id ||
-				action.attributes.product_color?.data.id === product_color?.id,
+				action.attributes.product?.data?.id === product?.id ||
+				action.attributes.product_size?.data?.id === product_size?.id ||
+				action.attributes.product_color?.data?.id === product_color?.id,
 		);
 		return cartActionInCart ? cartActionInCart : undefined;
 	} else {
