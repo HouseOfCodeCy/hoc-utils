@@ -36,6 +36,7 @@ import {
 	calculateProductCategories,
 	calculateProductPrice,
 	getBrandAcronym,
+	getProductPriceRange,
 	isProductFavorite,
 	quantityHandle,
 	transformProductToProductFlat,
@@ -95,6 +96,7 @@ export const ProductUtils = {
 	getBrandAcronym,
 	isProductFavorite,
 	addProductToFavorites,
+	getProductPriceRange,
 	transformProductToProductFlat,
 };
 export const ReviewUtils = {

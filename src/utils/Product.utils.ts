@@ -153,6 +153,11 @@ export const addProductToFavorites = async (
 	}
 };
 
+/**
+ * Iterates to all objects with price property and returns array of sorted prices
+ * @param product
+ * @returns sorted prices number[]
+ */
 export const getProductPriceRange = (product?: IProduct) => {
 	const priceArray: number[] = [];
 
@@ -160,16 +165,23 @@ export const getProductPriceRange = (product?: IProduct) => {
 		if (product.attributes && product.attributes.price) {
 			priceArray.push(product.attributes.price);
 		}
-		if (product.attributes.product_colors) {
+		if (product.attributes.product_colors?.data) {
 			product.attributes.product_colors.data.forEach((color) => {
 				if (color.attributes.price) {
 					priceArray.push(color.attributes.price);
 				}
 			});
 		}
+		if (product.attributes.product_sizes?.data) {
+			product.attributes.product_sizes.data.forEach((size) => {
+				if (size.attributes.price) {
+					priceArray.push(size.attributes.price);
+				}
+			});
+		}
 	}
 
-	priceArray.sort(function (a, b) {
+	return priceArray.sort(function (a, b) {
 		return a - b;
 	});
 };
