@@ -24,6 +24,7 @@ import {
 	getCartItemOptions,
 	getCartItemPrice,
 	getCartItemProduct,
+	getCartItemProductFlat,
 } from './CartItem.utils';
 import {
 	checkoutCartAndUpdateProductInventory,
@@ -73,6 +74,7 @@ export const CartUtils = {
 export const CartItemUtils = {
 	getCartItemMedia,
 	getCartItemProduct,
+	getCartItemProductFlat,
 	getCartItemOptions,
 	getCartItemPrice,
 };
