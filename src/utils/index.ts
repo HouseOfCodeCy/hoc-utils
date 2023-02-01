@@ -53,7 +53,6 @@ export const CartUtils = {
 	doesProductExistInCartActions,
 	calculatePrice,
 	calculatePriceFlat,
-	getCartItemMedia,
 	calculateTotalDiscount,
 	calculateTotalPrice,
 	calculateTotalPriceFlat,
