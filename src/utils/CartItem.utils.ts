@@ -60,6 +60,29 @@ export const getCartItemMedia = (cartItem: ICartItemResponse | undefined) => {
  * @param cartItem
  * @returns
  */
+export const getCartItemOptions = (cartItem: ICartItemResponse | undefined) => {
+	let productOptions = '';
+	if (cartItem) {
+		if (cartItem.attributes.product?.data) {
+			productOptions += '';
+		}
+		if (cartItem.attributes.product_color?.data) {
+			productOptions += `Color: ${cartItem.attributes.product_color?.data.attributes.name}`;
+		}
+		if (cartItem.attributes.product_size?.data) {
+			productOptions += `Size: ${cartItem.attributes.product_color?.data.attributes.name}`;
+		}
+	} else {
+		productOptions += '';
+	}
+	return productOptions;
+};
+
+/**
+ * Iterate through the cartItem and define where to get the product mediaUrls
+ * @param cartItem
+ * @returns
+ */
 export const getCartItemPrice = (
 	cartItem: ICartItemResponse | undefined,
 	returnString = true,

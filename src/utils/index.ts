@@ -21,6 +21,7 @@ import {
 } from './Cart.utils';
 import {
 	getCartItemMedia,
+	getCartItemOptions,
 	getCartItemPrice,
 	getCartItemProduct,
 } from './CartItem.utils';
@@ -69,6 +70,7 @@ export const CartUtils = {
 export const CartItemUtils = {
 	getCartItemMedia,
 	getCartItemProduct,
+	getCartItemOptions,
 	getCartItemPrice,
 };
 export const AccountUtils = {
