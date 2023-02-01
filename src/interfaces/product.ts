@@ -114,6 +114,6 @@ export interface IProductColor {
 export interface IProductColorBody {
 	name: string;
 	price: number;
-	product?: {data: IProduct};
+	product?: { data: IProduct };
 	product_inventory?: { data: IProductInventory };
 }
