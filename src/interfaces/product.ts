@@ -29,21 +29,6 @@ export interface IProductBody {
 	product_compatibilities?: { data: IProductCompatibility[] };
 }
 
-/** PRODUCT SIZES */
-export interface IProductSizeFlat extends IProductSizeBody {
-	id: string;
-}
-export interface IProductSize {
-	id: string;
-	attributes: IProductSizeBody;
-}
-export interface IProductSizeBody {
-	size: string;
-	price: number;
-	product?: { data: IProduct };
-	product_inventory?: { data: IProductInventory };
-}
-
 /** PRODUCT INVENTORY */
 export interface IProductInventoryFlat extends IProductInventoryBody {
 	id: string;
@@ -103,6 +88,23 @@ export interface IProductCompatibilityBody {
 	name: string;
 }
 
+/** PRODUCT SIZES */
+export interface IProductSizeFlat extends IProductSizeBody {
+	id: string;
+}
+export interface IProductSize {
+	id: string;
+	attributes: IProductSizeBody;
+}
+export interface IProductSizeBody {
+	size: string;
+	price: number;
+	product?: { data: IProduct };
+	product_inventory?: { data: IProductInventory };
+	required?: boolean;
+	mediaUrls?: string[];
+}
+
 /** PRODUCT COLOR */
 export interface IProductColorFlat extends IProductColorBody {
 	id: string;
@@ -116,4 +118,6 @@ export interface IProductColorBody {
 	price: number;
 	product?: { data: IProduct };
 	product_inventory?: { data: IProductInventory };
+	required?: boolean;
+	mediaUrls?: string[];
 }
