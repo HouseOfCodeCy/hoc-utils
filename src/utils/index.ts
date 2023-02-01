@@ -15,11 +15,11 @@ import {
 	deleteCartItemAndProductInventoryAndCartAndGetCart,
 	deleteCartItemAndProductInventoryAndGetCart,
 	doesProductExistInCartActions,
-	getCartItemMedia,
 	removeCartIdToLocalStorage,
 	setCartIdToLocalStorage,
 	updateCartActionAndGetCart,
 } from './Cart.utils';
+import { getCartItemMedia, getCartItemProduct } from './CartItem.utils';
 import {
 	checkoutCartAndUpdateProductInventory,
 	transformPriceToStripeAmount,
@@ -61,6 +61,11 @@ export const CartUtils = {
 	removeCartIdToLocalStorage,
 	deleteCartItemAndProductInventoryAndCartAndGetCart,
 	deleteCartItemAndProductInventoryAndGetCart,
+};
+
+export const CartItemUtils = {
+	getCartItemMedia,
+	getCartItemProduct,
 };
 export const AccountUtils = {
 	tranformUserFlatToUser,

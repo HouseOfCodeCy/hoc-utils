@@ -317,53 +317,6 @@ export const calculatePriceFlat = (price: number, quantity = 1): number => {
 	return +(price * quantity).toFixed(2);
 };
 
-export const definePriceOfProduct = (
-	product_color: IProductColor | undefined,
-	product_size: IProductSize | undefined,
-	product: IProduct | undefined,
-) => {
-	return product_color?.attributes.price
-		? product_color?.attributes.price
-		: product_size?.attributes.price
-		? product_size?.attributes.price
-		: product?.attributes.price
-		? product?.attributes.price
-		: 0;
-};
-
-/**
- * Iterate through the cartItem and define where to get the product mediaUrls
- * @param cartItem
- * @returns
- */
-export const getCartItemMedia = (cartItem: ICartItemResponse | undefined) => {
-	if (cartItem) {
-		if (
-			cartItem.attributes.product?.data &&
-			cartItem.attributes.product?.data.attributes.mediaUrls
-		) {
-			return cartItem.attributes.product?.data.attributes.mediaUrls;
-		} else if (
-			cartItem.attributes.product_color?.data &&
-			cartItem.attributes.product_color?.data.attributes.product?.data
-				.attributes.mediaUrls
-		) {
-			return cartItem.attributes.product_color?.data.attributes.product?.data
-				.attributes.mediaUrls;
-		} else if (
-			cartItem.attributes.product_size?.data &&
-			cartItem.attributes.product_size?.data.attributes.product?.data.attributes
-				.mediaUrls
-		) {
-			return cartItem.attributes.product_size?.data.attributes.product?.data
-				.attributes.mediaUrls;
-		}
-		return [''];
-	} else {
-		return [''];
-	}
-};
-
 /**
  * Updates LocalStorage with CardId
  * @param cartId
