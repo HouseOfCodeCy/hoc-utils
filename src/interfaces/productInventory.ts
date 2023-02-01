@@ -15,4 +15,5 @@ export interface IProductOptions {
 		colorInventory?: { id: number; quantity: number }[] | null;
 		total: number;
 	}[];
+	total?: number;
 }

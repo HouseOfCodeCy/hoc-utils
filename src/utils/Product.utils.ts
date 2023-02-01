@@ -1,5 +1,10 @@
 import { IUserFlat } from '../interfaces/account';
-import { IProduct, IProductFlat } from '../interfaces/product';
+import {
+	IProduct,
+	IProductColor,
+	IProductFlat,
+	IProductSize,
+} from '../interfaces/product';
 import { getUser, updateUser } from '../services/User.service';
 
 /**
@@ -146,6 +151,31 @@ export const addProductToFavorites = async (
 			});
 		});
 	}
+};
+
+export const calculateProductPrice = (
+	selectedProductSize?: IProductSize | undefined,
+	selectedProductColor?: IProductColor | undefined,
+	product?: IProduct | undefined,
+) => {
+	let price = 0;
+	if (selectedProductColor && selectedProductSize) {
+		if (
+			selectedProductColor.attributes.price >=
+			selectedProductSize.attributes.price
+		) {
+			price = selectedProductColor.attributes.price;
+		} else {
+			price = selectedProductSize.attributes.price;
+		}
+	} else if (selectedProductColor) {
+		price = selectedProductColor.attributes.price;
+	} else if (selectedProductSize) {
+		price = selectedProductSize.attributes.price;
+	} else if (product) {
+		price = product.attributes.price;
+	}
+	return `€${price.toFixed(2)}`;
 };
 
 /**

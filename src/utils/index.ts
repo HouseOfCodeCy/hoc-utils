@@ -28,6 +28,7 @@ import {
 	addProductToFavorites,
 	calculatePriceWithQuantity,
 	calculateProductCategories,
+	calculateProductPrice,
 	getBrandAcronym,
 	isProductFavorite,
 	quantityHandle,
@@ -40,6 +41,7 @@ import {
 	calculateProductInventoryOptions,
 	calculateProductInventoryTotalNumber,
 	constructMappedProductInventory,
+	renderAvailabilityLabel,
 } from './ProductInventory.utils';
 import { calculateTotalReviews } from './Review.utils';
 
@@ -70,11 +72,13 @@ export const ProductInventoryUtils = {
 	calculateProductInventoryLabel,
 	calculateProductInventoryOptions,
 	constructMappedProductInventory,
+	renderAvailabilityLabel,
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,
 	calculateProductCategories,
 	quantityHandle,
+	calculateProductPrice,
 	getBrandAcronym,
 	isProductFavorite,
 	addProductToFavorites,

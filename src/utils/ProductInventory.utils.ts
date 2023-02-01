@@ -44,6 +44,28 @@ export const calculateProductInventoryAvailability = (
 	}
 };
 
+export const renderAvailabilityLabel = (
+	stock: IProductOptions | undefined,
+	lowAvailabilityThreshold = 3,
+	highAvailabilityThreshold = 5,
+) => {
+	let availability = '';
+	if (stock && stock.total && stock.total > 0) {
+		if (stock.total === 0) {
+			availability = 'Out of Stock';
+		} else if (stock.total >= highAvailabilityThreshold) {
+			availability = stock.total + ' variations';
+		} else if (stock.total <= lowAvailabilityThreshold) {
+			availability = 'Few items left';
+		} else if (stock.total > lowAvailabilityThreshold) {
+			availability = 'Low in Stock';
+		}
+		return availability;
+	} else {
+		return 'Out of Stock';
+	}
+};
+
 /**
  * Receives number and display appropriate label based on the number of stock count
  * @param stock
@@ -158,9 +180,11 @@ export const calculateProductInventoryOptions = (
 					break;
 			}
 		});
+	} else {
+		productOptionsInventories = {
+			total: 0,
+		};
 	}
-	console.log(productOptionsInventories);
-
 	return productOptionsInventories;
 };
 
@@ -168,9 +192,9 @@ export const constructMappedProductInventory = (
 	inventory: IProductInventory,
 	productOptionsInventories: IProductOptions,
 	shouldAdd = true,
-) => {
+): IProductOptions => {
 	if (inventory) {
-		// if this is color stock
+		// if this is color STOCK_REFILL
 		if (
 			inventory.attributes.product_color &&
 			inventory.attributes.product_color.data &&
@@ -214,15 +238,17 @@ export const constructMappedProductInventory = (
 						? inventory.attributes.quantity
 						: -inventory.attributes.quantity,
 				};
-				productOptionsInventories.colorInventory
-					? productOptionsInventories.colorInventory.push(tempProductOption)
-					: (productOptionsInventories = {
-							...productOptionsInventories,
-							colorInventory: [tempProductOption],
-					  });
+				if (productOptionsInventories.colorInventory) {
+					productOptionsInventories.colorInventory.push(tempProductOption);
+				} else {
+					productOptionsInventories = {
+						...productOptionsInventories,
+						colorInventory: [tempProductOption],
+					};
+				}
 			}
 		}
-		// if this is size stock
+		// if this is size STOCK_REFILL
 		if (
 			inventory.attributes.product_size &&
 			inventory.attributes.product_size.data &&
@@ -264,14 +290,17 @@ export const constructMappedProductInventory = (
 						: null,
 					total: inventory.attributes.quantity,
 				};
-				productOptionsInventories.sizeInventory
-					? productOptionsInventories.sizeInventory.push(tempProductOption)
-					: (productOptionsInventories = {
-							...productOptionsInventories,
-							sizeInventory: [tempProductOption],
-					  });
+				if (productOptionsInventories.sizeInventory) {
+					productOptionsInventories.sizeInventory.push(tempProductOption);
+				} else {
+					productOptionsInventories = {
+						...productOptionsInventories,
+						sizeInventory: [tempProductOption],
+					};
+				}
 			}
 		}
+		// if this RESERVER_BY_CUSTOMER or PURCHASED etc.
 		if (
 			!shouldAdd &&
 			inventory.attributes.cart_item &&
@@ -309,12 +338,14 @@ export const constructMappedProductInventory = (
 						: null,
 					total: -inventory.attributes.quantity,
 				};
-				productOptionsInventories.colorInventory
-					? productOptionsInventories.colorInventory.push(tempProductOption)
-					: (productOptionsInventories = {
-							...productOptionsInventories,
-							sizeInventory: [tempProductOption],
-					  });
+				if (productOptionsInventories.colorInventory) {
+					productOptionsInventories.colorInventory.push(tempProductOption);
+				} else {
+					productOptionsInventories = {
+						...productOptionsInventories,
+						sizeInventory: [tempProductOption],
+					};
+				}
 			}
 
 			// do the same for colors
@@ -350,13 +381,24 @@ export const constructMappedProductInventory = (
 						: null,
 					total: -inventory.attributes.quantity,
 				};
-				productOptionsInventories.sizeInventory
-					? productOptionsInventories.sizeInventory.push(tempProductOption)
-					: (productOptionsInventories = {
-							...productOptionsInventories,
-							sizeInventory: [tempProductOption],
-					  });
+				if (productOptionsInventories.sizeInventory) {
+					productOptionsInventories.sizeInventory.push(tempProductOption);
+				} else {
+					productOptionsInventories = {
+						...productOptionsInventories,
+						sizeInventory: [tempProductOption],
+					};
+				}
 			}
+		}
+		if (productOptionsInventories.total)
+			shouldAdd
+				? (productOptionsInventories.total += inventory.attributes.quantity)
+				: (productOptionsInventories.total -= inventory.attributes.quantity);
+		else {
+			shouldAdd
+				? (productOptionsInventories.total = inventory.attributes.quantity)
+				: (productOptionsInventories.total = -inventory.attributes.quantity);
 		}
 	}
 	return productOptionsInventories;
