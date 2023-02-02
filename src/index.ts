@@ -129,6 +129,7 @@ export {
 	createOrder,
 	getOrder,
 	getOrderPaymentMethods,
+	getOrdersByUserId,
 	getShippingMethods,
 } from './services/Order.service';
 export {

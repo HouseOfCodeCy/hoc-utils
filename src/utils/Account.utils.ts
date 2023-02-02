@@ -1,4 +1,9 @@
-import { IAddressFlat, IUser, IUserFlat } from '../interfaces/account';
+import {
+	IAddress,
+	IAddressFlat,
+	IUser,
+	IUserFlat,
+} from '../interfaces/account';
 
 export const tranformUserFlatToUser = (userFlat: IUserFlat): IUser => {
 	const { id, ...userRest } = userFlat;
@@ -26,10 +31,31 @@ export const getDefaultAddress = (addresses: IAddressFlat[]): IAddressFlat => {
 
 /**
  * Returns a string of full address
- * @param address User Address
+ * @param {IAddress} address User Address
  * @returns
  */
-export const printAddressAsString = (address: IAddressFlat) => {
+export const printAddressAsString = (address: IAddress) => {
+	let addressString = '';
+	if (address.attributes.address1)
+		addressString += `${address.attributes.address1}, `;
+	if (address.attributes.address2)
+		addressString += `${address.attributes.address1}, `;
+	if (address.attributes.postCode)
+		addressString += `${address.attributes.postCode}, `;
+	if (address.attributes.city.data.attributes.name)
+		addressString += `${address.attributes.city.data.attributes.name}, `;
+	if (address.attributes.city.data.attributes.name)
+		addressString += `${address.attributes.city.data.attributes.name}`;
+
+	return addressString;
+};
+
+/**
+ * Returns a string of address Flat
+ * @param {IAddressFlat} address User Address
+ * @returns
+ */
+export const printAddressAsStringFlat = (address: IAddressFlat) => {
 	let addressString = '';
 	if (address.address1) addressString += `${address.address1}, `;
 	if (address.address2) addressString += `${address.address1}, `;

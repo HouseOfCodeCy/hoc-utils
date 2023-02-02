@@ -1,3 +1,4 @@
+import qs from 'qs';
 import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
@@ -9,6 +10,35 @@ export const getOrder = async (
 		const response = await http.get<any>(`orders/${orderId}`, {
 			params: { populate: populateType },
 		});
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const getOrdersByUserId = async (
+	userId: string,
+	populateType = PopulateType.DEEP,
+) => {
+	try {
+		const query = qs.stringify(
+			{
+				sort: ['id:asc'],
+				populate: populateType,
+				filters: {
+					user: {
+						id: {
+							$eq: userId,
+						},
+					},
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`orders?${query}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);

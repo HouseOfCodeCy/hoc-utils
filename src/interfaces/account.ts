@@ -28,8 +28,18 @@ export interface IAddress {
 	attributes: IAddressBody;
 }
 
-export interface IAddressFlat extends IAddressBody {
+export interface IAddressFlat extends IAddressBodyFlat {
 	id: number;
+}
+
+export interface IAddressBodyFlat {
+	name: string;
+	address1: string;
+	address2: string;
+	postCode: string;
+	telephone: string;
+	city: ICityFlat;
+	isDefault: boolean;
 }
 
 export interface IAddressBody {
@@ -38,7 +48,7 @@ export interface IAddressBody {
 	address2: string;
 	postCode: string;
 	telephone: string;
-	city: ICityFlat;
+	city: { data: ICity };
 	isDefault: boolean;
 }
 
