@@ -229,15 +229,16 @@ export const deleteCartItemAndProductInventoryAndCartAndGetCart = async (
 export const doesProductExistInCartActions = (
 	cartActions: ICartItemResponse[],
 	product?: IProduct,
-	product_color?: IProductColor,
-	product_size?: IProductSize,
+	selectedProductColor?: IProductColor,
+	selectedProductSize?: IProductSize,
 ) => {
 	if (cartActions && cartActions.length > 0) {
 		const cartActionInCart: ICartItemResponse | undefined = cartActions.find(
 			(action: ICartItemResponse) =>
 				action.attributes.product?.data?.id === product?.id ||
-				action.attributes.product_size?.data?.id === product_size?.id ||
-				action.attributes.product_color?.data?.id === product_color?.id,
+				(action.attributes.product_size?.data?.id === selectedProductSize?.id &&
+					action.attributes.product_color?.data?.id ===
+						selectedProductColor?.id),
 		);
 		return cartActionInCart ? cartActionInCart : undefined;
 	} else {
