@@ -159,6 +159,7 @@ export {
 	CartUtils,
 	CheckoutUtils,
 	CommonUtils,
+	OrderUtils,
 	ProductInventoryUtils,
 	ProductUtils,
 	ReviewUtils,
