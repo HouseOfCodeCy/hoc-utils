@@ -29,6 +29,7 @@ export const checkoutCartAndUpdateProductInventory = async (
 		cart: orderPayload.cart.id,
 		address: orderPayload.address.id,
 		order_payment_method: orderPayload.order_payment_method.id,
+		shipping_method: orderPayload.shipping_method.id,
 		order_status: orderPayload.order_status.id,
 		user: orderPayload.user.id,
 	};
