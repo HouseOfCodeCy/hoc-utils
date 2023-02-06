@@ -4,7 +4,7 @@ import { http } from './common/Http.service';
 
 export const getOrder = async (
 	orderId: string,
-	populateType = PopulateType.STAR,
+	populateType = PopulateType.DEEP,
 ) => {
 	try {
 		const response = await http.get<any>(`orders/${orderId}`, {
