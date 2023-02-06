@@ -1,7 +1,7 @@
 import { IShippingMethod } from '../interfaces/order';
 
 export const getDefaultShippingMethod = (
-	shippingMethods: IShippingMethod[],
+	shippingMethods: IShippingMethod[] | undefined,
 ) => {
 	const defaultShippingMethod = shippingMethods?.find(
 		(method) => method.attributes.isDefault === true,
