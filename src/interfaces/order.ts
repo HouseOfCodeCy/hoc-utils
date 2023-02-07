@@ -74,4 +74,6 @@ export interface IShippingMethodBody {
 	name: string;
 	isDefault: boolean;
 	order: number;
+	value: string;
+	displayValue: string;
 }
