@@ -44,6 +44,8 @@ export interface IOrderPaymentMethod {
 export interface IOrderPaymentMethodBody {
 	name: string;
 	enabled: boolean;
+	value: string;
+	displayValue: string;
 }
 
 export interface IOrderStatusFlat extends IOrderStatusBody {
