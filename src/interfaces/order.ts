@@ -47,6 +47,8 @@ export interface IOrderPaymentMethodBody {
 	order: number;
 	icon: string;
 	enabled: boolean;
+	weight?: number;
+	dimensions?: string;
 }
 
 export interface IOrderStatusFlat extends IOrderStatusBody {
