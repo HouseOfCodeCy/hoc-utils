@@ -62,9 +62,16 @@ export const getOrderPaymentMethods = async (
 	populateType = PopulateType.STAR,
 ) => {
 	try {
-		const response = await http.get<any>(`order-payment-methods`, {
-			params: { populate: populateType },
-		});
+		const query = qs.stringify(
+			{
+				sort: ['order:asc'],
+				populate: populateType,
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`order-payment-methods?${query}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
@@ -74,9 +81,16 @@ export const getOrderPaymentMethods = async (
 
 export const getShippingMethods = async (populateType = PopulateType.STAR) => {
 	try {
-		const response = await http.get<any>(`shipping-methods`, {
-			params: { populate: populateType },
-		});
+		const query = qs.stringify(
+			{
+				sort: ['order:asc'],
+				populate: populateType,
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`shipping-methods?${query}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
