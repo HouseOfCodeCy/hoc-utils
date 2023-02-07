@@ -42,10 +42,10 @@ export interface IOrderPaymentMethod {
 }
 
 export interface IOrderPaymentMethodBody {
-	name: string;
-	enabled: boolean;
 	value: string;
 	displayValue: string;
+	order: number;
+	enabled: boolean;
 }
 
 export interface IOrderStatusFlat extends IOrderStatusBody {
@@ -71,9 +71,8 @@ export interface IShippingMethod {
 }
 
 export interface IShippingMethodBody {
-	name: string;
-	isDefault: boolean;
-	order: number;
 	value: string;
 	displayValue: string;
+	isDefault: boolean;
+	order: number;
 }
