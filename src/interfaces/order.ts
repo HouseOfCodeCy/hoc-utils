@@ -45,6 +45,7 @@ export interface IOrderPaymentMethodBody {
 	value: string;
 	displayValue: string;
 	order: number;
+	icon: string;
 	enabled: boolean;
 }
 
@@ -74,5 +75,6 @@ export interface IShippingMethodBody {
 	value: string;
 	displayValue: string;
 	isDefault: boolean;
+	icon: string;
 	order: number;
 }
