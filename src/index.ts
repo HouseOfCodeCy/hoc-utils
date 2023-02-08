@@ -2,6 +2,7 @@
 export {
 	IAddress,
 	IAddressBody,
+	IAddressBodyFlat,
 	IAddressFlat,
 	ICity,
 	ICityBody,
@@ -36,7 +37,7 @@ export {
 	IProductSubCategory,
 	IProductSubCategoryBody,
 } from './interfaces/category';
-export { ICheckoutBody } from './interfaces/checkout';
+export { ICheckoutBody, ICheckoutPayload } from './interfaces/checkout';
 export {
 	IDataResponse,
 	IMetaResponse,
@@ -59,6 +60,9 @@ export {
 	IShippingMethod,
 	IShippingMethodBody,
 	IShippingMethodFlat,
+	IShippingMethodOption,
+	IShippingMethodOptionBody,
+	IShippingMethodOptionFlat,
 } from './interfaces/order';
 export {
 	IProduct,
