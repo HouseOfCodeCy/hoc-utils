@@ -130,7 +130,6 @@ export {
 	getOrder,
 	getOrderPaymentMethods,
 	getOrdersByUserId,
-	getShippingMethods,
 } from './services/Order.service';
 export {
 	getCategoriesByParentCategoryId,
@@ -151,6 +150,11 @@ export {
 } from './services/ProductInventory.service';
 export { getReviews, getReviewsByUserId } from './services/Reviews.service';
 export { getSections } from './services/Sections.service';
+export {
+	getShippingMethods,
+	getShippingMethodsOptions,
+	getShippingMethodsOptionsByShippingMethodId,
+} from './services/ShippingMethod.service';
 export { getUser, updateUser } from './services/User.service';
 /********************** Utilities ***********************************/
 export {

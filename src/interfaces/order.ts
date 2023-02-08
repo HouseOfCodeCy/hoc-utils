@@ -79,4 +79,20 @@ export interface IShippingMethodBody {
 	isDefault: boolean;
 	icon: string;
 	order: number;
+	shipping_method_options?: { data: IShippingMethodOption[] };
+}
+
+export interface IShippingMethodOptionFlat extends IShippingMethodOptionBody {
+	id: number;
+}
+
+export interface IShippingMethodOption {
+	id: number;
+	attributes: IShippingMethodOptionBody;
+}
+
+export interface IShippingMethodOptionBody {
+	name: string;
+	price: number;
+	shipping_method?: { data: IShippingMethod };
 }
