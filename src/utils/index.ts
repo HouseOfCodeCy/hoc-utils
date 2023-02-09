@@ -32,7 +32,7 @@ import {
 	transformPriceToStripeAmount,
 } from './Checkout.utils';
 import { formatDate } from './Common.utils';
-import { getDefaultShippingMethod } from './Order.utils';
+import { getDefaultShippingMethod, getOrderTotal } from './Order.utils';
 import {
 	addProductToFavorites,
 	calculatePriceWithQuantity,
@@ -120,4 +120,5 @@ export const CommonUtils = {
 };
 export const OrderUtils = {
 	getDefaultShippingMethod,
+	getOrderTotal,
 };
