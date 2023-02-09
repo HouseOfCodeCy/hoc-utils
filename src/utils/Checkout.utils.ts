@@ -27,9 +27,9 @@ export const checkoutCartAndUpdateProductInventory = async (
 ) => {
 	const newOrderPayload = {
 		cart: orderPayload.cart.id,
-		address: orderPayload.address.id,
+		address: orderPayload.address ? orderPayload.address.id : null,
 		order_payment_method: orderPayload.order_payment_method.id,
-		shipping_method: orderPayload.shipping_method.id,
+		shipping_method_option: orderPayload.shipping_method_option.id,
 		order_status: orderPayload.order_status.id,
 		user: orderPayload.user.id,
 	};

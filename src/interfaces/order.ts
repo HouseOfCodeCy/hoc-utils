@@ -10,7 +10,7 @@ export interface IOrderBodyFlat {
 	address: IAddressFlat;
 	order_payment_method: IOrderPaymentMethodFlat;
 	order_status: IOrderStatusFlat;
-	shipping_method: IShippingMethodFlat;
+	shipping_method_option: IShippingMethodOptionFlat;
 	user: IUserFlat;
 	createdAt: string;
 	updatedAt: string;
@@ -26,7 +26,7 @@ export interface IOrderBody {
 	address: { data: IAddress };
 	order_payment_method: { data: IOrderPaymentMethod };
 	order_status: { data: IOrderStatus };
-	shipping_method: { data: IShippingMethod };
+	shipping_method_option: { data: IShippingMethodOption };
 	user: { data: IUser };
 	createdAt: string;
 	updatedAt: string;

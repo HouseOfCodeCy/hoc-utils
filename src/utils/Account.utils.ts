@@ -34,19 +34,20 @@ export const getDefaultAddress = (addresses: IAddressFlat[]): IAddressFlat => {
  * @param {IAddress} address User Address
  * @returns
  */
-export const printAddressAsString = (address: IAddress) => {
+export const printAddressAsString = (address: IAddress | undefined) => {
 	let addressString = '';
-	if (address.attributes.address1)
-		addressString += `${address.attributes.address1}, `;
-	if (address.attributes.address2)
-		addressString += `${address.attributes.address1}, `;
-	if (address.attributes.postCode)
-		addressString += `${address.attributes.postCode}, `;
-	if (address.attributes.city.data.attributes.name)
-		addressString += `${address.attributes.city.data.attributes.name}, `;
-	if (address.attributes.city.data.attributes.name)
-		addressString += `${address.attributes.city.data.attributes.name}`;
-
+	if (address) {
+		if (address.attributes.address1)
+			addressString += `${address.attributes.address1}, `;
+		if (address.attributes.address2)
+			addressString += `${address.attributes.address1}, `;
+		if (address.attributes.postCode)
+			addressString += `${address.attributes.postCode}, `;
+		if (address.attributes.city.data.attributes.name)
+			addressString += `${address.attributes.city.data.attributes.name}, `;
+		if (address.attributes.city.data.attributes.name)
+			addressString += `${address.attributes.city.data.attributes.name}`;
+	}
 	return addressString;
 };
 
