@@ -26,3 +26,8 @@ export const getOrderTotal = (order: IOrder) => {
 	}
 	return 0;
 };
+
+export const getShippingMethodValue = (order: IOrder) => {
+	return order.attributes.shipping_method_option.data.attributes.shipping_method
+		?.data.attributes.value;
+};

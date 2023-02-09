@@ -267,7 +267,7 @@ export const calculateTotalDiscount = (
 			}
 		});
 	}
-	return totalDiscount.toFixed(2);
+	return totalDiscount == 0 ? `${totalDiscount}` : totalDiscount.toFixed(2);
 };
 
 /**
