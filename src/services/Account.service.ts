@@ -36,6 +36,16 @@ export const registerUser = async (payload: IUserBody) => {
 	}
 };
 
+export const facebook = async () => {
+	try {
+		const response = await http.post<any>('api/connect/facebook');
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
 export const forgotPassword = async (email: string) => {
 	try {
 		const response = await http.post<any>('auth/local/register', {
