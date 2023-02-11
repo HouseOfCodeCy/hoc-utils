@@ -5,6 +5,8 @@ export enum StatusCode {
 	Forbidden = 403,
 	TooManyRequests = 429,
 	InternalServerError = 500,
+	BadGateway = 502,
+	ServiceNotAvailable = 503,
 }
 
 export enum CartAction {
