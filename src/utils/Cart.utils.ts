@@ -21,6 +21,7 @@ import {
 	getCart,
 	updateCartItem,
 } from '../services/Cart.service';
+import { StatusCode } from '../services/common/Http.service';
 import {
 	createProductInventory,
 	deleteProductInventory,
@@ -53,7 +54,7 @@ export const createCartActionsAndGetCart = async (
 	};
 	// create cart item and refresh GET Cart
 	await createCartItem(cartItem).then(async (res: any) => {
-		if (res?.statusText === 'OK') {
+		if (res?.status === StatusCode.OK) {
 			// create a product inventory to manage stock
 			const productInventory: IProductInventoryBody = {
 				quantity: quantity,
@@ -62,7 +63,7 @@ export const createCartActionsAndGetCart = async (
 			};
 			await createProductInventory(productInventory).then(
 				async (productInventoryResponse: any) => {
-					if (productInventoryResponse.statusText === 'OK') {
+					if (productInventoryResponse.status === StatusCode.OK) {
 						// call the PUT to update the CART with the new CartItem
 						await getCart(`${cart?.id}`).then((responseData: any) => {
 							updateCart(responseData?.data.data);
@@ -100,7 +101,7 @@ export const updateCartActionAndGetCart = async (
 		product_color: cartItem.attributes.product_color?.data,
 	};
 	await updateCartItem(`${cartItem.id}`, tmpCartItem).then(async (res: any) => {
-		if (res?.statusText === 'OK') {
+		if (res?.status === StatusCode.OK) {
 			// create a product inventory to manage stock
 			const productInventory: IProductInventoryBody = {
 				quantity: tmpQuantity,
@@ -111,7 +112,7 @@ export const updateCartActionAndGetCart = async (
 				`${cartItem.attributes.product_inventory?.data.id}`,
 				productInventory,
 			).then(async (productInventoryResponse: any) => {
-				if (productInventoryResponse.statusText === 'OK') {
+				if (productInventoryResponse.status === StatusCode.OK) {
 					await getCart(`${cart?.id}`).then((responseData: any) => {
 						const resData = responseData?.data.data;
 						setCartIdToLocalStorage(resData.id);
@@ -144,7 +145,7 @@ export const createCartAndCartAction = async (
 		users_permissions_user: user,
 	};
 	await createCart(data).then(async (response: any) => {
-		if (response?.statusText === 'OK') {
+		if (response?.status === StatusCode.OK) {
 			const cartResponse = response?.data.data;
 
 			await createCartActionsAndGetCart(
@@ -175,10 +176,10 @@ export const deleteCartItemAndProductInventoryAndGetCart = async (
 	updateCart: (cart: ICartResponse) => void,
 ) => {
 	await deleteCartItem(cartItemId).then(async (response: any) => {
-		if (response?.statusText === 'OK') {
+		if (response?.status === StatusCode.OK) {
 			await deleteProductInventory(productInventoryId).then(
 				async (productInventoryResponse: any) => {
-					if (productInventoryResponse?.statusText === 'OK') {
+					if (productInventoryResponse?.status === StatusCode.OK) {
 						await getCart(cardId).then((responseData: any) => {
 							updateCart(responseData?.data.data);
 							setCartIdToLocalStorage(responseData?.data.data.id);
@@ -204,10 +205,10 @@ export const deleteCartItemAndProductInventoryAndCartAndGetCart = async (
 	updateCart: (cart: ICartResponse | null) => void,
 ) => {
 	await deleteCartItem(cartItemId).then(async (response: any) => {
-		if (response?.statusText === 'OK') {
+		if (response?.status === StatusCode.OK) {
 			await deleteProductInventory(productInventoryId).then(
 				async (productInventoryResponse: any) => {
-					if (productInventoryResponse?.statusText === 'OK') {
+					if (productInventoryResponse?.status === StatusCode.OK) {
 						await deleteCart(cardId).then(async (cartResponse) => {
 							updateCart(null);
 							removeCartIdToLocalStorage();

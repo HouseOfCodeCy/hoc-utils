@@ -2,7 +2,9 @@
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-enum StatusCode {
+export enum StatusCode {
+	OK = 200,
+	CREATED = 201,
 	Unauthorized = 401,
 	Forbidden = 403,
 	TooManyRequests = 429,
