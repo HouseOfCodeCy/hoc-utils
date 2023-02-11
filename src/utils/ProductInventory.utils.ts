@@ -8,7 +8,7 @@ import { getProductInventoryByAll } from '../services/ProductInventory.service';
 export const calculateProductInventory = async (product: IProduct) => {
 	// retrieve the ProductInventory for the given product
 	const productInventoryResponse: any = await getProductInventoryByAll(product);
-	if (productInventoryResponse.statusText === 'OK') {
+	if (productInventoryResponse.status === 200) {
 		const productInventories = productInventoryResponse.data?.data;
 		return calculateProductInventoryOptions(productInventories);
 	}
