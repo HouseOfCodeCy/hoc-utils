@@ -103,6 +103,7 @@ export {
 	DateTypes,
 	PopulateType,
 	ProductInventoryActions,
+	StatusCode,
 } from './resources/enums';
 /********************** Services ***********************************/
 export {
