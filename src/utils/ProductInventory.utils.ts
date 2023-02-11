@@ -2,8 +2,7 @@
 import { differenceInMinutes } from 'date-fns';
 import { IProduct, IProductInventory } from '../interfaces/product';
 import { IProductOptions } from '../interfaces/productInventory';
-import { ProductInventoryActions } from '../resources/enums';
-import { StatusCode } from '../services/common/Http.service';
+import { ProductInventoryActions, StatusCode } from '../resources/enums';
 import { getProductInventoryByAll } from '../services/ProductInventory.service';
 
 export const calculateProductInventory = async (product: IProduct) => {

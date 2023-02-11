@@ -12,7 +12,11 @@ import {
 	IProductInventoryBody,
 	IProductSize,
 } from '../interfaces/product';
-import { CartAction, ProductInventoryActions } from '../resources/enums';
+import {
+	CartAction,
+	ProductInventoryActions,
+	StatusCode,
+} from '../resources/enums';
 import {
 	createCart,
 	createCartItem,
@@ -21,7 +25,6 @@ import {
 	getCart,
 	updateCartItem,
 } from '../services/Cart.service';
-import { StatusCode } from '../services/common/Http.service';
 import {
 	createProductInventory,
 	deleteProductInventory,

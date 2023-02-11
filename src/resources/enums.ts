@@ -1,3 +1,12 @@
+export enum StatusCode {
+	OK = 200,
+	CREATED = 201,
+	Unauthorized = 401,
+	Forbidden = 403,
+	TooManyRequests = 429,
+	InternalServerError = 500,
+}
+
 export enum CartAction {
 	ADD = 'ADD',
 	MODIFY = 'MODIFY',

@@ -1,15 +1,7 @@
 // http.ts
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-
-export enum StatusCode {
-	OK = 200,
-	CREATED = 201,
-	Unauthorized = 401,
-	Forbidden = 403,
-	TooManyRequests = 429,
-	InternalServerError = 500,
-}
+import { StatusCode } from '../../resources/enums';
 
 const headers: Readonly<Record<string, string | boolean>> = {
 	Accept: 'application/json',
