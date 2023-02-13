@@ -56,10 +56,15 @@ export interface ICity {
 	id: number;
 	attributes: ICityBody;
 }
-export interface ICityFlat extends ICityBody {
+export interface ICityFlat extends ICityBodyFlat {
 	id: number;
 }
 export interface ICityBody {
+	name: string;
+	country: { data: ICountry };
+	order: number;
+}
+export interface ICityBodyFlat {
 	name: string;
 	country: ICountryFlat;
 	order: number;
