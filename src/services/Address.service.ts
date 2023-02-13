@@ -21,9 +21,15 @@ export const getAddress = async (
 /**
  * POST Address
  * @param {IAddressBody} data The Address payload for the POST Address API
+ * @param {IUserFlat} user Send this param if you want the address to be added to a user
+ * @param {void} addUser Send this param if you want context of user to be updated
  * @returns
  */
-export const createAddress = async (data: any, user?: IUserFlat) => {
+export const createAddress = async (
+	data: any,
+	user?: IUserFlat,
+	addUser?: (user: IUserFlat) => void,
+) => {
 	try {
 		const response = await http.post<any>('addresses', {
 			data,
@@ -40,7 +46,8 @@ export const createAddress = async (data: any, user?: IUserFlat) => {
 			// update user and refresh user object with relations
 			await updateUser(updatedUser).then(async () => {
 				await getUser(`${user.id}`).then((userResponse: any) => {
-					return userResponse.data;
+					addUser ? addUser(userResponse.data) : null;
+					return userResponse;
 				});
 			});
 		} else {
