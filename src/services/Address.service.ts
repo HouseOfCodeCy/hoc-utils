@@ -28,7 +28,7 @@ export const createAddress = async (data: IAddressBody, user?: IUserFlat) => {
 		const response = await http.post<any>('addresses', {
 			data,
 		});
-		if (user && response.status === StatusCode.CREATED) {
+		if (user && response.status === StatusCode.OK) {
 			const responseData: IAddressFlat = response.data.data;
 			const userAddresses: IAddressFlat[] | undefined =
 				user.addresses?.concat(responseData);
