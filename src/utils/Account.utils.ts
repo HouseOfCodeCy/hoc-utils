@@ -40,7 +40,7 @@ export const printAddressAsString = (address: IAddress | undefined) => {
 		if (address.attributes.address1)
 			addressString += `${address.attributes.address1}, `;
 		if (address.attributes.address2)
-			addressString += `${address.attributes.address1}, `;
+			addressString += `${address.attributes.address2}, `;
 		if (address.attributes.postCode)
 			addressString += `${address.attributes.postCode}, `;
 		if (address.attributes.city.data.attributes.name)
