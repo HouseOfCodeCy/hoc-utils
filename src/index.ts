@@ -114,7 +114,12 @@ export {
 	logoutUser,
 	registerUser,
 } from './services/Account.service';
-export { getAddress } from './services/Address.service';
+export {
+	createAddress,
+	getAddress,
+	getCities,
+	updateAddress,
+} from './services/Address.service';
 export { getBundle, getBundles } from './services/Bundle.service';
 export {
 	createCart,
