@@ -61,8 +61,9 @@ export const printAddressAsStringFlat = (address: IAddressFlat) => {
 	if (address.address1) addressString += `${address.address1}, `;
 	if (address.address2) addressString += `${address.address1}, `;
 	if (address.postCode) addressString += `${address.postCode}, `;
-	if (address.city.name) addressString += `${address.city.name}, `;
-	if (address.city.country.name)
+	if (address.city && address.city.name)
+		addressString += `${address.city.name}, `;
+	if (address.city && address.city.country && address.city.country.name)
 		addressString += `${address.city.country.name}`;
 
 	return addressString;
