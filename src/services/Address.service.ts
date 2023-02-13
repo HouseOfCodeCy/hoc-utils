@@ -1,6 +1,7 @@
-import { IAddressBody } from '../interfaces/account';
-import { PopulateType } from '../resources/enums';
+import { IAddressBody, IAddressFlat, IUserFlat } from '../interfaces/account';
+import { PopulateType, StatusCode } from '../resources/enums';
 import { http } from './common/Http.service';
+import { getUser, updateUser } from './User.service';
 
 export const getAddress = async (
 	addressId: string,
@@ -22,12 +23,29 @@ export const getAddress = async (
  * @param {IAddressBody} data The Address payload for the POST Address API
  * @returns
  */
-export const createAddress = async (data: IAddressBody) => {
+export const createAddress = async (data: IAddressBody, user?: IUserFlat) => {
 	try {
 		const response = await http.post<any>('addresses', {
 			data,
 		});
-		return response;
+		if (user && response.status === StatusCode.CREATED) {
+			const responseData: IAddressFlat = response.data.data;
+			const userAddresses: IAddressFlat[] | undefined =
+				user.addresses?.concat(responseData);
+
+			const updatedUser: IUserFlat = {
+				...user,
+				addresses: userAddresses,
+			};
+			// update user and refresh user object with relations
+			await updateUser(updatedUser).then(async () => {
+				await getUser(`${user.id}`).then((userResponse: any) => {
+					return userResponse.data;
+				});
+			});
+		} else {
+			return response;
+		}
 	} catch (error) {
 		console.log('unexpected error: ', error);
 		return error;
@@ -39,6 +57,7 @@ export const updateAddress = async (addressId: string, data: IAddressBody) => {
 		const response = await http.put<any>(`addresses/${addressId}`, {
 			data,
 		});
+
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
