@@ -35,10 +35,15 @@ export const createAddress = async (
 			data,
 		});
 		if (user && response.status === StatusCode.OK) {
-			const responseData: IAddressFlat = response.data.data;
+			const addedAddress: IAddressFlat = response.data.data;
+			// if user has not addresses, make this added Address default
+			if (user.addresses && user.addresses?.length <= 0) {
+				addedAddress.isDefault = true;
+			}
+			// combine the existing addresses with the new and update addresses
 			const userAddresses: IAddressFlat[] | undefined =
-				user.addresses?.concat(responseData);
-
+				user.addresses?.concat(addedAddress);
+			// update user
 			const updatedUser: IUserFlat = {
 				...user,
 				addresses: userAddresses,
