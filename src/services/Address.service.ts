@@ -31,15 +31,15 @@ export const createAddress = async (
 	addUser?: (user: IUserFlat) => void,
 ) => {
 	try {
+		// if user has not addresses, make this added Address default
+		if (user && user.addresses && user.addresses?.length <= 0) {
+			data.isDefault = true;
+		}
 		const response = await http.post<any>('addresses', {
 			data,
 		});
 		if (user && response.status === StatusCode.OK) {
 			const addedAddress: IAddressFlat = response.data.data;
-			// if user has not addresses, make this added Address default
-			if (user.addresses && user.addresses?.length <= 0) {
-				addedAddress.isDefault = true;
-			}
 			// combine the existing addresses with the new and update addresses
 			const userAddresses: IAddressFlat[] | undefined =
 				user.addresses?.concat(addedAddress);

@@ -59,7 +59,7 @@ export const printAddressAsString = (address: IAddress | undefined) => {
 export const printAddressAsStringFlat = (address: IAddressFlat) => {
 	let addressString = '';
 	if (address.address1) addressString += `${address.address1}, `;
-	if (address.address2) addressString += `${address.address1}, `;
+	if (address.address2) addressString += `${address.address2}, `;
 	if (address.postCode) addressString += `${address.postCode}, `;
 	if (address.city && address.city.name)
 		addressString += `${address.city.name}, `;
