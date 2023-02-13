@@ -7,7 +7,7 @@ export const getAddress = async (
 	populateType = PopulateType.STAR,
 ) => {
 	try {
-		const response = await http.get<any>(`address/${addressId}`, {
+		const response = await http.get<any>(`addresses/${addressId}`, {
 			params: { populate: populateType },
 		});
 		return response;
@@ -24,7 +24,7 @@ export const getAddress = async (
  */
 export const createAddress = async (data: IAddressBody) => {
 	try {
-		const response = await http.post<any>('address', {
+		const response = await http.post<any>('addresses', {
 			data,
 		});
 		return response;
