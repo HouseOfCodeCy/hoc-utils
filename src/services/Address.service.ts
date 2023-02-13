@@ -23,7 +23,7 @@ export const getAddress = async (
  * @param {IAddressBody} data The Address payload for the POST Address API
  * @returns
  */
-export const createAddress = async (data: IAddressBody, user?: IUserFlat) => {
+export const createAddress = async (data: any, user?: IUserFlat) => {
 	try {
 		const response = await http.post<any>('addresses', {
 			data,
