@@ -50,10 +50,12 @@ export const createAddress = async (
 			};
 			// update user and refresh user object with relations
 			await updateUser(updatedUser).then(async () => {
-				await getUser(`${user.id}`).then((userResponse: any) => {
-					addUser ? addUser(userResponse.data) : null;
-					return userResponse;
-				});
+				await getUser(`${user.id}`, PopulateType.DEEP).then(
+					(userResponse: any) => {
+						addUser ? addUser(userResponse.data) : null;
+						return userResponse;
+					},
+				);
 			});
 		} else {
 			return response;
