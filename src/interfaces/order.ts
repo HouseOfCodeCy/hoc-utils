@@ -94,5 +94,6 @@ export interface IShippingMethodOption {
 export interface IShippingMethodOptionBody {
 	name: string;
 	price: number;
+	description: string;
 	shipping_method?: { data: IShippingMethod };
 }
