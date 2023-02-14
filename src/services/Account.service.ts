@@ -1,5 +1,6 @@
 import { IUserBody, IUserFlat } from '../interfaces/account';
 import { http } from './common/Http.service';
+import { getUser } from './User.service';
 
 export const login = async (data: any) => {
 	try {
@@ -24,12 +25,23 @@ export const login = async (data: any) => {
  * @param {IUserBody} payload IUserBody payload
  * @returns
  */
-export const registerUser = async (payload: IUserBody) => {
+export const registerUser = async (
+	payload: IUserBody,
+	addUser?: (user: IUserFlat) => void,
+) => {
 	try {
-		const response = await http.post<any>('auth/local/register', {
+		const response: any = await http.post<any>('auth/local/register', {
 			...payload,
 		});
-		return response;
+		// check if response
+		if (response) {
+			localStorage.setItem('accessToken', response.data.jwt);
+			await getUser(`${response.data.user.id}`).then((userResponse: any) => {
+				localStorage.setItem('user', JSON.stringify(userResponse.data));
+				addUser ? addUser(userResponse.data) : null;
+				return userResponse;
+			});
+		}
 	} catch (error) {
 		console.log('unexpected error: ', error);
 		return error;
@@ -88,7 +100,9 @@ export const logoutUser = (): void => {
 		localStorage.removeItem('user');
 		localStorage.removeItem('accessToken');
 
+		// clear also session storage related items
 		const storage = globalThis?.sessionStorage;
 		storage.removeItem('cartId');
+		storage.removeItem('shippingAddress');
 	}
 };
