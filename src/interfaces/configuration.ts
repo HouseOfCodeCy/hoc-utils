@@ -8,6 +8,8 @@ export interface ConfigurationInterface {
 	inventoryReservationDuration: number;
 	// whether to show stock on categories and product
 	showStockOnCategories: boolean;
+	// the subject of the email for the order email
+	orderEmailSubject: string;
 }
 
 export interface ShopConfigurationInterface {
