@@ -19,4 +19,9 @@ export interface ShopConfigurationInterface {
 	addresses: string[];
 	instragram: string;
 	facebook: string;
+	shopFullName: string;
+	shopShortName: string;
+	shopDescription: string;
+	shopShortDescription: string;
+	favicon: string;
 }
