@@ -45,7 +45,10 @@ export {
 	IResponseInterfaceFull,
 	IResponseSchema,
 } from './interfaces/common/common';
-export { ConfigurationInterface } from './interfaces/configuration';
+export {
+	ConfigurationInterface,
+	ShopConfigurationInterface,
+} from './interfaces/configuration';
 export {
 	IOrder,
 	IOrderBody,
@@ -133,7 +136,9 @@ export {
 export { checkoutCart } from './services/Checkout.service';
 export {
 	getConfiguration,
+	getShopConfiguration,
 	updateConfiguration,
+	updateShopConfiguration,
 } from './services/Configuration.service';
 export {
 	createOrder,
