@@ -1,6 +1,5 @@
 export interface ConfigurationInterface {
 	guestCheckout: boolean;
-	addToCartNeedsAccount: boolean;
 	highAvailabilityThreshold: number;
 	lowAvailabilityThreshold: number;
 	showReviews: boolean;
