@@ -83,7 +83,7 @@ export const getOrderStatuses = async (populateType = PopulateType.STAR) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['order``:asc'],
+				sort: ['order:asc'],
 				populate: populateType,
 			},
 			{
