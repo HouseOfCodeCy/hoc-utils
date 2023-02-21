@@ -78,3 +78,22 @@ export const getOrderPaymentMethods = async (
 		return error;
 	}
 };
+
+export const getOrderStatuses = async (populateType = PopulateType.STAR) => {
+	try {
+		const query = qs.stringify(
+			{
+				sort: ['order``:asc'],
+				populate: populateType,
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`order-statuses?${query}`);
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};

@@ -63,6 +63,8 @@ export interface IOrderStatus {
 
 export interface IOrderStatusBody {
 	name: string;
+	order: number;
+	icon?: string;
 }
 
 export interface IShippingMethodFlat extends IShippingMethodBody {

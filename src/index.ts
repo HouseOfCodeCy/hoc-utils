@@ -145,6 +145,7 @@ export {
 	getOrder,
 	getOrderPaymentMethods,
 	getOrdersByUserId,
+	getOrderStatuses,
 } from './services/Order.service';
 export {
 	getCategoriesByParentCategoryId,
