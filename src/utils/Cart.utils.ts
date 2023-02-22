@@ -145,7 +145,7 @@ export const createCartAndCartAction = async (
 ) => {
 	const data: ICartBody = {
 		action: CartAction.ADD,
-		users_permissions_user: user,
+		user: user,
 	};
 	await createCart(data).then(async (response: any) => {
 		if (response?.status === StatusCode.OK) {
