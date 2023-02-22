@@ -1,3 +1,4 @@
+import qs from 'qs';
 import { IAddressBody, IAddressFlat, IUserFlat } from '../interfaces/account';
 import { PopulateType, StatusCode } from '../resources/enums';
 import { http } from './common/Http.service';
@@ -11,6 +12,35 @@ export const getAddress = async (
 		const response = await http.get<any>(`addresses/${addressId}`, {
 			params: { populate: populateType },
 		});
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const getAddressesByUserId = async (
+	userId: string,
+	populateType = PopulateType.DEEP,
+) => {
+	try {
+		const query = qs.stringify(
+			{
+				sort: ['id:asc'],
+				populate: populateType,
+				filters: {
+					user: {
+						id: {
+							$eq: userId,
+						},
+					},
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`addresses?${query}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
@@ -66,7 +96,11 @@ export const createAddress = async (
 	}
 };
 
-export const updateAddress = async (addressId: string, data: IAddressBody) => {
+export const updateAddress = async (
+	addressId: string,
+	data: IAddressBody,
+	addUser?: (user: IUserFlat) => void,
+) => {
 	try {
 		const response = await http.put<any>(`addresses/${addressId}`, {
 			data,

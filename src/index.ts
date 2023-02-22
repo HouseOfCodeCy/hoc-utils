@@ -120,6 +120,7 @@ export {
 export {
 	createAddress,
 	getAddress,
+	getAddressesByUserId,
 	getCities,
 	updateAddress,
 } from './services/Address.service';

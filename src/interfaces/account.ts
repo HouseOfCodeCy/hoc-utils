@@ -40,6 +40,7 @@ export interface IAddressBodyFlat {
 	telephone: string;
 	city: ICityFlat;
 	isDefault: boolean;
+	user: IUser;
 }
 
 export interface IAddressBody {
@@ -50,6 +51,7 @@ export interface IAddressBody {
 	telephone: string;
 	city: { data: ICity };
 	isDefault: boolean;
+	user?: { data: IUser };
 }
 
 export interface ICity {
