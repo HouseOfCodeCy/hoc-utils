@@ -27,9 +27,11 @@ export const getOrdersByUserId = async (
 				sort: ['id:asc'],
 				populate: populateType,
 				filters: {
-					user: {
-						id: {
-							$eq: userId,
+					cart: {
+						user: {
+							id: {
+								$eq: userId,
+							},
 						},
 					},
 				},

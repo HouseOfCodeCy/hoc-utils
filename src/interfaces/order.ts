@@ -1,4 +1,4 @@
-import { IAddress, IAddressFlat, IUser, IUserFlat } from './account';
+import { IAddress, IAddressFlat, IUserFlat } from './account';
 import { ICartFlat, ICartResponse } from './cart';
 
 export interface IOrderFlat extends IOrderBodyFlat {
@@ -27,7 +27,6 @@ export interface IOrderBody {
 	order_payment_method: { data: IOrderPaymentMethod };
 	order_status: { data: IOrderStatus };
 	shipping_method_option: { data: IShippingMethodOption };
-	user: { data: IUser };
 	createdAt: string;
 	updatedAt: string;
 }
