@@ -22,7 +22,7 @@ export interface ICart {
 export interface ICartBody {
 	action: CartAction;
 	status?: CartStatus;
-	users_permissions_user?: IUser;
+	user?: IUser;
 	cart_items?: ICartItem[];
 }
 
@@ -33,7 +33,7 @@ export interface ICartFlat extends ICartBodyFlat {
 export interface ICartBodyFlat {
 	action: CartAction;
 	status?: CartStatus;
-	users_permissions_user?: IUserFlat;
+	user?: IUserFlat;
 	cart_items?: ICartItemFlat[];
 }
 
@@ -45,7 +45,7 @@ export interface ICartResponse {
 export interface ICartBodyResponse {
 	action: CartAction;
 	status?: CartStatus;
-	users_permissions_user?: { data: IUser };
+	user?: { data: IUser };
 	cart_items?: { data: ICartItemResponse[] };
 }
 

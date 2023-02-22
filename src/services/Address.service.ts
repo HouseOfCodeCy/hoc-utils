@@ -1,8 +1,7 @@
 import qs from 'qs';
-import { IAddressBody, IAddressFlat, IUserFlat } from '../interfaces/account';
-import { PopulateType, StatusCode } from '../resources/enums';
+import { IAddressBody, IUserFlat } from '../interfaces/account';
+import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
-import { getUser, updateUser } from './User.service';
 
 export const getAddress = async (
 	addressId: string,
@@ -61,35 +60,10 @@ export const createAddress = async (
 	addUser?: (user: IUserFlat) => void,
 ) => {
 	try {
-		// if user has not addresses, make this added Address default
-		if (user && user.addresses && user.addresses?.length <= 0) {
-			data.isDefault = true;
-		}
 		const response = await http.post<any>('addresses', {
 			data,
 		});
-		if (user && response.status === StatusCode.OK) {
-			const addedAddress: IAddressFlat = response.data.data;
-			// combine the existing addresses with the new and update addresses
-			const userAddresses: IAddressFlat[] | undefined =
-				user.addresses?.concat(addedAddress);
-			// update user
-			const updatedUser: IUserFlat = {
-				...user,
-				addresses: userAddresses,
-			};
-			// update user and refresh user object with relations
-			await updateUser(updatedUser).then(async () => {
-				await getUser(`${user.id}`, PopulateType.DEEP).then(
-					(userResponse: any) => {
-						addUser ? addUser(userResponse.data) : null;
-						return userResponse;
-					},
-				);
-			});
-		} else {
-			return response;
-		}
+		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
 		return error;

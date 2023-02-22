@@ -10,7 +10,7 @@ export interface IReview {
 	attributes: IReviewBody;
 }
 export interface IReviewBody {
-	users_permissions_user: { data: IUser };
+	user: { data: IUser };
 	reviewDescription: string;
 	title: string;
 	rating: number;
