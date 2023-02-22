@@ -31,6 +31,7 @@ export const checkoutCartAndUpdateProductInventory = async (
 		order_payment_method: orderPayload.order_payment_method.id,
 		shipping_method_option: orderPayload.shipping_method_option.id,
 		order_status: orderPayload.order_status.id,
+		user: orderPayload.user.id,
 	};
 	const orderResponse: any = await createOrder(newOrderPayload);
 	const cartId = orderPayload.cart.id;
