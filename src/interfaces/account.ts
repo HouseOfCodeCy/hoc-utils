@@ -1,5 +1,4 @@
 import { IProductFlat } from './product';
-import { IReviewFlat } from './review';
 
 export interface IUserFlat extends IUserBody {
 	id?: string;
@@ -17,7 +16,6 @@ export interface IUserBody {
 	password: string;
 	telephone: string;
 	favorite_products?: IProductFlat[];
-	reviews?: IReviewFlat[];
 }
 
 export interface IAddress {
