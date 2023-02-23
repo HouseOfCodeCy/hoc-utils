@@ -124,7 +124,6 @@ export const getProductInventoryByAll = async (
 			},
 		);
 		const response = await http.get<any>(`product-inventories?${query}`);
-		console.log(response);
 
 		return response;
 	} catch (error) {

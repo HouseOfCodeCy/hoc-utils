@@ -1,10 +1,18 @@
+import qs from 'qs';
 import { http } from './common/Http.service';
 
 export const getReviews = async () => {
 	try {
-		const response = await http.get<any>(`reviews?`, {
-			params: { populate: 'user' },
-		});
+		const query = qs.stringify(
+			{
+				sort: ['updatedAt:asc'],
+				populate: 'user',
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`reviews?${query}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
@@ -14,12 +22,23 @@ export const getReviews = async () => {
 
 export const getReviewsByUserId = async (userId: string) => {
 	try {
-		const response = await http.get<any>(
-			`reviews?filters[user][id][$eq]=${userId}`,
+		const query = qs.stringify(
 			{
-				params: { populate: 'user' },
+				sort: ['updatedAt:asc'],
+				populate: 'user',
+				filters: {
+					user: {
+						id: {
+							$eq: userId,
+						},
+					},
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
 			},
 		);
+		const response = await http.get<any>(`reviews?${query}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
