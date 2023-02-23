@@ -14,5 +14,7 @@ export interface IReviewBody {
 	reviewDescription: string;
 	title: string;
 	rating: number;
-	product: IProductFlat;
+	product?: IProductFlat;
+	createdAt: string;
+	updatedAt: string;
 }
