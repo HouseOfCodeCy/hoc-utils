@@ -1,12 +1,12 @@
 import {
-	ConfigurationInterface,
+	CommerceConfigurationInterface,
 	ShopConfigurationInterface,
 } from '../interfaces/configuration';
 import { http } from './common/Http.service';
 
-export const getConfiguration = async () => {
+export const getCommerceConfiguration = async () => {
 	try {
-		const response = await http.get<any>(`app-configuration`, {
+		const response = await http.get<any>(`commerce-configuration`, {
 			params: { populate: 'deep' },
 		});
 		return response;
@@ -16,8 +16,8 @@ export const getConfiguration = async () => {
 	}
 };
 
-export const updateConfiguration = async (data: {
-	data: ConfigurationInterface;
+export const updateCommerceConfiguration = async (data: {
+	data: CommerceConfigurationInterface;
 }) => {
 	try {
 		const response = await http.put<any>(`shop-configuration`, {

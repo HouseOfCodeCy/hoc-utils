@@ -1,4 +1,4 @@
-export interface ConfigurationInterface {
+export interface CommerceConfigurationInterface {
 	guestCheckout: boolean;
 	highAvailabilityThreshold: number;
 	lowAvailabilityThreshold: number;

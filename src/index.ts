@@ -46,7 +46,7 @@ export {
 	IResponseSchema,
 } from './interfaces/common/common';
 export {
-	ConfigurationInterface,
+	CommerceConfigurationInterface,
 	ShopConfigurationInterface,
 } from './interfaces/configuration';
 export {
@@ -136,9 +136,9 @@ export {
 } from './services/Cart.service';
 export { checkoutCart } from './services/Checkout.service';
 export {
-	getConfiguration,
+	getCommerceConfiguration,
 	getShopConfiguration,
-	updateConfiguration,
+	updateCommerceConfiguration,
 	updateShopConfiguration,
 } from './services/Configuration.service';
 export {
