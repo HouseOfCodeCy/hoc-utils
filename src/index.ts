@@ -165,7 +165,11 @@ export {
 	getProductInventoryByProduct,
 	updateProductInventory,
 } from './services/ProductInventory.service';
-export { getReviews, getReviewsByUserId } from './services/Reviews.service';
+export {
+	getReviews,
+	getReviewsByUserId,
+	updateReview,
+} from './services/Reviews.service';
 export { getSections } from './services/Sections.service';
 export {
 	getShippingMethods,
