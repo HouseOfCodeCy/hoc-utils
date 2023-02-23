@@ -10,11 +10,11 @@ export interface IReview {
 	attributes: IReviewBody;
 }
 export interface IReviewBody {
-	user: { data: IUser };
 	reviewDescription: string;
 	title: string;
 	rating: number;
+	user?: { data: IUser };
 	product?: { data: IProduct };
-	createdAt: string;
-	updatedAt: string;
+	createdAt?: string;
+	updatedAt?: string;
 }
