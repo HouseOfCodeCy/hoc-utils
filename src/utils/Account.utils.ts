@@ -22,7 +22,21 @@ export const tranformUserFlatToUser = (userFlat: IUserFlat): IUser => {
  * @param addresses User address
  * @returns Returns default address, or the first one if not marked as default
  */
-export const getDefaultAddress = (addresses: IAddressFlat[]): IAddressFlat => {
+export const getDefaultAddress = (addresses: IAddress[]): IAddress => {
+	const defaultAddress = addresses.find((address) => {
+		return address.attributes.isDefault;
+	});
+	return defaultAddress ? defaultAddress : addresses[0];
+};
+
+/**
+ * Returns default address, or first address in the list
+ * @param addresses User address
+ * @returns Returns default address, or the first one if not marked as default
+ */
+export const getDefaultAddressFlat = (
+	addresses: IAddressFlat[],
+): IAddressFlat => {
 	const defaultAddress = addresses.find((address) => {
 		return address.isDefault;
 	});

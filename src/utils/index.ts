@@ -1,5 +1,6 @@
 import {
 	getDefaultAddress,
+	getDefaultAddressFlat,
 	printAddressAsString,
 	printAddressAsStringFlat,
 	tranformUserFlatToUser,
@@ -88,6 +89,7 @@ export const AccountUtils = {
 	tranformUserFlatToUser,
 	printAddressAsStringFlat,
 	getDefaultAddress,
+	getDefaultAddressFlat,
 	printAddressAsString,
 };
 export const ProductInventoryUtils = {
