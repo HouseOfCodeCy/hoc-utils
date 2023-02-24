@@ -80,7 +80,7 @@ export const getReviewsByUserId = async (
 	}
 };
 
-export const createReview = async (data: any) => {
+export const createReview = async (data: IReviewBody) => {
 	try {
 		const response = await http.post<any>(`/reviews`, {
 			data,
