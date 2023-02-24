@@ -50,10 +50,10 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN_PACKAGES }}
       # Trigger Upstream Repos (hoc-components-*)
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.UPSTREAM_ACTION }}
-          repository: houseofcodecy/hoc-components-mui
-          event-type: trigger-from-utils
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+      # - name: Repository Dispatch
+      #   uses: peter-evans/repository-dispatch@v2
+      #   with:
+      #     token: ${{ secrets.UPSTREAM_ACTION }}
+      #     repository: houseofcodecy/hoc-components-mui
+      #     event-type: trigger-from-utils
+      #     client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
