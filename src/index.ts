@@ -168,6 +168,7 @@ export {
 export {
 	getReviews,
 	getReviewsByUserId,
+	getReviewsFromProductId,
 	updateReview,
 } from './services/Reviews.service';
 export { getSections } from './services/Sections.service';

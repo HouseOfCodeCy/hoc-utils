@@ -21,6 +21,32 @@ export const getReviews = async () => {
 	}
 };
 
+export const getReviewsFromProductId = async (productId: string) => {
+	try {
+		const query = qs.stringify(
+			{
+				sort: ['updatedAt:asc'],
+				populate: 'user',
+				filters: {
+					product: {
+						id: {
+							$eq: productId,
+						},
+					},
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`reviews?${query}`);
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
 export const getReviewsByUserId = async (userId: string) => {
 	try {
 		const query = qs.stringify(
