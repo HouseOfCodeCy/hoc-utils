@@ -3,7 +3,7 @@ import { IReviewBody } from '../interfaces/review';
 import { PopulateType, SortType } from '../resources/enums';
 import { http } from './common/Http.service';
 
-export const getReviews = async (sortType = SortType.UPDATED_AT_DESC) => {
+export const getAllReviews = async (sortType = SortType.UPDATED_AT_DESC) => {
 	try {
 		const query = qs.stringify(
 			{

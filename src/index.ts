@@ -168,7 +168,7 @@ export {
 export {
 	createReview,
 	deleteReview,
-	getReviews,
+	getAllReviews,
 	getReviewsByProductId,
 	getReviewsByUserId,
 	updateReview,
