@@ -80,6 +80,18 @@ export const getReviewsByUserId = async (
 	}
 };
 
+export const createReview = async (data: any) => {
+	try {
+		const response = await http.post<any>(`/reviews`, {
+			data,
+		});
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
 export const updateReview = async (reviewId: string, data: IReviewBody) => {
 	try {
 		const response = await http.put<any>(`reviews/${reviewId}`, {

@@ -166,6 +166,7 @@ export {
 	updateProductInventory,
 } from './services/ProductInventory.service';
 export {
+	createReview,
 	getReviews,
 	getReviewsByUserId,
 	getReviewsFromProductId,
