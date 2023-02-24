@@ -1,13 +1,14 @@
 import qs from 'qs';
 import { IReviewBody } from '../interfaces/review';
+import { PopulateType, SortType } from '../resources/enums';
 import { http } from './common/Http.service';
 
-export const getReviews = async () => {
+export const getReviews = async (sortType = SortType.UPDATED_AT_DESC) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['updatedAt:desc'],
-				populate: 'user',
+				sort: [sortType],
+				populate: PopulateType.USER,
 			},
 			{
 				encodeValuesOnly: true, // prettify URL
@@ -21,12 +22,15 @@ export const getReviews = async () => {
 	}
 };
 
-export const getReviewsFromProductId = async (productId: string) => {
+export const getReviewsFromProductId = async (
+	productId: string,
+	sortType = SortType.UPDATED_AT_DESC,
+) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['updatedAt:desc'],
-				populate: 'user',
+				sort: [sortType],
+				populate: PopulateType.USER,
 				filters: {
 					product: {
 						id: {
@@ -47,12 +51,15 @@ export const getReviewsFromProductId = async (productId: string) => {
 	}
 };
 
-export const getReviewsByUserId = async (userId: string) => {
+export const getReviewsByUserId = async (
+	userId: string,
+	sortType = SortType.UPDATED_AT_DESC,
+) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['updatedAt:desc'],
-				populate: 'product',
+				sort: [sortType],
+				populate: PopulateType.PRODUCT,
 				filters: {
 					user: {
 						id: {

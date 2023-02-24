@@ -25,9 +25,18 @@ export enum CartStatus {
 }
 
 export enum PopulateType {
+	PRODUCT = 'product',
+	USER = 'user',
 	DEEP = 'deep',
 	STAR = '*',
 	NONE = '',
+}
+
+export enum SortType {
+	UPDATED_AT_DESC = 'updatedAt:desc',
+	UPDATED_AT_ASC = 'updatedAt:asc',
+	CREATED_AT_DESC = 'createdAt:desc',
+	CREATED_AT_ASC = 'createdAt:asc',
 }
 
 export enum DateTypes {
