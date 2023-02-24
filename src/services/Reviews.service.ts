@@ -51,7 +51,7 @@ export const getReviewsByUserId = async (userId: string) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['updatedAt:asc'],
+				sort: ['updatedAt:desc'],
 				populate: 'product',
 				filters: {
 					user: {
