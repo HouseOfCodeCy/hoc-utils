@@ -167,9 +167,10 @@ export {
 } from './services/ProductInventory.service';
 export {
 	createReview,
+	deleteReview,
 	getReviews,
+	getReviewsByProductId,
 	getReviewsByUserId,
-	getReviewsFromProductId,
 	updateReview,
 } from './services/Reviews.service';
 export { getSections } from './services/Sections.service';

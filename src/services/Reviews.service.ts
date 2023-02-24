@@ -22,7 +22,7 @@ export const getReviews = async (sortType = SortType.UPDATED_AT_DESC) => {
 	}
 };
 
-export const getReviewsFromProductId = async (
+export const getReviewsByProductId = async (
 	productId: string,
 	sortType = SortType.UPDATED_AT_DESC,
 ) => {
@@ -98,6 +98,16 @@ export const updateReview = async (reviewId: string, data: IReviewBody) => {
 			data,
 		});
 
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const deleteReview = async (reviewId: string) => {
+	try {
+		const response = await http.delete<any>(`reviews/${reviewId}`);
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
