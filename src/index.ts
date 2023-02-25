@@ -30,12 +30,13 @@ export {
 	ICartResponse,
 } from './interfaces/cart';
 export {
-	IProductCategory,
-	IProductCategoryBody,
-	IProductCategoryParent,
-	IProductCategoryParentBody,
-	IProductSubCategory,
-	IProductSubCategoryBody,
+	ICategoryCommonBody,
+	ICategoryLevel1,
+	ICategoryLevel1Body,
+	ICategoryLevel2,
+	ICategoryLevel2Body,
+	ICategoryLevel3,
+	ICategoryLevel3Body,
 } from './interfaces/category';
 export { ICheckoutBody, ICheckoutPayload } from './interfaces/checkout';
 export {
@@ -149,12 +150,13 @@ export {
 	getOrderStatuses,
 } from './services/Order.service';
 export {
-	getCategoriesByParentCategoryId,
+	getCategoriesLevel1,
+	getCategoriesLevel2,
+	getCategoriesLevel3,
 	getFeaturedProducts,
 	getProduct,
-	getProductCategories,
-	getProductParentCategories,
 	getProducts,
+	getProductsByCategoryLevel3Id,
 } from './services/Product.service';
 export {
 	createProductInventory,

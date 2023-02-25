@@ -1,35 +1,36 @@
 import { IProduct } from './product';
 
-/** CATEGORIES PARENT */
-export interface IProductCategoryParent {
-	id: string;
-	attributes: IProductCategoryParentBody;
-}
-export interface IProductCategoryParentBody {
+/** CATEGORIES COMMON */
+export interface ICategoryCommonBody {
 	name: string;
-	description: string;
-	product_categories: { data: IProductCategory[] };
+	description?: string;
 	icon?: string;
 }
 
 /** CATEGORIES */
-export interface IProductCategory {
+export interface ICategoryLevel1 {
 	id: string;
-	attributes: IProductCategoryBody;
+	attributes: ICategoryLevel1Body;
 }
 
-export interface IProductCategoryBody {
-	name: string;
-	product_category_parent: { data: IProductCategoryParent };
-	product_sub_categories: { data: IProductSubCategory[] };
+export interface ICategoryLevel1Body extends ICategoryCommonBody {
+	categories_level_2: { data: ICategoryLevel2[] };
 }
 
-/** SUB CATEGORIES */
-export interface IProductSubCategory {
+export interface ICategoryLevel2 {
+	id: string;
+	attributes: ICategoryLevel2Body;
+}
+
+export interface ICategoryLevel2Body extends ICategoryCommonBody {
+	categories_level_3: { data: ICategoryLevel3[] };
+}
+
+export interface ICategoryLevel3 {
 	id: number;
-	attributes: IProductSubCategoryBody;
+	attributes: ICategoryLevel3Body;
 }
-export interface IProductSubCategoryBody {
-	name: string;
+
+export interface ICategoryLevel3Body extends ICategoryCommonBody {
 	products: { data: IProduct[] };
 }

@@ -29,6 +29,10 @@ export enum PopulateType {
 	USER = 'user',
 	DEEP = 'deep',
 	STAR = '*',
+	CATEGORIES_LEVEL_1 = 'categories_level_1',
+	CATEGORIES_LEVEL_2 = 'categories_level_2',
+	CATEGORIES_LEVEL_2_LEVEL_3 = 'categories_level_2.categories_level_3',
+	CATEGORIES_LEVEL_3 = 'categories_level_3',
 	NONE = '',
 }
 
