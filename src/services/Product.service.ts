@@ -25,10 +25,10 @@ export const getProductsByCategoryLevel3Id = async (
 				populate: populateType,
 				filters: categoryLevel3Id
 					? {
-						id: {
-							$eq: categoryLevel3Id,
-						},
-					}
+							id: {
+								$eq: categoryLevel3Id,
+							},
+					  }
 					: null,
 			},
 			{
