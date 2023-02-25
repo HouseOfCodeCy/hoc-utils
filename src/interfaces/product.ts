@@ -1,6 +1,5 @@
 import { ProductInventoryActions } from '../resources/enums';
 import { ICartItemResponse } from './cart';
-import { IProductCategory, IProductSubCategory } from './category';
 
 /** PRODUCT */
 export interface IProductFlat extends IProductBody {
@@ -16,12 +15,10 @@ export interface IProductBody {
 	description: string;
 	price: number;
 	mediaUrls?: string[];
-	category?: IProductCategory;
 	sku?: string;
 	extraDescription?: string;
 	product_sizes?: { data: IProductSize[] };
 	product_colors?: { data: IProductColor[] };
-	product_sub_categories?: { data: IProductSubCategory[] };
 	product_brand?: { data: IProductBrand };
 	product_discount?: { data: IProductDiscount };
 	product_compatibilities?: { data: IProductCompatibility[] };
