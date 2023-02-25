@@ -16,7 +16,7 @@ export const getProducts = async (populateType = PopulateType.STAR) => {
 
 export const getProductsByCategoryLevel3Id = async (
 	categoryLevel3Id?: string,
-	populateType: PopulateType[] = [PopulateType.PRODUCT],
+	populateType: PopulateType[] = [PopulateType.PRODUCTS],
 ) => {
 	try {
 		const query = qs.stringify(
@@ -25,10 +25,10 @@ export const getProductsByCategoryLevel3Id = async (
 				populate: populateType,
 				filters: categoryLevel3Id
 					? {
-							id: {
-								$eq: categoryLevel3Id,
-							},
-					  }
+						id: {
+							$eq: categoryLevel3Id,
+						},
+					}
 					: null,
 			},
 			{

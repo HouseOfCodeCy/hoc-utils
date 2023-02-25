@@ -26,6 +26,7 @@ export enum CartStatus {
 
 export enum PopulateType {
 	PRODUCT = 'product',
+	PRODUCTS = 'products',
 	USER = 'user',
 	DEEP = 'deep',
 	STAR = '*',
@@ -33,6 +34,10 @@ export enum PopulateType {
 	CATEGORIES_LEVEL_2 = 'categories_level_2',
 	CATEGORIES_LEVEL_2_LEVEL_3 = 'categories_level_2.categories_level_3',
 	CATEGORIES_LEVEL_3 = 'categories_level_3',
+	PRODUCTS_PRODUCT_COLOR = 'products.product_colors',
+	PRODUCTS_PRODUCT_SIZE = 'products.product_sizes',
+	PRODUCT_COLOR = 'product_color',
+	PRODUCT_SIZE = 'product_size',
 	NONE = '',
 }
 
