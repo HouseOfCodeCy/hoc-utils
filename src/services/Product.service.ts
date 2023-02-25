@@ -13,10 +13,10 @@ export const getCategoriesLevel1 = async (
 				populate: populateType,
 				filters: categoryLevel1Id
 					? {
-						id: {
-							$eq: categoryLevel1Id,
-						},
-					}
+							id: {
+								$eq: categoryLevel1Id,
+							},
+					  }
 					: null,
 			},
 			{
@@ -43,10 +43,10 @@ export const getCategoriesLevel2 = async (
 				populate: populateType,
 				filters: categoryLevel2Id
 					? {
-						id: {
-							$eq: categoryLevel2Id,
-						},
-					}
+							id: {
+								$eq: categoryLevel2Id,
+							},
+					  }
 					: null,
 			},
 			{
@@ -73,10 +73,10 @@ export const getCategoriesLevel3 = async (
 				populate: populateType,
 				filters: categoryLevel3Id
 					? {
-						id: {
-							$eq: categoryLevel3Id,
-						},
-					}
+							id: {
+								$eq: categoryLevel3Id,
+							},
+					  }
 					: null,
 			},
 			{
@@ -115,10 +115,10 @@ export const getProductsByCategoryLevel3Id = async (
 				populate: populateType,
 				filters: categoryLevel3Id
 					? {
-						id: {
-							$eq: categoryLevel3Id,
-						},
-					}
+							id: {
+								$eq: categoryLevel3Id,
+							},
+					  }
 					: null,
 			},
 			{
