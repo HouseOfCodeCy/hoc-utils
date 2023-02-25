@@ -135,6 +135,11 @@ export {
 	updateCart,
 	updateCartItem,
 } from './services/Cart.service';
+export {
+	getCategoriesLevel1,
+	getCategoriesLevel2,
+	getCategoriesLevel3,
+} from './services/Category.service';
 export { checkoutCart } from './services/Checkout.service';
 export {
 	getCommerceConfiguration,
@@ -150,9 +155,6 @@ export {
 	getOrderStatuses,
 } from './services/Order.service';
 export {
-	getCategoriesLevel1,
-	getCategoriesLevel2,
-	getCategoriesLevel3,
 	getFeaturedProducts,
 	getProduct,
 	getProducts,
