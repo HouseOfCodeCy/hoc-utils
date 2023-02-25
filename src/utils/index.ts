@@ -41,7 +41,7 @@ import {
 import {
 	addProductToFavorites,
 	calculatePriceWithQuantity,
-	calculateProductCategories,
+	// calculateProductCategories,
 	calculateProductPrice,
 	getBrandAcronym,
 	getProductMediaUrls,
@@ -103,7 +103,7 @@ export const ProductInventoryUtils = {
 };
 export const ProductUtils = {
 	calculatePriceWithQuantity,
-	calculateProductCategories,
+	// calculateProductCategories,
 	printPriceRanges,
 	getProductMediaUrls,
 	quantityHandle,

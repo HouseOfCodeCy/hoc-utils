@@ -28,26 +28,26 @@ export const quantityHandle = (quantity: number, increment: boolean) => {
  * @param product
  * @returns
  */
-export const calculateProductCategories = (product: IProduct) => {
-	const productCategories: string[] = [];
-	if (
-		product &&
-		product.attributes.product_sub_categories &&
-		product.attributes.product_sub_categories.data.length >= 0
-	) {
-		product.attributes.product_sub_categories.data.map(
-			(category: any, index: number) => {
-				product.attributes.product_sub_categories &&
-					productCategories.push(
-						index !== product.attributes.product_sub_categories.data.length - 1
-							? `${category.attributes.name}, `
-							: category.attributes.name,
-					);
-			},
-		);
-	}
-	return productCategories;
-};
+// export const calculateProductCategories = (product: IProduct) => {
+// 	const productCategories: string[] = [];
+// 	if (
+// 		product &&
+// 		product.attributes.product_sub_categories &&
+// 		product.attributes.product_sub_categories.data.length >= 0
+// 	) {
+// 		product.attributes.product_sub_categories.data.map(
+// 			(category: any, index: number) => {
+// 				product.attributes.product_sub_categories &&
+// 					productCategories.push(
+// 						index !== product.attributes.product_sub_categories.data.length - 1
+// 							? `${category.attributes.name}, `
+// 							: category.attributes.name,
+// 					);
+// 			},
+// 		);
+// 	}
+// 	return productCategories;
+// };
 
 export const calculatePriceWithQuantity = (
 	price: number,
