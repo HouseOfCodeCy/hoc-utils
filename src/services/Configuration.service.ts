@@ -2,12 +2,15 @@ import {
 	CommerceConfigurationInterface,
 	ShopConfigurationInterface,
 } from '../interfaces/configuration';
+import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
-export const getCommerceConfiguration = async () => {
+export const getCommerceConfiguration = async (
+	populateType = PopulateType.STAR,
+) => {
 	try {
 		const response = await http.get<any>(`commerce-configuration`, {
-			params: { populate: 'deep' },
+			params: { populate: populateType },
 		});
 		return response;
 	} catch (error) {
@@ -30,10 +33,12 @@ export const updateCommerceConfiguration = async (data: {
 	}
 };
 
-export const getShopConfiguration = async () => {
+export const getShopConfiguration = async (
+	populateType = PopulateType.STAR,
+) => {
 	try {
 		const response = await http.get<any>(`shop-configuration`, {
-			params: { populate: 'deep' },
+			params: { populate: populateType },
 		});
 		return response;
 	} catch (error) {

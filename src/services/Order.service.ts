@@ -19,7 +19,16 @@ export const getOrder = async (
 
 export const getOrdersByUserId = async (
 	userId: string,
-	populateType = PopulateType.DEEP,
+	populateType: PopulateType[] = [
+		PopulateType.ADDRESS,
+		PopulateType.CART,
+		PopulateType.CART_CART_ITEMS,
+		PopulateType.CART_CART_ITEMS_PRODUCT_COLOR,
+		PopulateType.CART_CART_ITEMS_PRODUCT_SIZE,
+		PopulateType.PAYMENT_METHOD,
+		PopulateType.ORDER_STATUS,
+		PopulateType.SHOPPING_METHOD_OPTION,
+	],
 ) => {
 	try {
 		const query = qs.stringify(

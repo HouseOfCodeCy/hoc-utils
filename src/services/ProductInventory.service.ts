@@ -37,11 +37,46 @@ export const getProductInventory = async (
 	}
 };
 
-export const getProductInventoryByProduct = async (productId: string) => {
+export const getProductInventoryByProduct = async (
+	productId: string,
+	populateType: PopulateType[] = [
+		PopulateType.CART_ITEM,
+		PopulateType.PRODUCT_COLOR,
+		PopulateType.PRODUCT_SIZE,
+	],
+) => {
 	try {
-		const response = await http.get<any>(
-			`product-inventories?filters[$or][0][cart_item][product][id][$eq]=${productId}&filters[$or][1][product][id][$eq]=${productId}`,
+		const query = qs.stringify(
+			{
+				sort: ['id:asc'],
+				populate: populateType,
+				filters: {
+					$or: [
+						{
+							cart_item: {
+								product: {
+									id: {
+										$eq: productId,
+									},
+								},
+							},
+						},
+						{
+							product: {
+								id: {
+									$eq: productId,
+								},
+							},
+						},
+					],
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
 		);
+		const response = await http.get<any>(`product-inventories?${query}`);
+
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
@@ -51,7 +86,11 @@ export const getProductInventoryByProduct = async (productId: string) => {
 
 export const getProductInventoryByAll = async (
 	product: IProduct,
-	populate = PopulateType.DEEP,
+	populateType: PopulateType[] = [
+		PopulateType.CART_ITEM,
+		PopulateType.PRODUCT_COLOR,
+		PopulateType.PRODUCT_SIZE,
+	],
 ) => {
 	try {
 		// get unique colors of given product
@@ -65,7 +104,7 @@ export const getProductInventoryByAll = async (
 		const query = qs.stringify(
 			{
 				sort: ['id:asc'],
-				populate: populate,
+				populate: populateType,
 				filters: {
 					$or: [
 						{

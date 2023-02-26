@@ -43,6 +43,15 @@ export enum PopulateType {
 	PRODUCT_COMPATIBILITIES = 'product_compatibilities',
 	CITY = 'city',
 	CITY_COUNTRY = 'city.country',
+	ADDRESS = 'address',
+	CART = 'cart',
+	CART_ITEM = 'cart_item',
+	CART_CART_ITEMS = 'cart.cart_items',
+	CART_CART_ITEMS_PRODUCT_COLOR = 'cart.cart_items.product_color',
+	CART_CART_ITEMS_PRODUCT_SIZE = 'cart.cart_items.product_size',
+	PAYMENT_METHOD = 'order_payment_method',
+	ORDER_STATUS = 'order_status',
+	SHOPPING_METHOD_OPTION = 'shipping_method_option',
 	NONE = '',
 }
 
