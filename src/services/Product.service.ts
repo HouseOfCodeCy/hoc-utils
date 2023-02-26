@@ -50,7 +50,7 @@ export const getProduct = async (
 		PopulateType.PRODUCT_COLOR,
 		PopulateType.PRODUCT_SIZE,
 		PopulateType.PRODUCT_BRAND,
-		PopulateType.CATEGORY_LEVEL_3,
+		PopulateType.CATEGORIES_LEVEL_3,
 		PopulateType.PRODUCT_COMPATIBILITIES,
 	],
 ) => {
