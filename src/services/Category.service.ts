@@ -9,7 +9,7 @@ export const getCategoriesLevel1 = async (
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['id:desc'],
+				sort: ['order:asc'],
 				populate: populateType,
 				filters: categoryLevel1Id
 					? {
@@ -39,7 +39,7 @@ export const getCategoriesLevel2 = async (
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['id:desc'],
+				sort: ['order:asc'],
 				populate: populateType,
 				filters: categoryLevel2Id
 					? {
@@ -69,7 +69,7 @@ export const getCategoriesLevel3 = async (
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['id:desc'],
+				sort: ['order:asc'],
 				populate: populateType,
 				filters: categoryLevel3Id
 					? {
