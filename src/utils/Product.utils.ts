@@ -33,7 +33,7 @@ export const calculateProductCategories = (product: IProduct) => {
 	if (
 		product &&
 		product.attributes.categories_level_3 &&
-		product.attributes.categories_level_3.data.length >= 0
+		product.attributes.categories_level_3.data?.length >= 0
 	) {
 		product.attributes.categories_level_3.data.map(
 			(category: any, index: number) => {
