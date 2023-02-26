@@ -46,12 +46,25 @@ export const getProductsByCategoryLevel3Id = async (
 
 export const getProduct = async (
 	productId: string,
-	populateType = PopulateType.DEEP,
+	populateType: PopulateType[] = [
+		PopulateType.PRODUCT_COLOR,
+		PopulateType.PRODUCT_SIZE,
+		PopulateType.PRODUCT_BRAND,
+		PopulateType.PRODUCT_COMPATIBILITIES,
+	],
 ) => {
 	try {
-		const response = await http.get<any>(`products/${productId}`, {
-			params: { populate: populateType },
-		});
+		const query = qs.stringify(
+			{
+				sort: ['id:desc'],
+				populate: populateType,
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`products/${productId}?${query}`);
+
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);

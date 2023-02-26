@@ -38,6 +38,11 @@ export enum PopulateType {
 	PRODUCTS_PRODUCT_SIZE = 'products.product_sizes',
 	PRODUCT_COLOR = 'product_color',
 	PRODUCT_SIZE = 'product_size',
+	PRODUCT_BRAND = 'product_brand',
+	PRODUCT_INVENTORIES = 'product_inventories',
+	PRODUCT_COMPATIBILITIES = 'product_compatibilities',
+	CITY = 'city',
+	CITY_COUNTRY = 'city.country',
 	NONE = '',
 }
 

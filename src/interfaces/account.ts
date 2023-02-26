@@ -35,7 +35,7 @@ export interface IAddressBodyFlat {
 	telephone: string;
 	city: ICityFlat;
 	isDefault: boolean;
-	user: IUser;
+	user?: IUser;
 }
 
 export interface IAddressBody {

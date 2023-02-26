@@ -20,7 +20,7 @@ export const getAddress = async (
 
 export const getAddressesByUserId = async (
 	userId: string,
-	populateType = PopulateType.DEEP,
+	populateType: PopulateType[] = [PopulateType.CITY, PopulateType.CITY_COUNTRY],
 ) => {
 	try {
 		const query = qs.stringify(
