@@ -1,5 +1,6 @@
 import { ProductInventoryActions } from '../resources/enums';
 import { ICartItemResponse } from './cart';
+import { ICategoryLevel3 } from './category';
 
 /** PRODUCT */
 export interface IProductFlat extends IProductBody {
@@ -22,6 +23,7 @@ export interface IProductBody {
 	product_brand?: { data: IProductBrand };
 	product_discount?: { data: IProductDiscount };
 	product_compatibilities?: { data: IProductCompatibility[] };
+	categories_level_3?: { data: ICategoryLevel3[] };
 }
 
 /** PRODUCT INVENTORY */
