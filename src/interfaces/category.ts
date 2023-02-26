@@ -5,6 +5,7 @@ export interface ICategoryCommonBody {
 	name: string;
 	description?: string;
 	icon?: string;
+	order?: number;
 }
 
 /** CATEGORIES */
