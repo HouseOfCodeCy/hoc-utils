@@ -107,6 +107,7 @@ export {
 	DateTypes,
 	PopulateType,
 	ProductInventoryActions,
+	SortType,
 	StatusCode,
 } from './resources/enums';
 /********************** Services ***********************************/
