@@ -36,6 +36,39 @@ export const getCategoriesLevel1 = async (
 	}
 };
 
+export const getCategoriesLevel2ByCategoryLevel1Id = async (
+	populateType: PopulateType[] = [PopulateType.NONE],
+	sortType: SortType[] = [SortType.ORDER_ASC],
+	categoryLevel1Id?: string,
+) => {
+	try {
+		const query = qs.stringify(
+			{
+				sort: sortType,
+				populate: populateType,
+				filters: categoryLevel1Id
+					? {
+							categories_level_1: {
+								id: {
+									$eq: categoryLevel1Id,
+								},
+							},
+					  }
+					: null,
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`categories-level-2?${query}`);
+
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
 export const getCategoriesLevel2 = async (
 	populateType: PopulateType[] = [PopulateType.NONE],
 	sortType: SortType[] = [SortType.ORDER_ASC],
@@ -75,6 +108,36 @@ export const getCategoriesLevel3 = async (
 		const query = qs.stringify(
 			{
 				sort: [SortType.ORDER_ASC],
+				populate: populateType,
+				filters: categoryLevel3Id
+					? {
+							id: {
+								$eq: categoryLevel3Id,
+							},
+					  }
+					: null,
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`categories-level-3?${query}`);
+
+		return response;
+	} catch (error) {
+		console.log('unexpected error: ', error);
+		return error;
+	}
+};
+
+export const getProductsByCategoryLevel3Id = async (
+	categoryLevel3Id?: string,
+	populateType: PopulateType[] = [PopulateType.PRODUCTS],
+) => {
+	try {
+		const query = qs.stringify(
+			{
+				sort: ['id:desc'],
 				populate: populateType,
 				filters: categoryLevel3Id
 					? {

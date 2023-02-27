@@ -138,7 +138,9 @@ export {
 export {
 	getCategoriesLevel1,
 	getCategoriesLevel2,
+	getCategoriesLevel2ByCategoryLevel1Id,
 	getCategoriesLevel3,
+	getProductsByCategoryLevel3Id,
 } from './services/Category.service';
 export { checkoutCart } from './services/Checkout.service';
 export {
@@ -158,7 +160,6 @@ export {
 	getFeaturedProducts,
 	getProduct,
 	getProducts,
-	getProductsByCategoryLevel3Id,
 } from './services/Product.service';
 export {
 	createProductInventory,
