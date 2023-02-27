@@ -7,12 +7,13 @@ export const getCategoriesLevel1 = async (
 		PopulateType.CATEGORIES_LEVEL_2,
 		PopulateType.CATEGORIES_LEVEL_2_LEVEL_3,
 	],
+	sortType: SortType[] = [SortType.ORDER_ASC],
 	categoryLevel1Id?: string,
 ) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: [SortType.ORDER_ASC],
+				sort: sortType,
 				populate: populateType,
 				filters: categoryLevel1Id
 					? {
@@ -37,12 +38,13 @@ export const getCategoriesLevel1 = async (
 
 export const getCategoriesLevel2 = async (
 	populateType: PopulateType[] = [PopulateType.NONE],
+	sortType: SortType[] = [SortType.ORDER_ASC],
 	categoryLevel2Id?: string,
 ) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: [SortType.ORDER_ASC],
+				sort: sortType,
 				populate: populateType,
 				filters: categoryLevel2Id
 					? {

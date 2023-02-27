@@ -15,7 +15,7 @@ export interface ICategoryLevel1 {
 }
 
 export interface ICategoryLevel1Body extends ICategoryCommonBody {
-	categories_level_2: { data: ICategoryLevel2[] };
+	categories_level_2?: { data: ICategoryLevel2[] };
 }
 
 export interface ICategoryLevel2 {
@@ -24,7 +24,8 @@ export interface ICategoryLevel2 {
 }
 
 export interface ICategoryLevel2Body extends ICategoryCommonBody {
-	categories_level_3: { data: ICategoryLevel3[] };
+	categories_level_3?: { data: ICategoryLevel3[] };
+	categories_level_1?: { data: ICategoryLevel1[] };
 }
 
 export interface ICategoryLevel3 {
@@ -34,4 +35,5 @@ export interface ICategoryLevel3 {
 
 export interface ICategoryLevel3Body extends ICategoryCommonBody {
 	products: { data: IProduct[] };
+	categories_level_2?: { data: ICategoryLevel2[] };
 }
