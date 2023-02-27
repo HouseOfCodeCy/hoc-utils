@@ -63,6 +63,8 @@ export enum SortType {
 	UPDATED_AT_ASC = 'updatedAt:asc',
 	CREATED_AT_DESC = 'createdAt:desc',
 	CREATED_AT_ASC = 'createdAt:asc',
+	ORDER_ASC = 'order:asc',
+	ORDER_DESC = 'order:desc',
 }
 
 export enum DateTypes {

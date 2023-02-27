@@ -1,15 +1,18 @@
 import qs from 'qs';
-import { PopulateType } from '../resources/enums';
+import { PopulateType, SortType } from '../resources/enums';
 import { http } from './common/Http.service';
 
 export const getCategoriesLevel1 = async (
-	populateType: PopulateType[] = [PopulateType.NONE],
+	populateType: PopulateType[] = [
+		PopulateType.CATEGORIES_LEVEL_2,
+		PopulateType.CATEGORIES_LEVEL_2_LEVEL_3,
+	],
 	categoryLevel1Id?: string,
 ) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['order:asc'],
+				sort: [SortType.ORDER_ASC],
 				populate: populateType,
 				filters: categoryLevel1Id
 					? {
@@ -39,7 +42,7 @@ export const getCategoriesLevel2 = async (
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['order:asc'],
+				sort: [SortType.ORDER_ASC],
 				populate: populateType,
 				filters: categoryLevel2Id
 					? {
@@ -69,7 +72,7 @@ export const getCategoriesLevel3 = async (
 	try {
 		const query = qs.stringify(
 			{
-				sort: ['order:asc'],
+				sort: [SortType.ORDER_ASC],
 				populate: populateType,
 				filters: categoryLevel3Id
 					? {
