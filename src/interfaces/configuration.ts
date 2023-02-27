@@ -25,4 +25,5 @@ export interface ShopConfigurationInterface {
 	shopDescription: string;
 	shopShortDescription: string;
 	favicon: string;
+	shopLogo: string;
 }
