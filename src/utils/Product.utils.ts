@@ -197,11 +197,11 @@ export const printPriceRanges = (product: IProduct) => {
 		const priceRanges = getProductPriceRange(product);
 		// if the lowest price is equal to the highest, show just one
 		if (priceRanges[0] === priceRanges[priceRanges.length - 1]) {
-			priceRangesString = `$${priceRanges[0]}`;
+			priceRangesString = `€${priceRanges[0]}`;
 		}
 		// else show the price ranges, with lowest to highest
 		else {
-			priceRangesString = `$${priceRanges[0]} - $${
+			priceRangesString = `€${priceRanges[0]} - €${
 				priceRanges[priceRanges.length - 1]
 			}`;
 		}
