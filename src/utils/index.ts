@@ -32,7 +32,7 @@ import {
 	checkoutCartAndUpdateProductInventory,
 	transformPriceToStripeAmount,
 } from './Checkout.utils';
-import { formatDate } from './Common.utils';
+import { formatDate, formatTelephoneNumber } from './Common.utils';
 import {
 	getDefaultShippingMethod,
 	getOrderTotal,
@@ -123,6 +123,7 @@ export const CheckoutUtils = {
 };
 export const CommonUtils = {
 	formatDate,
+	formatTelephoneNumber,
 };
 export const OrderUtils = {
 	getDefaultShippingMethod,

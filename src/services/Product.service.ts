@@ -2,11 +2,31 @@ import qs from 'qs';
 import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
-export const getProducts = async (populateType = PopulateType.STAR) => {
+export const getProducts = async (
+	populateType: PopulateType[] = [
+		PopulateType.PRODUCT_COLORS,
+		PopulateType.PRODUCT_SIZES,
+		PopulateType.PRODUCT_BRAND,
+	],
+	page = 1,
+	pageSize = 14,
+) => {
 	try {
-		const response = await http.get<any>(`products`, {
-			params: { populate: populateType },
-		});
+		const query = qs.stringify(
+			{
+				sort: ['id:desc'],
+				populate: populateType,
+				pagination: {
+					page: page,
+					pageSize: pageSize,
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`products?${query}`);
+
 		return response;
 	} catch (error) {
 		console.log('unexpected error: ', error);
@@ -17,8 +37,8 @@ export const getProducts = async (populateType = PopulateType.STAR) => {
 export const getProduct = async (
 	productId: string,
 	populateType: PopulateType[] = [
-		PopulateType.PRODUCT_COLOR,
-		PopulateType.PRODUCT_SIZE,
+		PopulateType.PRODUCT_COLORS,
+		PopulateType.PRODUCT_SIZES,
 		PopulateType.PRODUCT_BRAND,
 		PopulateType.CATEGORIES_LEVEL_3,
 		PopulateType.PRODUCT_COMPATIBILITIES,
@@ -43,11 +63,26 @@ export const getProduct = async (
 	}
 };
 
-export const getFeaturedProducts = async (populateType = PopulateType.DEEP) => {
+export const getFeaturedProducts = async (
+	populateType = PopulateType.DEEP,
+	page = 1,
+	pageSize = 2,
+) => {
 	try {
-		const response = await http.get<any>(`featured-products`, {
-			params: { populate: populateType },
-		});
+		const query = qs.stringify(
+			{
+				sort: ['id:desc'],
+				populate: populateType,
+				pagination: {
+					page: page,
+					pageSize: pageSize,
+				},
+			},
+			{
+				encodeValuesOnly: true, // prettify URL
+			},
+		);
+		const response = await http.get<any>(`featured-products?${query}`);
 
 		return response;
 	} catch (error) {
