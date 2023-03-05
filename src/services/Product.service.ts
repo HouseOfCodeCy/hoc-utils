@@ -10,6 +10,7 @@ export const getProducts = async (
 	],
 	page = 1,
 	pageSize = 14,
+	categoryLevel3Id?: string,
 ) => {
 	try {
 		const query = qs.stringify(
@@ -20,6 +21,15 @@ export const getProducts = async (
 					page: page,
 					pageSize: pageSize,
 				},
+				filters: categoryLevel3Id
+					? {
+							categories_level_3: {
+								id: {
+									$eq: categoryLevel3Id,
+								},
+							},
+					  }
+					: null,
 			},
 			{
 				encodeValuesOnly: true, // prettify URL
