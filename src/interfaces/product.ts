@@ -14,7 +14,7 @@ export interface IProduct {
 export interface IProductBody {
 	name: string;
 	description: string;
-	price: number;
+	price?: number;
 	mediaUrls?: string[];
 	sku?: string;
 	extraDescription?: string;
