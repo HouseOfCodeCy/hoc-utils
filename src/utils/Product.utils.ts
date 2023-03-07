@@ -236,7 +236,7 @@ export const calculateProductPrice = (
 		price = selectedProductColor.attributes.price;
 	} else if (selectedProductSize) {
 		price = selectedProductSize.attributes.price;
-	} else if (product) {
+	} else if (product && product.attributes.price) {
 		price = product.attributes.price;
 	}
 	return returnString ? `€${price.toFixed(2)}` : price;

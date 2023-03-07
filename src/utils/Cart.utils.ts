@@ -312,10 +312,13 @@ export const calculatePrice = (
 	product: IProduct,
 	quantity?: number,
 ): number => {
-	if (quantity) {
-		return +(product.attributes.price * quantity).toFixed(2);
+	if (product.attributes.price) {
+		if (quantity) {
+			return +(product.attributes.price * quantity).toFixed(2);
+		}
+		return +product.attributes.price.toFixed(2);
 	}
-	return +product.attributes.price.toFixed(2);
+	return 0;
 };
 
 export const calculatePriceFlat = (price: number, quantity = 1): number => {
