@@ -201,7 +201,7 @@ export const printPriceRanges = (product: IProduct) => {
 		}
 		// else show the price ranges, with lowest to highest
 		else {
-			priceRangesString = `€${priceRanges[0].toFixed(2)} - €${priceRanges[
+			priceRangesString = `€${priceRanges[0].toFixed(2)}-€${priceRanges[
 				priceRanges.length - 1
 			].toFixed(2)}`;
 		}
