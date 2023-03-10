@@ -118,7 +118,9 @@ export interface IProductColor {
 }
 export interface IProductColorBody {
 	name: string;
+	value: string;
 	price: number;
+	hex?: string;
 	product?: { data: IProduct };
 	product_inventory?: { data: IProductInventory };
 	required?: boolean;
