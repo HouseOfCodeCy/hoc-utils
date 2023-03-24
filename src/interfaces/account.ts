@@ -15,6 +15,8 @@ export interface IUserBody {
 	email: string;
 	password: string;
 	telephone: string;
+	// used for emails
+	subscribed: boolean;
 	favorite_products?: IProductFlat[];
 }
 
