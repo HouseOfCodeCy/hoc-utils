@@ -9,6 +9,7 @@ export interface ISectionBody {
 		welcome?: IWelcome;
 		subscribe?: any;
 		whoWeAre?: any;
+		carousel?: ICarousel;
 	};
 }
 
@@ -32,4 +33,9 @@ export interface IWelcome {
 	title: string;
 	description: string;
 	steps: any[];
+}
+
+export interface ICarousel {
+	id: number;
+	images: [{ image: string; url: string; alt: string }];
 }

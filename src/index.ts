@@ -94,6 +94,7 @@ export {
 export { IProductOptions as ProductOptions } from './interfaces/productInventory';
 export { IReview, IReviewBody, IReviewFlat } from './interfaces/review';
 export {
+	ICarousel,
 	IHowItWorks,
 	ISection,
 	ISectionBody,
@@ -154,8 +155,8 @@ export {
 	createOrder,
 	getOrder,
 	getOrderPaymentMethods,
-	getOrdersByUserId,
 	getOrderStatuses,
+	getOrdersByUserId,
 } from './services/Order.service';
 export {
 	getFeaturedProducts,
