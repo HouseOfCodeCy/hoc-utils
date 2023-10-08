@@ -63,6 +63,9 @@ export const createCartActionsAndGetCart = async (
 				quantity: quantity,
 				cart_item: res.data.data,
 				action: ProductInventoryActions.RESERVED_BY_CUSTOMER,
+				product: product,
+				product_color: product_color ? { data: product_color } : undefined,
+				product_size: product_size ? { data: product_size } : undefined,
 			};
 			await createProductInventory(productInventory).then(
 				async (productInventoryResponse: any) => {
