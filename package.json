@@ -11,8 +11,8 @@
   "scripts": {
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "build-watch": "npm run build:esm --watch && npm run build:cjs --watch",
+    "build:cjs": "tsc --module commonjs --outDir lib",
+    "build-watch": "tsc --module commonjs --outDir lib --watch",
     "link-dev": "npm run build && npm run link && cp package.json ./lib && npm run run build-watch",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",

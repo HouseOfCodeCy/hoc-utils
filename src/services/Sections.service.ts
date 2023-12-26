@@ -1,15 +1,11 @@
 import qs from 'qs';
-import { PopulateType, SortType } from '../resources/enums';
+import { PopulateType } from '../resources/enums';
 import { http } from './common/Http.service';
 
-export const getSections = async (
-	populateType = PopulateType.DEEP,
-	sortType: SortType[] = [SortType.ORDER_ASC],
-) => {
+export const getSections = async (populateType = PopulateType.DEEP) => {
 	try {
 		const query = qs.stringify(
 			{
-				sort: sortType,
 				populate: populateType,
 			},
 			{
